@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이우영 1972-2023 내일 매일 검정고무신</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'MapoGoldenPier';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+        :root {
+            --bg-color: #000000;
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color); /* 배경색 동일하게 */
+            color: var(--text-primary);
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0; /* 패딩 제거하여 꽉 차게 */
+        }
+
+        /* 팝업 창 컨테이너 */
+        .window-container {
+            width: 100%;
+            max-width: 100%; /* 제한 해제 */
+            height: 100%;
+            max-height: 100%; /* 제한 해제 */
+            background-color: var(--bg-color);
+            border-radius: 0; /* 라운드 처리 제거 */
+            border: none; /* 외곽선 제거 */
+            display: flex;
+            overflow: hidden;
+            animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* 좌측 사이드바 (다른 작업물 리스트 - 서랍식) */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 360px;
+            height: 100%;
+            z-index: 1000;
+            background-color: rgba(5, 5, 5, 0.75); /* 반투명 배경 */
+            backdrop-filter: blur(20px); /* 고급스러운 흐림 효과 */
+            -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255,255,255,0.12);
+            display: flex;
+            flex-direction: column;
+            transform: translateX(-360px); /* 360px 본체 크기만큼 완전히 숨김 */
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* 스크롤 나타내는 바처럼 길고 얇은 세로 핸들바 */
+        .sidebar-trigger-bar {
+            position: absolute;
+            top: 0;
+            right: -20px; /* 사이드바 본체 우측 끝에 결합 (20px) */
+            width: 20px; /* 클릭성 개선을 위해 20px로 소폭 확장 */
+            height: 100%;
+            background-color: rgba(13, 13, 13, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.12);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar-trigger-bar:hover {
+            background-color: rgba(24, 24, 24, 0.85);
+        }
+
+        /* 트리거 바 내부 중앙 화살표 */
+        .trigger-arrow {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 700;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .sidebar-trigger-bar:hover .trigger-arrow {
+            color: #ffffff;
+        }
+
+        .sidebar.open .trigger-arrow {
+            transform: rotate(180deg); /* 열리면 화살표 방향 반대로 회전 (<) */
+        }
+
+        /* 사이드바 활성 시 뒷배경 흐림 처리(백드롭) */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 999;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar-header {
+            padding: 24px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .work-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .work-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .work-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .work-item:hover {
+            background: rgba(255,255,255,0.03);
+        }
+
+        .work-item.active {
+            background: rgba(255,255,255,0.08);
+        }
+
+        .work-thumb {
+            width: 65px;
+            height: 85px;
+            background: linear-gradient(135deg, #2a2a2a, #111);
+            border-radius: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+        }
+
+        .work-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .work-info {
+            flex: 1;
+        }
+
+        .work-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .work-cat {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* 우측 메인 뷰어 (프로젝트 상세) */
+        .main-viewer {
+            flex: 1;
+            overflow-y: auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-color);
+            padding-left: 20px; /* 스크롤바 형태의 얇은 트리거 바(20px)를 위한 여백 */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .main-viewer::-webkit-scrollbar {
+            display: none;
+        }
+
+        .project-content {
+            width: 100%;
+            /* 풀사이즈를 위해 max-width와 padding 수정 */
+            min-height: 100%;
+            display: flex;
+            flex-direction: column; /* 분할된 섹션을 세로로 배치 */
+        }
+
+        .project-top {
+            width: 100%;
+            display: flex;
+            align-items: stretch;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 좌측: 포스터 이미지 영역 */
+        .image-section {
+            flex: 1.3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: auto;
+            max-height: 85vh;
+            object-fit: contain;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            /* 여백 최소화 */
+        }
+
+        .image-section img.visible, .project-bottom img.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .image-section img.visible:hover, .project-bottom img.visible:hover {
+            transform: translateY(0) scale(1.01);
+        }
+
+        /* 하단: 풀사이즈 이미지 영역 (리플렛 등) */
+        .project-bottom {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 80px 100px; /* 좌우 여백을 넓게 주어 시원하게 */
+            gap: 120px; /* 섹션 간 여백 확장 */
+        }
+
+        .project-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-section img {
+            margin-top: 80px; /* 이미지 간격 */
+        }
+
+        .project-section img:first-of-type {
+            margin-top: 40px; /* 첫 이미지와 헤더 사이 간격 */
+        }
+
+        .project-bottom img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* 하단 섹션 설명글 스타일 (그리드 헤더) */
+        .section-header {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 0.8fr 1.8fr 1fr 1fr; /* 1.3:1 비율로 분할하여 상단 flex 레이아웃과 수직 정렬 일치 */
+            gap: 40px;
+            padding-top: 24px; /* 위쪽 여백 확보 */
+            border-top: 1px solid rgba(255, 255, 255, 0.15); /* 위쪽 구분선 */
+            margin-bottom: 0; /* 이미지 margin-top으로 여백 제어 */
+            text-align: left;
+        }
+
+        .header-col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .col-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #666666; /* 톤다운된 레이블 */
+            font-weight: 600;
+        }
+
+        .section-header .col-val {
+            font-size: 0.9rem !important;
+            color: #bbbbbb;
+            font-weight: 300;
+            word-break: keep-all;
+        }
+
+        .spec-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px; /* 각 줄(단락) 사이의 수직 간격을 8px로 완벽 고정 */
+            width: 100%;
+        }
+
+        .spec-list span {
+            display: block;
+            line-height: 1.4 !important; /* 개별 줄의 자체 줄 높이는 슬림하게 고정 */
+        }
+
+        .col-val.title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .text-right {
+            align-items: flex-end;
+            text-align: left; /* 글자 자체는 왼쪽 정렬 */
+        }
+
+        /* 우측: 텍스트 및 정보 영역 */
+        .info-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* 세로 위쪽부터 정렬 */
+            align-items: flex-start; /* 가로 왼쪽 축 정렬 */
+            text-align: left; /* 글자 왼쪽 정렬 */
+            padding: 100px 60px; /* 위쪽 여백을 넉넉히 주어 포스터와 균형 유지 */
+            position: sticky;
+            top: 0;
+            align-self: flex-start;
+            height: auto;
+        }
+
+        .info-section h2 {
+            font-family: 'MapoGoldenPier', serif;
+            font-size: 2.3rem; /* 명조의 붓글씨 실루엣이 잘 살아나도록 살짝 키움 */
+            font-weight: 500;
+            line-height: 1.35;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+            word-break: keep-all;
+            text-align: left;
+        }
+
+        .category {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: 15px;
+        }
+
+        .description {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #cccccc;
+            margin-bottom: 50px;
+            font-weight: 300;
+            text-align: left;
+            width: 100%;
+        }
+
+        .poster-text-box {
+            background: none; /* 박스 배경 제거 */
+            padding: 0; /* 패딩을 제거하여 들여쓰기 제거 */
+            margin-bottom: 40px; /* 본문 문단과의 하단 마진 */
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .poster-text-box p {
+            margin-bottom: 10px; /* 줄 간격 설정 */
+            font-size: 0.95rem;
+            color: #bbbbbb;
+            font-weight: 300;
+        }
+        .poster-text-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 1000px) {
+            .window-container {
+                height: 100vh;
+            }
+            .sidebar {
+                width: 320px; /* 모바일/태블릿에선 폭을 살짝 줄임 */
+                height: 100%;
+                transform: translateX(-320px); /* 모바일 폭에 맞춰 완전히 숨김 */
+                border-bottom: none;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .main-viewer {
+                padding-left: 20px; /* 모바일에서도 트리거 바(20px) 공간 유지 */
+            }
+            .project-content {
+                flex-direction: column;
+            }
+            .project-top {
+                flex-direction: column;
+                padding: 20px 30px;
+                gap: 40px;
+            }
+            .project-bottom {
+                padding: 20px 30px;
+                gap: 80px;
+            }
+            .project-section img {
+                margin-top: 48px;
+            }
+            .project-top {
+                flex-direction: column;
+                padding: 20px 30px;
+                gap: 40px;
+            }
+            .section-header {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+                padding-top: 20px;
+                padding-bottom: 0;
+            }
+            .text-right {
+                align-items: flex-start;
+                text-align: left;
+            }
+            .header-col {
+                gap: 8px;
+            }
+            .col-val.title {
+                font-size: 1rem;
+            }
+            .section-header .col-val {
+                font-size: 0.85rem !important;
+            }
+            .info-section {
+                position: static;
+                min-height: auto;
+                padding: 0;
+            }
+            .image-section img {
+                max-height: 50vh;
+            }
+        }
+
+        /* 모바일 미디어 쿼리는 상단 1000px 쿼리로 통합하여 정돈 */
+    </style>
+</head>
+<body>
+
+    <div class="window-container">
+        <!-- 좌측: 다른 작업물 모아보기 (사이드바 드로어) -->
+        <aside class="sidebar" id="projectSidebar">
+            <!-- 실질적인 목록 콘텐츠 영역 -->
+            <div class="sidebar-content">
+                <div class="sidebar-header">
+                    <span>Projects</span>
+                </div>
+                <div class="work-list">
+                    <!-- 현재 작업물 -->
+                    <div class="work-item active">
+                        <div class="work-thumb">
+                            <img src="project/Black Rubber Shoes_poster.png" alt="이우영 회고전">
+                        </div>
+                        <div class="work-info">
+                            <div class="work-title">매일, 내 일 검정고무신</div>
+                            <div class="work-cat">Poster / Leaflet / Exhibit Graphic Design</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 더미 데이터 (다른 작업물들) -->
+                    <div class="work-item">
+                        <div class="work-thumb">
+                            <span style="color:#555; font-size:12px;">Image</span>
+                        </div>
+                        <div class="work-info">
+                            <div class="work-title">Arcadia Lotto</div>
+                            <div class="work-cat">Web UI / 3D</div>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <div class="work-thumb">
+                            <span style="color:#555; font-size:12px;">Image</span>
+                        </div>
+                        <div class="work-info">
+                            <div class="work-title">Personal Resume</div>
+                            <div class="work-cat">Editorial / Web</div>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <div class="work-thumb">
+                            <span style="color:#555; font-size:12px;">Image</span>
+                        </div>
+                        <div class="work-info">
+                            <div class="work-title">Modernist Book Design</div>
+                            <div class="work-cat">Book Design</div>
+                        </div>
+                    </div>
+                    
+                    <div class="work-item">
+                        <div class="work-thumb">
+                            <span style="color:#555; font-size:12px;">Image</span>
+                        </div>
+                        <div class="work-info">
+                            <div class="work-title">Subbacultcha</div>
+                            <div class="work-cat">Magazine</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 스크롤 나타내는 바처럼 길고 얇은 세로 핸들바 -->
+            <div class="sidebar-trigger-bar" id="sidebarToggle" aria-label="Toggle Projects Sidebar">
+                <span class="trigger-arrow">❯</span>
+            </div>
+        </aside>
+
+        <!-- 우측: 프로젝트 상세 팝업 뷰 -->
+        <main class="main-viewer">
+            <div class="project-content">
+                <div class="project-top">
+                    <div class="image-section">
+                        <img src="project/Black Rubber Shoes_poster.png" alt="이우영 회고전 포스터" class="scroll-anim">
+                    </div>
+                    
+                    <div class="info-section">
+                        <h2>이우영 1972 - 2023<br>: 매일, 내 일 검정고무신</h2>
+                        <p class="category">홍우주사회적협동조합 • 2023</p>
+                        
+                        <div class="description">
+                            <div class="poster-text-box">
+                                <p><strong>일시:</strong> 2023. 08. 18 — 09. 03</p>
+                                <p><strong>장소:</strong> 경춘선숲길 갤러리</p>
+                                <p><strong>주최·주관:</strong> 홍우주사회적협동조합</p>
+                            </div>
+                            <p><이우영 1972-2023 매일, 내 일 검정고무신>은 만화 '검정 고무신' 그림 작가인 이우영의 삶을 다양한 시각적 매체를 통해 새롭게 조명하고 추억하는 특별 기획전입니다.</p>
+                            <p>전시를 위한 포스터, 리플렛 및 연표 등의 편집물을 디자인하였습니다.</p>
+                            <p>전체적으로 무채색을 사용하여 정적인 분위기를 나타내었으며, 하늘색을 메인 색상으로 설정해 자유로운 느낌을 전달하였습니다.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-bottom">
+                    <!-- 리플렛 카테고리 (설명 텍스트 상단 추가) -->
+                    <div class="project-section">
+                        <div class="section-header">
+                            <div class="header-col">
+                                <div class="col-val title">Leaflet</div>
+                            </div>
+                            <div class="header-col description-col">
+                                <div class="col-val spec-list">
+                                    <span>키 비주얼 제안 키워드인 '그레인한 질감'</span>
+                                    <span>'사박사박', '빛바랜'에 맞춰 제작한 포스터를 기반으로 3단 리플렛을 디자인했습니다.</span>
+                                </div>
+                            </div>
+                            <div class="header-col">
+                                <div class="col-val spec-list">
+                                    <span>텍스트 편집 | 정희문</span>
+                                    <span>레이아웃 및 그래픽 | 탁혜원</span>
+                                </div>
+                            </div>
+                            <div class="header-col text-right">
+                                <div class="col-val spec-list">
+                                    <span>A5(441mm x 210mm)</span>
+                                    <span>백색모조 120g</span>
+                                    <span>3단 접지 세로형</span>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="project/Black Rubber Shoes_Leaflet_1.png" alt="이우영 회고전 리플렛 외지" class="scroll-anim">
+                        <img src="project/Black Rubber Shoes_Leaflet_2.png" alt="이우영 회고전 리플렛 내지" class="scroll-anim">
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 사이드바 활성 시 배경을 어둡고 흐리게 덮어주는 오버레이 -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hye-won Tak</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-primary: #111111;
+            --text-secondary: #888888;
+            --grid-border: #eeeeee;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --accent-color: #4a90e2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-primary);
+            line-height: 1.5;
+            /* Background image setup */
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .resume-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 640px;
+            border-radius: 24px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            height: fit-content;
+        }
+
+        header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Social links bar */
+        .links-bar {
+            display: flex;
+            border: 1px solid var(--grid-border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .links-bar>a,
+        .links-bar>div {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            border-right: 1px solid var(--grid-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+
+        .links-bar>*:last-child {
+            border-right: none;
+        }
+
+        .links-bar>a:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Lists */
+        .section-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 20px;
+            margin-top: 40px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--grid-border);
+            padding-bottom: 10px;
+        }
+
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--grid-border);
+            font-size: 0.95rem;
+            align-items: flex-start;
+        }
+
+        .list-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-left {
+            width: 150px;
+            flex-shrink: 0;
+            font-weight: 500;
+        }
+
+        .item-date {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .item-middle {
+            flex-grow: 1;
+            padding: 0 20px;
+            color: var(--text-secondary);
+        }
+
+        .item-right {
+            text-align: right;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        @media (max-width: 600px) {
+            .resume-container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .list-item {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .item-middle {
+                padding: 0;
+            }
+
+            .item-right {
+                text-align: left;
+                margin-top: 5px;
+            }
+
+            .links-bar {
+                flex-direction: column;
+            }
+
+            .links-bar>a,
+            .links-bar>div {
+                border-right: none;
+                border-bottom: 1px solid var(--grid-border);
+            }
+
+            .links-bar>*:last-child {
+                border-bottom: none;
+            }
+        }
+
+        /* ==========================================================================
+           ✨ 추가된 스타일 레이어 (마우스 오버 미리보기 및 모달 팝업)
+           ========================================================================== */
+
+        /* 1. 마우스 커서 옆에 따라다니는 미리보기 박스 */
+        #hover-preview {
+            position: fixed;
+            pointer-events: none;
+            /* 커서가 이미지 영역에 닿아 버벅이는 현상 방지 */
+            width: 140px;
+            /* 미니멀한 미리보기 가로 폭 */
+            height: 190px;
+            /* 포스터 세로 비율 감안한 높이 */
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            display: none;
+            /* 평소엔 숨김 */
+            z-index: 1000;
+            border: 2px solid #ffffff;
+        }
+
+        /* 2. 클릭했을 때 띄워줄 전체 화면 모달 팝업 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 16px;
+            max-width: 90%;
+            max-height: 85vh;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 60vh;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            object-fit: contain;
+        }
+
+        .modal-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="resume-container">
+        <header>
+            <h1>TAK HYE-WON</h1>
+            <div class="subtitle">
+                Editorial Designer<br>
+                Based in Seoul, South Korea | 2026 Portfolio
+            </div>
+        </header>
+        <hr>
+        <div class="list-item" style="flex-direction: column;">
+            <div class="item-middle" style="padding:0; margin-bottom: 15px; line-height: 1.6;">
+                디지털과 인쇄 매체를 아우르는 올라운드 디자이너를 지향합니다. 생성형 AI 툴을 활용한 효율적인 비주얼라이제이션과 인문학적 고찰이 담긴 디자인을 추구합니다.
+            </div>
+            <div class="item-middle" style="padding:0; display:flex; gap:10px; flex-wrap:wrap; font-size: 0.85rem;">
+                <span style="background:#f5f5f5; padding:6px 12px; border-radius:6px; color:#333;">Adobe
+                    Illustrator</span>
+                <span style="background:#f5f5f5; padding:6px 12px; border-radius:6px; color:#333;">Adobe
+                    Photoshop</span>
+                <span style="background:#f5f5f5; padding:6px 12px; border-radius:6px; color:#333;">Adobe InDesign</span>
+                <span style="background:#f5f5f5; padding:6px 12px; border-radius:6px; color:#333;">Figma</span>
+                <span style="background:#f5f5f5; padding:6px 12px; border-radius:6px; color:#333;">Google
+                    Antigravity</span>
+            </div>
+        </div>
+
+        <div class="links-bar">
+            <a href="mailto:takhyewon@gmail.com">Email</a>
+            <a href="https://www.instagram.com/ximo_777">Instagram ↗</a>
+            <a href="https://www.behance.net/hyewontak">Behance ↗</a>
+        </div>
+
+        <div class="section-title">Career</div>
+        <div class="list-item">
+            <div class="item-left">
+                <span class="item-date">2024. 10 - 2025. 11</span>
+            </div>
+            <div class="item-middle">베리텍</div>
+            <div class="item-right">사원 매니저</div>
+        </div>
+
+        <div class="list-item">
+            <div class="item-left">
+                <span class="item-date">2023. 06 - 2024. 01</span>
+            </div>
+            <div class="item-middle">
+                <div style="margin-bottom: 4px;">홍우주사회적협동조합</div>
+                <span class="sub-project" data-img="project/Black Rubber Shoes_poster.png" onclick="openProjectPopup()"
+                    style="font-size: 0.8rem; color: #B5B17B; cursor: pointer;">
+                    《이우영 1972 - 2023 : 매일, 내 일 검정고무신》
+                </span>
+            </div>
+            <div class="item-right">그래픽디자이너</div>
+        </div>
+
+        <div class="section-title">Education</div>
+        <div class="list-item">
+            <div class="item-left">
+                <span class="item-date">2025. 03 - Present</span>
+            </div>
+            <div class="item-middle">한양사이버대학교</div>
+            <div class="item-right">시각디자인과</div>
+        </div>
+        <div class="list-item">
+            <div class="item-left">
+                <span class="item-date">2016. 03 - 2019. 08</span>
+            </div>
+            <div class="item-middle">한양여자대학교</div>
+            <div class="item-right">컴퓨터정보과</div>
+        </div>
+
+        <footer style="margin-top: 40px; text-align: center; font-size: 0.75rem; color: var(--text-secondary);">
+            <p>© 2026 Tak Hye-won. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <div id="hover-preview"></div>
+
+    <div id="projectModal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <img id="modal-img" src="" alt="Project Poster">
+            <div class="modal-title" id="modal-title"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

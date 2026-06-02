@@ -1,0 +1,12 @@
+.sub-project {
+    display: inline-block;
+    font-size: 0.8rem; /* 요청하신 대로 글씨를 작게 조절 */
+    line-height: 1.4;
+    word-break: keep-all; /* 단어 단위로 줄바꿈되어 더 깔끔함 */
+    color: var(--text-secondary); /* 초기 색상은 약간 흐리게 */
+    transition: color 0.2s;
+}
+
+.sub-project:hover {
+    color: #4a90e2; /* 마우스 올렸을 때 강조색 */
+}
