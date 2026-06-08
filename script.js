@@ -111,3 +111,75 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// 6. 포토 슬라이더 제어 로직
+document.addEventListener('DOMContentLoaded', () => {
+    const sliderContainers = document.querySelectorAll('.photo-slider-container');
+    
+    sliderContainers.forEach(container => {
+        const images = container.querySelectorAll('.slider-image');
+        const prevBtn = container.querySelector('.prev-btn');
+        const nextBtn = container.querySelector('.next-btn');
+        const currentIdxEl = container.querySelector('.current-index');
+        const totalIdxEl = container.querySelector('.total-slides');
+        
+        if (images.length === 0) return;
+        
+        let currentIndex = 0;
+        
+        // 총 슬라이드 수 설정
+        if (totalIdxEl) {
+            totalIdxEl.textContent = images.length;
+        }
+        
+        function updateSlider(index) {
+            images.forEach((img, i) => {
+                if (i === index) {
+                    img.classList.add('active');
+                } else {
+                    img.classList.remove('active');
+                }
+            });
+            
+            currentIndex = index;
+            
+            if (currentIdxEl) {
+                currentIdxEl.textContent = currentIndex + 1;
+            }
+        }
+        
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                let nextIdx = currentIndex - 1;
+                if (nextIdx < 0) {
+                    nextIdx = images.length - 1;
+                }
+                updateSlider(nextIdx);
+            });
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                let nextIdx = currentIndex + 1;
+                if (nextIdx >= images.length) {
+                    nextIdx = 0;
+                }
+                updateSlider(nextIdx);
+            });
+        }
+        
+        // 초기화
+        updateSlider(0);
+    });
+});
+
+// 7. 프로젝트 제목 자동 설정 로직 (work-item.active의 work-title 기준)
+document.addEventListener('DOMContentLoaded', () => {
+    const activeTitleEl = document.querySelector('.work-item.active .work-title');
+    if (activeTitleEl) {
+        const activeTitleText = activeTitleEl.textContent.trim();
+        document.querySelectorAll('.dynamic-project-title').forEach(el => {
+            el.textContent = activeTitleText;
+        });
+    }
+});

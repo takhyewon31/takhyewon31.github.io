@@ -349,8 +349,8 @@
         .section-header {
             width: 100%;
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 40px;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 16px 40px;
             padding-top: 24px;
             border-top: 1px solid rgba(255, 255, 255, 0.15);
             margin-bottom: 0;
@@ -526,7 +526,7 @@
 
             .section-header {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 30px;
+                gap: 16px 30px;
                 padding-top: 20px;
                 padding-bottom: 0;
             }
@@ -557,6 +557,102 @@
             .image-section img {
                 max-height: 50vh;
             }
+        }
+
+        /* 포토 슬라이더 스타일 */
+        .photo-slider-container {
+            width: 100%;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .photo-slider-container.scroll-anim {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .photo-slider-container.scroll-anim.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .photo-slider {
+            position: relative;
+            width: 100%;
+            height: 65vh;
+            background-color: #0c0c0c;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .photo-slider img.slider-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0 !important;
+            transform: translateY(0) !important;
+            transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+            pointer-events: none;
+        }
+
+        .photo-slider img.slider-image.active {
+            opacity: 1 !important;
+            pointer-events: auto;
+        }
+
+        .slider-controls {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            margin-top: 10px;
+        }
+
+        .slider-btn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            opacity: 0.6;
+        }
+
+        .slider-btn:hover {
+            opacity: 1;
+            color: #ffffff;
+        }
+
+        .slider-btn.prev-btn:hover {
+            transform: translateX(-4px);
+        }
+
+        .slider-btn.next-btn:hover {
+            transform: translateX(4px);
+        }
+
+        .slider-counter {
+            font-size: 0.9rem;
+            color: #888888;
+            font-weight: 500;
+            letter-spacing: 1px;
+            min-width: 40px;
+            text-align: center;
         }
     </style>
 </head>
@@ -658,14 +754,10 @@
                 <div class="project-bottom">
                     <div class="project-section">
                         <div class="section-header">
+                            <div class="col-val title" style="grid-column: 1 / -1;">Leaflet</div>
                             <div class="header-col">
-                                <div class="col-val title">Leaflet</div>
-                            </div>
-                            <div class="header-col description-col">
-                                <div class="col-val spec-list">
-                                    <span>키 비주얼 제안 키워드인 '그레인한 질감',</span>
-                                    <span>'사박사박', '빛바랜'에 맞춰 제작한 포스터를 기반으로</span>
-                                    <span>3단 리플렛을 디자인했습니다.</span>
+                                <div class="col-val spec-list" style="color: #aaaaaa;">
+                                    <span>키 비주얼 제안 키워드인 '그레인한 질감', '사박사박', '빛바랜'에 맞춰 제작한 포스터를 기반으로 3단 리플렛을 디자인했습니다.</span>
                                 </div>
                             </div>
                             <div class="header-col">
@@ -678,12 +770,77 @@
                                 <div class="col-val spec-list">
                                     <span>A5(441mm x 210mm)</span>
                                     <span>백색모조 120g</span>
-                                    <span>3단 접지 세로형</span>
                                 </div>
                             </div>
                         </div>
                         <img src="project/Black Rubber Shoes_Leaflet_1.png" alt="이우영 회고전 리플렛 외지" class="scroll-anim">
                         <img src="project/Black Rubber Shoes_Leaflet_2.png" alt="이우영 회고전 리플렛 내지" class="scroll-anim">
+                    </div>
+
+                    <div class="project-section">
+                        <div class="section-header">
+                            <div class="col-val title" style="grid-column: 1 / -1;">Biography Panels</div>
+                            <div class="header-col">
+                                <div class="col-val spec-list" style="color: #aaaaaa;">
+                                    <span>이우영 작가의 생애를 4개의 시기로 구분한 연표 패널 디자인입니다. '유년 시절', '신인 만화가', '스승으로서의 나날들', '강화도에서의 삶'을 주제로 작가의 아카이브 사진과 글을 조화롭게 레이아웃했습니다.</span>
+                                </div>
+                            </div>
+                            <div class="header-col">
+                                <div class="col-val spec-list">
+                                    <span>레이아웃 및 그래픽 | 탁혜원</span>
+                                </div>
+                            </div>
+                            <div class="header-col text-right">
+                                <div class="col-val spec-list">
+                                    <span>614mm x 914mm</span>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="project/Black Rubber Shoes_Panel_1.png" alt="이우영 회고전 연표 패널 1 - 유년시절" class="scroll-anim">
+                        <img src="project/Black Rubber Shoes_Panel_2.png" alt="이우영 회고전 연표 패널 2 - 신인 만화가 이우영" class="scroll-anim">
+                        <img src="project/Black Rubber Shoes_Panel_3.png" alt="이우영 회고전 연표 패널 3 - 선배이자 스승으로 지낸 나날들" class="scroll-anim">
+                        <img src="project/Black Rubber Shoes_Panel_4.png" alt="이우영 회고전 연표 패널 4 - 강화도에서의 삶과 작업" class="scroll-anim">
+                    </div>
+
+                    <div class="project-section">
+                        <div class="section-header">
+                            <div class="col-val title dynamic-project-title" style="grid-column: 1 / -1;"></div>
+                            <div class="header-col">
+                                <div class="col-val spec-list" style="color: #aaaaaa;">
+                                    <span>경춘선숲길 갤러리 전시 현장의 생생한 아카이브 기록입니다.</span>
+                                </div>
+                            </div>
+                            <div class="header-col">
+                                <div class="col-val spec-list">
+                                    <span>공간 및 전시 전경 촬영</span>
+                                </div>
+                            </div>
+                            <div class="header-col text-right">
+                                <div class="col-val spec-list">
+                                    <span>현장 기록</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="photo-slider-container scroll-anim">
+                            <div class="photo-slider">
+                                <img src="project/Black Rubber Shoes_Photo_1.jpg" alt="현장 사진 1" class="slider-image active">
+                                <img src="project/Black Rubber Shoes_Photo_2.JPG" alt="현장 사진 2" class="slider-image">
+                                <img src="project/Black Rubber Shoes_Photo_3.JPG" alt="현장 사진 3" class="slider-image">
+                                <img src="project/Black Rubber Shoes_Photo_4.JPG" alt="현장 사진 4" class="slider-image">
+                                <img src="project/Black Rubber Shoes_Photo_5.JPG" alt="현장 사진 5" class="slider-image">
+                            </div>
+                            <div class="slider-controls">
+                                <button class="slider-btn prev-btn" aria-label="이전 사진">
+                                    <span>←</span>
+                                </button>
+                                <div class="slider-counter">
+                                    <span class="current-index">1</span> / <span class="total-slides">5</span>
+                                </div>
+                                <button class="slider-btn next-btn" aria-label="다음 사진">
+                                    <span>More →</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
