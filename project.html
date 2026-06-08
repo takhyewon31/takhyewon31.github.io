@@ -33,7 +33,7 @@
 
         body {
             font-family: var(--font-main);
-            background-color: var(--bg-color); /* 배경색 동일하게 */
+            background-color: var(--bg-color);
             color: var(--text-primary);
             height: 100vh;
             margin: 0;
@@ -41,18 +41,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 0; /* 패딩 제거하여 꽉 차게 */
+            padding: 0;
         }
 
-        /* 팝업 창 컨테이너 */
         .window-container {
             width: 100%;
-            max-width: 100%; /* 제한 해제 */
+            max-width: 100%;
             height: 100%;
-            max-height: 100%; /* 제한 해제 */
+            max-height: 100%;
             background-color: var(--bg-color);
-            border-radius: 0; /* 라운드 처리 제거 */
-            border: none; /* 외곽선 제거 */
+            border-radius: 0;
+            border: none;
             display: flex;
             overflow: hidden;
             animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -63,7 +62,6 @@
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* 좌측 사이드바 (다른 작업물 리스트 - 서랍식) */
         .sidebar {
             position: fixed;
             top: 0;
@@ -72,12 +70,12 @@
             height: 100%;
             z-index: 1000;
             background-color: rgba(5, 5, 5, 0.75); /* 반투명 배경 */
-            backdrop-filter: blur(20px); /* 고급스러운 흐림 효과 */
+            backdrop-filter: blur(20px); /* 흐림 효과 */
             -webkit-backdrop-filter: blur(20px);
             border-right: 1px solid rgba(255,255,255,0.12);
             display: flex;
             flex-direction: column;
-            transform: translateX(-360px); /* 360px 본체 크기만큼 완전히 숨김 */
+            transform: translateX(-360px);
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -93,12 +91,11 @@
             overflow: hidden;
         }
 
-        /* 스크롤 나타내는 바처럼 길고 얇은 세로 핸들바 */
         .sidebar-trigger-bar {
             position: absolute;
             top: 0;
-            right: -20px; /* 사이드바 본체 우측 끝에 결합 (20px) */
-            width: 20px; /* 클릭성 개선을 위해 20px로 소폭 확장 */
+            right: -20px;
+            width: 20px;
             height: 100%;
             background-color: rgba(13, 13, 13, 0.75);
             backdrop-filter: blur(20px);
@@ -116,7 +113,6 @@
             background-color: rgba(24, 24, 24, 0.85);
         }
 
-        /* 트리거 바 내부 중앙 화살표 */
         .trigger-arrow {
             font-size: 0.7rem;
             color: rgba(255, 255, 255, 0.4);
@@ -129,10 +125,9 @@
         }
 
         .sidebar.open .trigger-arrow {
-            transform: rotate(180deg); /* 열리면 화살표 방향 반대로 회전 (<) */
+            transform: rotate(180deg);
         }
 
-        /* 사이드바 활성 시 뒷배경 흐림 처리(백드롭) */
         .sidebar-overlay {
             position: fixed;
             top: 0;
@@ -236,7 +231,7 @@
             display: flex;
             flex-direction: column;
             background-color: var(--bg-color);
-            padding-left: 20px; /* 스크롤바 형태의 얇은 트리거 바(20px)를 위한 여백 */
+            padding-left: 20px;
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
@@ -246,10 +241,9 @@
 
         .project-content {
             width: 100%;
-            /* 풀사이즈를 위해 max-width와 padding 수정 */
             min-height: 100%;
             display: flex;
-            flex-direction: column; /* 분할된 섹션을 세로로 배치 */
+            flex-direction: column;
         }
 
         .project-top {
@@ -325,15 +319,14 @@
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
-        /* 하단 섹션 설명글 스타일 (그리드 헤더) */
         .section-header {
             width: 100%;
             display: grid;
-            grid-template-columns: 0.8fr 1.8fr 1fr 1fr; /* 1.3:1 비율로 분할하여 상단 flex 레이아웃과 수직 정렬 일치 */
+            grid-template-columns: 0.8fr 1.8fr 1fr 1fr;
             gap: 40px;
-            padding-top: 24px; /* 위쪽 여백 확보 */
-            border-top: 1px solid rgba(255, 255, 255, 0.15); /* 위쪽 구분선 */
-            margin-bottom: 0; /* 이미지 margin-top으로 여백 제어 */
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 0;
             text-align: left;
         }
 
@@ -398,7 +391,7 @@
 
         .info-section h2 {
             font-family: 'MapoGoldenPier', serif;
-            font-size: 2.3rem; /* 명조의 붓글씨 실루엣이 잘 살아나도록 살짝 키움 */
+            font-size: 2.3rem;
             font-weight: 500;
             line-height: 1.35;
             letter-spacing: -0.5px;
@@ -451,16 +444,16 @@
                 height: 100vh;
             }
             .sidebar {
-                width: 320px; /* 모바일/태블릿에선 폭을 살짝 줄임 */
+                width: 320px;
                 height: 100%;
-                transform: translateX(-320px); /* 모바일 폭에 맞춰 완전히 숨김 */
+                transform: translateX(-320px);
                 border-bottom: none;
             }
             .sidebar.open {
                 transform: translateX(0);
             }
             .main-viewer {
-                padding-left: 20px; /* 모바일에서도 트리거 바(20px) 공간 유지 */
+                padding-left: 20px;
             }
             .project-content {
                 flex-direction: column;
@@ -511,21 +504,17 @@
             }
         }
 
-        /* 모바일 미디어 쿼리는 상단 1000px 쿼리로 통합하여 정돈 */
     </style>
 </head>
 <body>
 
     <div class="window-container">
-        <!-- 좌측: 다른 작업물 모아보기 (사이드바 드로어) -->
         <aside class="sidebar" id="projectSidebar">
-            <!-- 실질적인 목록 콘텐츠 영역 -->
             <div class="sidebar-content">
                 <div class="sidebar-header">
                     <span>Projects</span>
                 </div>
                 <div class="work-list">
-                    <!-- 현재 작업물 -->
                     <div class="work-item active">
                         <div class="work-thumb">
                             <img src="project/Black Rubber Shoes_poster.png" alt="이우영 회고전">
@@ -536,7 +525,6 @@
                         </div>
                     </div>
                     
-                    <!-- 더미 데이터 (다른 작업물들) -->
                     <div class="work-item">
                         <div class="work-thumb">
                             <span style="color:#555; font-size:12px;">Image</span>
@@ -585,7 +573,6 @@
             </div>
         </aside>
 
-        <!-- 우측: 프로젝트 상세 팝업 뷰 -->
         <main class="main-viewer">
             <div class="project-content">
                 <div class="project-top">
@@ -611,7 +598,6 @@
                 </div>
                 
                 <div class="project-bottom">
-                    <!-- 리플렛 카테고리 (설명 텍스트 상단 추가) -->
                     <div class="project-section">
                         <div class="section-header">
                             <div class="header-col">
@@ -645,7 +631,6 @@
         </main>
     </div>
 
-    <!-- 사이드바 활성 시 배경을 어둡고 흐리게 덮어주는 오버레이 -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <script src="script.js"></script>
