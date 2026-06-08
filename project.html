@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,8 +59,15 @@
         }
 
         @keyframes popIn {
-            from { opacity: 0; transform: scale(0.95) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
 
         .sidebar {
@@ -69,10 +77,12 @@
             width: 360px;
             height: 100%;
             z-index: 1000;
-            background-color: rgba(5, 5, 5, 0.75); /* 반투명 배경 */
-            backdrop-filter: blur(20px); /* 흐림 효과 */
+            background-color: rgba(5, 5, 5, 0.75);
+            /* 반투명 배경 */
+            backdrop-filter: blur(20px);
+            /* 흐림 효과 */
             -webkit-backdrop-filter: blur(20px);
-            border-right: 1px solid rgba(255,255,255,0.12);
+            border-right: 1px solid rgba(255, 255, 255, 0.12);
             display: flex;
             flex-direction: column;
             transform: translateX(-360px);
@@ -149,7 +159,7 @@
 
         .sidebar-header {
             padding: 24px 30px;
-            border-bottom: 1px solid rgba(255,255,255,0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
             font-weight: 700;
             font-size: 1.2rem;
             letter-spacing: -0.5px;
@@ -167,6 +177,7 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
         .work-list::-webkit-scrollbar {
             display: none;
         }
@@ -178,15 +189,15 @@
             padding: 20px 30px;
             cursor: pointer;
             transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(255,255,255,0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .work-item:hover {
-            background: rgba(255,255,255,0.03);
+            background: rgba(255, 255, 255, 0.03);
         }
 
         .work-item.active {
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .work-thumb {
@@ -235,6 +246,7 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
         .main-viewer::-webkit-scrollbar {
             display: none;
         }
@@ -250,20 +262,29 @@
             width: 100%;
             display: flex;
             align-items: stretch;
+            padding: 0 80px;
+            gap: 40px;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* 좌측: 포스터 이미지 영역 */
         .image-section {
-            flex: 1.3;
+            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 40px;
+            padding: 40px 0;
         }
 
         .image-section img {
@@ -277,12 +298,14 @@
             /* 여백 최소화 */
         }
 
-        .image-section img.visible, .project-bottom img.visible {
+        .image-section img.visible,
+        .project-bottom img.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .image-section img.visible:hover, .project-bottom img.visible:hover {
+        .image-section img.visible:hover,
+        .project-bottom img.visible:hover {
             transform: translateY(0) scale(1.01);
         }
 
@@ -292,8 +315,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 0 80px 100px; /* 좌우 여백을 넓게 주어 시원하게 */
-            gap: 120px; /* 섹션 간 여백 확장 */
+            padding: 0 80px 100px;
+            /* 좌우 여백을 넓게 주어 시원하게 */
+            gap: 120px;
+            /* 섹션 간 여백 확장 */
         }
 
         .project-section {
@@ -303,11 +328,13 @@
         }
 
         .project-section img {
-            margin-top: 80px; /* 이미지 간격 */
+            margin-top: 80px;
+            /* 이미지 간격 */
         }
 
         .project-section img:first-of-type {
-            margin-top: 40px; /* 첫 이미지와 헤더 사이 간격 */
+            margin-top: 40px;
+            /* 첫 이미지와 헤더 사이 간격 */
         }
 
         .project-bottom img {
@@ -322,7 +349,7 @@
         .section-header {
             width: 100%;
             display: grid;
-            grid-template-columns: 0.8fr 1.8fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
             gap: 40px;
             padding-top: 24px;
             border-top: 1px solid rgba(255, 255, 255, 0.15);
@@ -340,7 +367,8 @@
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #666666; /* 톤다운된 레이블 */
+            color: #666666;
+            /* 톤다운된 레이블 */
             font-weight: 600;
         }
 
@@ -354,13 +382,15 @@
         .spec-list {
             display: flex;
             flex-direction: column;
-            gap: 8px; /* 각 줄(단락) 사이의 수직 간격을 8px로 완벽 고정 */
+            gap: 8px;
+            /* 각 줄(단락) 사이의 수직 간격을 8px로 완벽 고정 */
             width: 100%;
         }
 
         .spec-list span {
             display: block;
-            line-height: 1.4 !important; /* 개별 줄의 자체 줄 높이는 슬림하게 고정 */
+            line-height: 1.4 !important;
+            /* 개별 줄의 자체 줄 높이는 슬림하게 고정 */
         }
 
         .col-val.title {
@@ -371,7 +401,8 @@
 
         .text-right {
             align-items: flex-end;
-            text-align: left; /* 글자 자체는 왼쪽 정렬 */
+            text-align: left;
+            /* 글자 자체는 왼쪽 정렬 */
         }
 
         /* 우측: 텍스트 및 정보 영역 */
@@ -379,10 +410,14 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* 세로 위쪽부터 정렬 */
-            align-items: flex-start; /* 가로 왼쪽 축 정렬 */
-            text-align: left; /* 글자 왼쪽 정렬 */
-            padding: 100px 60px; /* 위쪽 여백을 넉넉히 주어 포스터와 균형 유지 */
+            justify-content: flex-start;
+            /* 세로 위쪽부터 정렬 */
+            align-items: flex-start;
+            /* 가로 왼쪽 축 정렬 */
+            text-align: left;
+            /* 글자 왼쪽 정렬 */
+            padding: 100px 0;
+            /* 위쪽 여백을 넉넉히 주어 포스터와 균형 유지 */
             position: sticky;
             top: 0;
             align-self: flex-start;
@@ -421,20 +456,25 @@
         }
 
         .poster-text-box {
-            background: none; /* 박스 배경 제거 */
-            padding: 0; /* 패딩을 제거하여 들여쓰기 제거 */
-            margin-bottom: 40px; /* 본문 문단과의 하단 마진 */
+            background: none;
+            /* 박스 배경 제거 */
+            padding: 0;
+            /* 패딩을 제거하여 들여쓰기 제거 */
+            margin-bottom: 40px;
+            /* 본문 문단과의 하단 마진 */
             border: none;
             width: 100%;
             text-align: left;
         }
 
         .poster-text-box p {
-            margin-bottom: 10px; /* 줄 간격 설정 */
+            margin-bottom: 10px;
+            /* 줄 간격 설정 */
             font-size: 0.95rem;
             color: #bbbbbb;
             font-weight: 300;
         }
+
         .poster-text-box p:last-child {
             margin-bottom: 0;
         }
@@ -443,69 +483,84 @@
             .window-container {
                 height: 100vh;
             }
+
             .sidebar {
                 width: 320px;
                 height: 100%;
                 transform: translateX(-320px);
                 border-bottom: none;
             }
+
             .sidebar.open {
                 transform: translateX(0);
             }
+
             .main-viewer {
                 padding-left: 20px;
             }
+
             .project-content {
                 flex-direction: column;
             }
+
             .project-top {
                 flex-direction: column;
                 padding: 20px 30px;
                 gap: 40px;
             }
+
             .project-bottom {
                 padding: 20px 30px;
                 gap: 80px;
             }
+
             .project-section img {
                 margin-top: 48px;
             }
+
             .project-top {
                 flex-direction: column;
                 padding: 20px 30px;
                 gap: 40px;
             }
+
             .section-header {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 30px;
                 padding-top: 20px;
                 padding-bottom: 0;
             }
+
             .text-right {
                 align-items: flex-start;
                 text-align: left;
             }
+
             .header-col {
                 gap: 8px;
             }
+
             .col-val.title {
                 font-size: 1rem;
             }
+
             .section-header .col-val {
                 font-size: 0.85rem !important;
             }
+
             .info-section {
                 position: static;
                 min-height: auto;
                 padding: 0;
             }
+
             .image-section img {
                 max-height: 50vh;
             }
         }
-
     </style>
 </head>
+
 <body>
 
     <div class="window-container">
@@ -524,7 +579,7 @@
                             <div class="work-cat">Exhibit Graphic Design</div>
                         </div>
                     </div>
-                    
+
                     <div class="work-item">
                         <div class="work-thumb">
                             <span style="color:#555; font-size:12px;">Image</span>
@@ -534,7 +589,7 @@
                             <div class="work-cat">Web UI / 3D</div>
                         </div>
                     </div>
-                    
+
                     <div class="work-item">
                         <div class="work-thumb">
                             <span style="color:#555; font-size:12px;">Image</span>
@@ -544,7 +599,7 @@
                             <div class="work-cat">Editorial / Web</div>
                         </div>
                     </div>
-                    
+
                     <div class="work-item">
                         <div class="work-thumb">
                             <span style="color:#555; font-size:12px;">Image</span>
@@ -554,7 +609,7 @@
                             <div class="work-cat">Book Design</div>
                         </div>
                     </div>
-                    
+
                     <div class="work-item">
                         <div class="work-thumb">
                             <span style="color:#555; font-size:12px;">Image</span>
@@ -579,24 +634,27 @@
                     <div class="image-section">
                         <img src="project/Black Rubber Shoes_poster.png" alt="이우영 회고전 포스터" class="scroll-anim">
                     </div>
-                    
+
                     <div class="info-section">
                         <h2>이우영 1972 - 2023<br>: 매일, 내 일 검정고무신</h2>
                         <p class="category">홍우주사회적협동조합 • 2023</p>
-                        
+
                         <div class="description">
                             <div class="poster-text-box">
                                 <p><strong>일시:</strong> 2023. 08. 18 — 09. 03</p>
                                 <p><strong>장소:</strong> 경춘선숲길 갤러리</p>
                                 <p><strong>주최·주관:</strong> 홍우주사회적협동조합</p>
                             </div>
-                            <p><이우영 1972-2023 매일, 내 일 검정고무신>은 만화 '검정 고무신' 그림 작가인 이우영의 삶을 다양한 시각적 매체를 통해 새롭게 조명하고 추억하는 특별 기획전입니다.</p>
+                            <p>
+                                <이우영 1972-2023 매일, 내 일 검정고무신>은 만화 '검정 고무신' 그림 작가인 이우영의 삶을 다양한 시각적 매체를 통해 새롭게 조명하고 추억하는
+                                    특별 기획전입니다.
+                            </p>
                             <p>전시를 위한 포스터, 리플렛 및 연표 등의 편집물을 디자인하였습니다.</p>
                             <p>전체적으로 무채색을 사용하여 정적인 분위기를 나타내었으며, 하늘색을 메인 색상으로 설정해 자유로운 느낌을 전달하였습니다.</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="project-bottom">
                     <div class="project-section">
                         <div class="section-header">
@@ -605,8 +663,8 @@
                             </div>
                             <div class="header-col description-col">
                                 <div class="col-val spec-list">
-                                    <span>키 비주얼 제안 키워드인</span>
-                                    <span>'그레인한 질감', '사박사박', '빛바랜'에 맞춰 제작한 포스터를 기반으로</span>
+                                    <span>키 비주얼 제안 키워드인 '그레인한 질감',</span>
+                                    <span>'사박사박', '빛바랜'에 맞춰 제작한 포스터를 기반으로</span>
                                     <span>3단 리플렛을 디자인했습니다.</span>
                                 </div>
                             </div>
@@ -636,4 +694,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
