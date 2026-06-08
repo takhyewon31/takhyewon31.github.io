@@ -479,6 +479,20 @@
             margin-bottom: 0;
         }
 
+        .panel-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        .panel-grid img {
+            margin-top: 0 !important;
+            width: 100%;
+            height: auto;
+        }
+
         @media (max-width: 1000px) {
             .window-container {
                 height: 100vh;
@@ -556,6 +570,18 @@
 
             .image-section img {
                 max-height: 50vh;
+            }
+
+            .panel-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+                margin-top: 24px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .panel-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -796,10 +822,12 @@
                                 </div>
                             </div>
                         </div>
-                        <img src="project/Black Rubber Shoes_Panel_1.png" alt="이우영 회고전 연표 패널 1 - 유년시절" class="scroll-anim">
-                        <img src="project/Black Rubber Shoes_Panel_2.png" alt="이우영 회고전 연표 패널 2 - 신인 만화가 이우영" class="scroll-anim">
-                        <img src="project/Black Rubber Shoes_Panel_3.png" alt="이우영 회고전 연표 패널 3 - 선배이자 스승으로 지낸 나날들" class="scroll-anim">
-                        <img src="project/Black Rubber Shoes_Panel_4.png" alt="이우영 회고전 연표 패널 4 - 강화도에서의 삶과 작업" class="scroll-anim">
+                        <div class="panel-grid">
+                            <img src="project/Black Rubber Shoes_Panel_1.png" alt="이우영 회고전 연표 패널 1 - 유년시절" class="scroll-anim">
+                            <img src="project/Black Rubber Shoes_Panel_2.png" alt="이우영 회고전 연표 패널 2 - 신인 만화가 이우영" class="scroll-anim">
+                            <img src="project/Black Rubber Shoes_Panel_3.png" alt="이우영 회고전 연표 패널 3 - 선배이자 스승으로 지낸 나날들" class="scroll-anim">
+                            <img src="project/Black Rubber Shoes_Panel_4.png" alt="이우영 회고전 연표 패널 4 - 강화도에서의 삶과 작업" class="scroll-anim">
+                        </div>
                     </div>
 
                     <div class="project-section">
