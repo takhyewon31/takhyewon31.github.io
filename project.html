@@ -583,6 +583,101 @@
             .panel-grid {
                 grid-template-columns: 1fr;
             }
+
+        /* 포토 슬라이더 스타일 */
+        .photo-slider-container {
+            width: 100%;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .photo-slider-container.scroll-anim {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .photo-slider-container.scroll-anim.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .photo-slider {
+            position: relative;
+            width: 100%;
+            height: 65vh;
+            background-color: #0c0c0c;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .photo-slider img.slider-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0 !important;
+            transform: translateY(0) !important;
+            transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+            pointer-events: none;
+        }
+
+        .photo-slider img.slider-image.active {
+            opacity: 1 !important;
+            pointer-events: auto;
+        }
+
+        .slider-controls {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            margin-top: 10px;
+        }
+
+        .slider-btn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            opacity: 0.6;
+        }
+
+        .slider-btn:hover {
+            opacity: 1;
+            color: #ffffff;
+        }
+
+        .slider-btn.prev-btn:hover {
+            transform: translateX(-4px);
+        }
+
+        .slider-btn.next-btn:hover {
+            transform: translateX(4px);
+        }
+
+        .slider-counter {
+            font-size: 0.9rem;
+            color: #888888;
+            font-weight: 500;
+            letter-spacing: 1px;
+            min-width: 40px;
+            text-align: center;
         }
 
         /* 포토 슬라이더 스타일 */
@@ -771,8 +866,8 @@
                                 <이우영 1972-2023 매일, 내 일 검정고무신>은 만화 '검정 고무신' 그림 작가인 이우영의 삶을 다양한 시각적 매체를 통해 새롭게 조명하고 추억하는
                                     특별 기획전입니다.
                             </p>
-                            <p>전시를 위한 포스터, 리플렛 및 연표 등의 편집물을 디자인하였습니다.</p>
-                            <p>전체적으로 무채색을 사용하여 정적인 분위기를 나타내었으며, 하늘색을 메인 색상으로 설정해 자유로운 느낌을 전달하였습니다.</p>
+                            <span>전시를 위한 포스터, 리플렛 및 연표 등의 편집물을 디자인하였습니다.</span>
+                            <span>전체적으로 무채색을 사용하여 정적인 분위기를 나타내었으며, 하늘색을 메인 색상으로 설정해 자유로운 느낌을 전달하였습니다.</span>
                         </div>
                     </div>
                 </div>
