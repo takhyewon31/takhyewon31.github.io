@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hye-won Tak | Photography Archive</title>
-    <meta name="description" content="탁혜원의 사진 아카이브. 일상의 기록과 시각적 탐색을 담아낸 사진 갤러리입니다.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -200,6 +200,7 @@
             .grid-4 .caption-col:nth-child(2n)::after {
                 display: none;
             }
+
             .grid-4 .caption-col:nth-child(2n-1)::after {
                 display: block;
                 right: calc(var(--gallery-gap) / -2);
@@ -207,7 +208,10 @@
         }
 
         @media (max-width: 768px) {
-            .top-header, .sub-header, footer {
+
+            .top-header,
+            .sub-header,
+            footer {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 12px;
@@ -217,11 +221,13 @@
                 max-width: 100%;
             }
 
-            .grid-4, .grid-2 {
+            .grid-4,
+            .grid-2 {
                 grid-template-columns: 1fr;
             }
 
-            .grid-4 .caption-bar, .grid-2 .caption-bar {
+            .grid-4 .caption-bar,
+            .grid-2 .caption-bar {
                 grid-template-columns: 1fr;
                 gap: 8px;
             }
@@ -232,17 +238,16 @@
         }
     </style>
 </head>
+
 <body>
     <div class="page-wrapper">
         <header class="top-header">
             <div class="header-left">
-                <a href="../index.html">Tak Hye-won</a>
+                <a href="../index.html">←</a>
             </div>
             <div class="header-center nav-links">
-                Proposal: <a href="../index.html">Portfolio</a>, <a href="https://www.instagram.com/ximo_777" target="_blank">Instagram</a>, <a href="mailto:takhyewon@gmail.com">Email</a>
-            </div>
-            <div class="header-right">
-                26.06.19
+                Proposal: <a href="../index.html">←</a>, <a href="https://www.instagram.com/ximo_777"
+                    target="_blank">Instagram</a>, <a href="mailto:takhyewon@gmail.com">Email</a>
             </div>
         </header>
 
@@ -250,11 +255,7 @@
             <div class="sub-header-left">
                 Photography
             </div>
-            <div class="sub-header-right">
-                탁혜원의 사진 아카이브. 일상의 기록과 시각적 탐색을 담아낸 사진 갤러리입니다. 필름 카메라로 포착한 고요한 자연의 풍경과 일상의 낯선 단면들을 나열합니다.
-            </div>
         </div>
-
         <main>
             <!-- Row 1: 4 columns of portrait images -->
             <div class="gallery-row grid-4">
@@ -271,10 +272,6 @@
                     <img src="993DA023-D2E3-460F-AF71-A61516FBE37B.JPG" alt="Photo Archive 4">
                 </div>
                 <div class="caption-bar">
-                    <div class="caption-col">A1 – 1000x1250</div>
-                    <div class="caption-col">A2 – 1000x1249</div>
-                    <div class="caption-col">A3 – 1000x1249</div>
-                    <div class="caption-col">A4 – 1000x1250</div>
                 </div>
             </div>
 
@@ -287,8 +284,6 @@
                     <img src="IMG_6623.JPG" alt="Photo Archive 6">
                 </div>
                 <div class="caption-bar">
-                    <div class="caption-col">A5 – 1000x673</div>
-                    <div class="caption-col">A6 – 1000x674</div>
                 </div>
             </div>
 
@@ -301,23 +296,10 @@
                     <img src="DA8A5E42-E350-4853-AA3A-66B53A60FE0D.JPG" alt="Photo Archive 8">
                 </div>
                 <div class="caption-bar">
-                    <div class="caption-col">A7 – 1000x1249</div>
-                    <div class="caption-col">A8 – 1000x1249</div>
                 </div>
             </div>
         </main>
-
-        <footer>
-            <div class="footer-left">
-                <a href="mailto:takhyewon@gmail.com">Email</a>
-            </div>
-            <div class="footer-center">
-                Tak Hye-won Portfolio
-            </div>
-            <div class="footer-right">
-                No. 2026
-            </div>
-        </footer>
     </div>
 </body>
+
 </html>
