@@ -513,6 +513,42 @@
             height: auto;
         }
 
+        /* youth-artist-academy 전용: 리플렛을 3열 그리드로, 옆에 회색 설명 열 배치 */
+        #project-content-youth-artist-academy .leaflet-wrap {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: clamp(16px, 3vw, 40px);
+            align-items: start;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        #project-content-youth-artist-academy .leaflet-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            width: 100%;
+        }
+
+        #project-content-youth-artist-academy .leaflet-side .leaflet-desc {
+            color: #aaaaaa;
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        @media (max-width: 1000px) {
+            #project-content-youth-artist-academy .leaflet-wrap {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            #project-content-youth-artist-academy .leaflet-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         .web-banner-container {
             display: grid;
             grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
@@ -1034,9 +1070,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="leaflet-grid">
-                                <img src="project/Gcf_Leaflet_1.jpg" alt="청년예술인 역량강화 아카데미 리플렛 1" class="scroll-anim">
-                                <img src="project/Gcf_Leaflet_2.jpg" alt="청년예술인 역량강화 아카데미 리플렛 2" class="scroll-anim">
+                            <div class="leaflet-wrap">
+                                <div class="leaflet-grid">
+                                    <img src="project/Gcf_Leaflet_1.jpg" alt="청년예술인 역량강화 아카데미 리플렛 1" class="scroll-anim">
+                                    <img src="project/Gcf_Leaflet_2.jpg" alt="청년예술인 역량강화 아카데미 리플렛 2" class="scroll-anim">
+                                </div>
+                                <div class="leaflet-side">
+                                    <p class="leaflet-desc">프로그램 홍보에 필요한 온•오프라인 베리에이션은 온라인 웹 배너를 중심으로 디자인을 진행하였습니다. 숨어 있던 역량이 터지는 듯한 이미지에 푸르고 자유분방함을 표현하기 위해 다채로운 색상을 적용했습니다.</p>
+                                </div>
                             </div>
                         </div>
 
@@ -1044,8 +1085,6 @@
                             <div class="section-header">
                                 <div class="header-col">
                                     <div class="col-val title">Web banner &amp; Detail page</div>
-                                    <div class="col-val spec-list" style="color: #aaaaaa;">
-                                        <span>기하학 도형을 바탕으로 한 모티프의 배치로 경쾌함을 나타내었습니다.</span>
                                     </div>
                                 </div>
                                 <div class="header-col">
@@ -1055,8 +1094,7 @@
                                 </div>
                                 <div class="header-col text-right">
                                     <div class="col-val spec-list">
-                                        <span>1020 x 479 px</span>
-                                        <span>1300 x 4000 px</span>
+                                        <span>1020 x 479 px / 1300 x 4000 px</span>
                                     </div>
                                 </div>
                             </div>
