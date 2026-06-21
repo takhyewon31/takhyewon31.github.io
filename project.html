@@ -652,7 +652,7 @@
         }
 
         .project-bottom.sns-two-column-layout .photo-slider img.slider-image {
-            object-fit: cover;
+            object-fit: contain;
         }
 
         /* 2-column layout for hong-woo-joo-sns detail page */
@@ -956,7 +956,28 @@
                     <span>Projects</span>
                 </div>
                 <div class="work-list">
-                    <div class="work-item active" data-project="black-rubber-shoes"
+                    <div class="work-item active" data-project="literature-style-sns"
+                        id="project-item-literature-style-sns">
+                        <div class="work-thumb">
+                            <img src="project/Hy_Sns_1.png" alt="서사파 vs 문장파 SNS 콘텐츠">
+                        </div>
+                        <div class="work-info">
+                            <div class="work-title">서사파 vs 문장파 SNS 콘텐츠</div>
+                            <div class="work-cat">Digital Content Design</div>
+                        </div>
+                    </div>
+
+                    <div class="work-item" data-project="say-touche" id="project-item-say-touche">
+                        <div class="work-thumb">
+                            <img src="project/Hy_saytoche_1.png" alt="Say Touche">
+                        </div>
+                        <div class="work-info">
+                            <div class="work-title">Say Touche</div>
+                            <div class="work-cat">Editorial Design</div>
+                        </div>
+                    </div>
+
+                    <div class="work-item" data-project="black-rubber-shoes"
                         id="project-item-black-rubber-shoes">
                         <div class="work-thumb">
                             <img src="project/Black Rubber Shoes_poster.png" alt="이우영 회고전">
@@ -986,26 +1007,6 @@
                             <div class="work-cat">Digital Content Design</div>
                         </div>
                     </div>
-
-                    <div class="work-item">
-                        <div class="work-thumb">
-                            <span style="color:#555; font-size:12px;">Image</span>
-                        </div>
-                        <div class="work-info">
-                            <div class="work-title">Modernist Book Design</div>
-                            <div class="work-cat">Book Design</div>
-                        </div>
-                    </div>
-
-                    <div class="work-item">
-                        <div class="work-thumb">
-                            <span style="color:#555; font-size:12px;">Image</span>
-                        </div>
-                        <div class="work-info">
-                            <div class="work-title">Subbacultcha</div>
-                            <div class="work-cat">Magazine</div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -1016,6 +1017,64 @@
         </aside>
 
         <main class="main-viewer">
+            <div class="project-content" data-project-content="literature-style-sns"
+                id="project-content-literature-style-sns" hidden>
+                <div class="project-top">
+                    <div class="image-section">
+                        <div class="photo-slider-container scroll-anim">
+                            <div class="photo-slider">
+                                <img src="project/Hy_Sns_1.png" alt="서사파 vs 문장파 1" class="slider-image active">
+                                <img src="project/Hy_Sns_2.png" alt="서사파 vs 문장파 2" class="slider-image">
+                                <img src="project/Hy_Sns_3.png" alt="서사파 vs 문장파 3" class="slider-image">
+                                <img src="project/Hy_Sns_4.png" alt="서사파 vs 문장파 4" class="slider-image">
+                                <img src="project/Hy_Sns_5.png" alt="서사파 vs 문장파 5" class="slider-image">
+                                <img src="project/Hy_Sns_6.png" alt="서사파 vs 문장파 6" class="slider-image">
+                            </div>
+                            <div class="slider-controls"></div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h2>서사파 vs 문장파<br>SNS 콘텐츠</h2>
+                        <p class="category">개인작업 • 2026</p>
+
+                        <div class="description">
+                            <div class="description-copy">
+                                <p>해외에서 국내 문학이 주목되는 가운데 해외에서 판매량이 좋은 한강 작가와 정유정의 문체를 알아보는 콘텐츠입니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-bottom">
+                    <div class="project-section">
+                        <div class="section-header">
+                            <div class="header-col">
+                                <div class="col-val title">SNS Contents</div>
+                            </div>
+                            <div class="header-col">
+                                <div class="col-val spec-list">
+                                    <span>기획 및 디자인 | 탁혜원</span>
+                                </div>
+                            </div>
+                            <div class="header-col text-right">
+                                <div class="col-val spec-list">
+                                    <span>1080 x 1080 px</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="newsletter-detail-gallery">
+                            <img src="project/Hy_Sns_1.png" alt="서사파 vs 문장파 1" class="scroll-anim">
+                            <img src="project/Hy_Sns_2.png" alt="서사파 vs 문장파 2" class="scroll-anim">
+                            <img src="project/Hy_Sns_3.png" alt="서사파 vs 문장파 3" class="scroll-anim">
+                            <img src="project/Hy_Sns_4.png" alt="서사파 vs 문장파 4" class="scroll-anim">
+                            <img src="project/Hy_Sns_5.png" alt="서사파 vs 문장파 5" class="scroll-anim">
+                            <img src="project/Hy_Sns_6.png" alt="서사파 vs 문장파 6" class="scroll-anim">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="project-content" data-project-content="black-rubber-shoes"
                 id="project-content-black-rubber-shoes" hidden>
                 <div class="project-top">
@@ -1035,10 +1094,12 @@
                             </div>
                             <div class="description-copy">
                                 <p>
-                                    &lt;이우영 1972-2023 매일, 내 일 검정고무신&gt;은 만화 '검정 고무신' 그림 작가인 이우영의 삶을 다양한 시각적 매체를 통해 새롭게 조명하고 추억하는
+                                    &lt;이우영 1972-2023 매일, 내 일 검정고무신&gt;은 만화 '검정 고무신' 그림 작가인 이우영의 삶을 다양한 시각적 매체를 통해 새롭게
+                                    조명하고 추억하는
                                     특별 기획전입니다.
                                 </p>
-                                <p>전시를 위한 포스터, 리플렛 및 연표 등의 편집물을 디자인하였습니다. 전체적으로 무채색을 사용하여 정적인 분위기를 나타내었으며, 하늘색을 메인 색상으로 설정해 자유로운 느낌을 전달하였습니다.</p>
+                                <p>전시를 위한 포스터, 리플렛 및 연표 등의 편집물을 디자인하였습니다. 전체적으로 무채색을 사용하여 정적인 분위기를 나타내었으며, 하늘색을 메인 색상으로
+                                    설정해 자유로운 느낌을 전달하였습니다.</p>
                             </div>
                         </div>
                     </div>
@@ -1164,90 +1225,89 @@
                 </div>
 
                 <div class="project-bottom">
-                        <div class="project-section">
-                            <div class="section-header">
-                                <div class="header-col">
-                                    <div class="col-val title">Leaflet</div>
-                                </div>
-                                <div class="header-col">
-                                    <div class="col-val spec-list">
-                                        <span>레이아웃 및 그래픽 | 탁혜원</span>
-                                    </div>
-                                </div>
-                                <div class="header-col text-right">
-                                    <div class="col-val spec-list">
-                                        <span>A5(210mm x 148mm)</span>
-                                        <span>아르떼 130g</span>
-                                    </div>
+                    <div class="project-section">
+                        <div class="section-header">
+                            <div class="header-col">
+                                <div class="col-val title">Leaflet</div>
+                            </div>
+                            <div class="header-col">
+                                <div class="col-val spec-list">
+                                    <span>레이아웃 및 그래픽 | 탁혜원</span>
                                 </div>
                             </div>
-                            <div class="leaflet-wrap">
-                                <div class="leaflet-grid">
-                                    <img src="project/Gcf_Leaflet_1.jpg" alt="청년예술인 역량강화 아카데미 리플렛 1" class="scroll-anim">
-                                    <img src="project/Gcf_Leaflet_2.jpg" alt="청년예술인 역량강화 아카데미 리플렛 2" class="scroll-anim">
+                            <div class="header-col text-right">
+                                <div class="col-val spec-list">
+                                    <span>A5(210mm x 148mm)</span>
+                                    <span>아르떼 130g</span>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="project-section">
-                            <div class="section-header">
-                                <div class="header-col">
-                                    <div class="col-val title">Web banner &amp; Detail page</div>
-                                </div>
-                                <div class="header-col">
-                                    <div class="col-val spec-list">
-                                        <span>레이아웃 및 그래픽 | 탁혜원</span>
-                                    </div>
-                                </div>
-                                <div class="header-col text-right">
-                                    <div class="col-val spec-list">
-                                        <span>1020 x 479 px, 1300 x 4000 px</span>
-                                    </div>
-                                </div>
+                        <div class="leaflet-wrap">
+                            <div class="leaflet-grid">
+                                <img src="project/Gcf_Leaflet_1.jpg" alt="청년예술인 역량강화 아카데미 리플렛 1" class="scroll-anim">
+                                <img src="project/Gcf_Leaflet_2.jpg" alt="청년예술인 역량강화 아카데미 리플렛 2" class="scroll-anim">
                             </div>
-                            <div class="web-banner-container">
-                                <div class="web-banner-left">
-                                    <img src="project/Gcf_Web_1.png" alt="Web banner & Detail page mockup"
-                                        class="scroll-anim">
-                                </div>
-                                <div class="web-banner-right">
-                                    <img src="project/Gcf_Web_2.jpg" alt="Web banner & Detail page detail"
-                                        class="scroll-anim">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="project-section photo-archive-section">
-                            <div class="photo-section-title dynamic-project-title"></div>
-                            <div class="photo-slider-container scroll-anim" data-autoplay="false">
-                                <div class="photo-slider" style="--photo-aspect: 2048 / 1365;">
-                                    <img src="project/Gcf_Photo_1.webp" alt="청년예술인 역량강화 아카데미 현장 사진 1"
-                                        class="slider-image active">
-                                    <img src="project/Gcf_Photo_2.JPG" alt="청년예술인 역량강화 아카데미 현장 사진 2"
-                                        class="slider-image gcf-photo-focus">
-                                </div>
-                                <div class="slider-controls">
-                                    <button type="button" class="slider-btn prev-btn" aria-label="이전 현장 사진">←</button>
-                                    <div class="slider-counter">
-                                        <span class="current-index">1</span> / <span class="total-slides">2</span>
-                                    </div>
-                                    <button type="button" class="slider-btn next-btn" aria-label="다음 현장 사진">→</button>
-                                </div>
-                            </div>
-                            <dl class="photo-details-list">
-                            </dl>
                         </div>
                     </div>
-                </div>
 
-            <div class="project-content" data-project-content="hong-woo-joo-sns"
-                id="project-content-hong-woo-joo-sns" hidden>
+                    <div class="project-section">
+                        <div class="section-header">
+                            <div class="header-col">
+                                <div class="col-val title">Web banner &amp; Detail page</div>
+                            </div>
+                            <div class="header-col">
+                                <div class="col-val spec-list">
+                                    <span>레이아웃 및 그래픽 | 탁혜원</span>
+                                </div>
+                            </div>
+                            <div class="header-col text-right">
+                                <div class="col-val spec-list">
+                                    <span>1020 x 479 px, 1300 x 4000 px</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="web-banner-container">
+                            <div class="web-banner-left">
+                                <img src="project/Gcf_Web_1.png" alt="Web banner & Detail page mockup"
+                                    class="scroll-anim">
+                            </div>
+                            <div class="web-banner-right">
+                                <img src="project/Gcf_Web_2.jpg" alt="Web banner & Detail page detail"
+                                    class="scroll-anim">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-section photo-archive-section">
+                        <div class="photo-section-title dynamic-project-title"></div>
+                        <div class="photo-slider-container scroll-anim" data-autoplay="false">
+                            <div class="photo-slider" style="--photo-aspect: 2048 / 1365;">
+                                <img src="project/Gcf_Photo_1.webp" alt="청년예술인 역량강화 아카데미 현장 사진 1"
+                                    class="slider-image active">
+                                <img src="project/Gcf_Photo_2.JPG" alt="청년예술인 역량강화 아카데미 현장 사진 2"
+                                    class="slider-image gcf-photo-focus">
+                            </div>
+                            <div class="slider-controls">
+                                <button type="button" class="slider-btn prev-btn" aria-label="이전 현장 사진">←</button>
+                                <div class="slider-counter">
+                                    <span class="current-index">1</span> / <span class="total-slides">2</span>
+                                </div>
+                                <button type="button" class="slider-btn next-btn" aria-label="다음 현장 사진">→</button>
+                            </div>
+                        </div>
+                        <dl class="photo-details-list">
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-content" data-project-content="hong-woo-joo-sns" id="project-content-hong-woo-joo-sns"
+                hidden>
                 <div class="project-top">
                     <div class="image-section">
                         <div class="photo-slider-container scroll-anim">
                             <div class="photo-slider">
-                                <img src="project/Huj_Newsletter_1.png" alt="홍우주 뉴스레터 1"
-                                    class="slider-image active">
+                                <img src="project/Huj_Newsletter_1.png" alt="홍우주 뉴스레터 1" class="slider-image active">
                                 <img src="project/Huj_Newsletter_2.png" alt="홍우주 뉴스레터 2" class="slider-image">
                                 <img src="project/Huj_Newsletter_3.png" alt="홍우주 뉴스레터 3" class="slider-image">
                                 <img src="project/Huj_Newsletter_4.png" alt="홍우주 뉴스레터 4" class="slider-image">
@@ -1265,7 +1325,8 @@
                                 <p>
                                     &lt;홍우주사회적협동조합 뉴스레터&gt;는 조합의 다양한 활동 소식과 조합원들의 생생한 이야기를 전하는 디지털 콘텐츠입니다.
                                 </p>
-                                <p>조합의 친근하고 따뜻한 문화를 담아내기 위해 개성 넘치는 그래픽 요소와 레이아웃을 디자인하였으며, 뉴스레터 상세 페이지와 다각적인 인터뷰 콘텐츠로 가독성을 높였습니다.</p>
+                                <p>조합의 친근하고 따뜻한 문화를 담아내기 위해 개성 넘치는 그래픽 요소와 레이아웃을 디자인하였으며, 뉴스레터 상세 페이지와 다각적인 인터뷰 콘텐츠로
+                                    가독성을 높였습니다.</p>
                             </div>
                         </div>
                     </div>
@@ -1290,32 +1351,89 @@
 
                     <div class="project-section" style="margin-top: 0;">
                         <div class="newsletter-detail-gallery" style="margin-top: 0;">
-                            <img src="project/Huj_Newsletter_1.png" alt="홍우주 뉴스레터 상세"
-                            class="scroll-anim">
-                            <img src="project/Huj_Newsletter_detail_1.png" alt="홍우주 뉴스레터 상세 1"
-                                class="scroll-anim">
-                            <img src="project/Huj_Newsletter_detail_2.png" alt="홍우주 뉴스레터 상세 2"
-                                class="scroll-anim">
-                            <img src="project/Huj_Newsletter_detail_3.png" alt="홍우주 뉴스레터 상세 3"
-                                class="scroll-anim">
-                            <img src="project/Huj_Newsletter_detail_4.png" alt="홍우주 뉴스레터 상세 4"
-                                class="scroll-anim">
-                           <img src="project/Huj_Newsletter_2.png" alt="홍우주 뉴스레터 상세 6"
-                                class="scroll-anim">
+                            <img src="project/Huj_Newsletter_1.png" alt="홍우주 뉴스레터 상세" class="scroll-anim">
+                            <img src="project/Huj_Newsletter_detail_1.png" alt="홍우주 뉴스레터 상세 1" class="scroll-anim">
+                            <img src="project/Huj_Newsletter_detail_2.png" alt="홍우주 뉴스레터 상세 2" class="scroll-anim">
+                            <img src="project/Huj_Newsletter_detail_3.png" alt="홍우주 뉴스레터 상세 3" class="scroll-anim">
+                            <img src="project/Huj_Newsletter_detail_4.png" alt="홍우주 뉴스레터 상세 4" class="scroll-anim">
+                            <img src="project/Huj_Newsletter_2.png" alt="홍우주 뉴스레터 상세 6" class="scroll-anim">
                         </div>
                     </div>
 
                     <div class="project-section" style="margin-top: 0;">
-                        <div class="photo-slider-container scroll-anim" data-autoplay-interval="2500" style="margin-top: 0;">
+                        <div class="photo-slider-container scroll-anim" data-autoplay-interval="2500"
+                            style="margin-top: 0;">
                             <div class="photo-slider" style="width: 100%; height: auto; aspect-ratio: 4 / 5;">
-                                <img src="project/Huj_Interview_1.png" alt="홍우주 인터뷰 1"
-                                    class="slider-image active">
+                                <img src="project/Huj_Interview_1.png" alt="홍우주 인터뷰 1" class="slider-image active">
                                 <img src="project/Huj_Interview_2.png" alt="홍우주 인터뷰 2" class="slider-image">
                                 <img src="project/Huj_Interview_3.png" alt="홍우주 인터뷰 3" class="slider-image">
                                 <img src="project/Huj_Interview_4.png" alt="홍우주 인터뷰 4" class="slider-image">
                                 <img src="project/Huj_Interview_5.png" alt="홍우주 인터뷰 5" class="slider-image">
                                 <img src="project/Huj_Interview_6.png" alt="홍우주 인터뷰 6" class="slider-image">
                                 <img src="project/Huj_Interview_7.png" alt="홍우주 인터뷰 7" class="slider-image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-content" data-project-content="say-touche" id="project-content-say-touche"
+                hidden>
+                <div class="project-top">
+                    <div class="image-section">
+                        <div class="photo-slider-container scroll-anim">
+                            <div class="photo-slider">
+                                <img src="project/Hy_saytoche_1.png" alt="Say Touche Main 1" class="slider-image active">
+                                <img src="project/Hy_saytoche_10.png" alt="Say Touche Main 2" class="slider-image">
+                            </div>
+                            <div class="slider-controls"></div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h2>Say Touche<br>카탈로그</h2>
+                        <p class="category">개인작업 • 2025</p>
+
+                        <div class="description">
+                            <div class="description-copy">
+                                <p>Say Touche의 제품을 효과적으로 보여주는 카탈로그로 인스타그래머블한 브랜드 이미지를 강조하기 위해 세로형(4:5)과 정방형(1:1) 비율의 사진 구성을 활용하였다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-bottom sns-two-column-layout">
+                    <div class="section-header" style="grid-column: 1 / -1; margin-bottom: 40px;">
+                        <div class="header-col">
+                            <div class="col-val title">catalog</div>
+                        </div>
+                        <div class="header-col">
+                            <div class="col-val spec-list">
+                                <span>기획 및 디자인 | 탁혜원</span>
+                            </div>
+                        </div>
+                        <div class="header-col text-right">
+                            <div class="col-val spec-list">
+                                <span>170mm x 68mm</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-section" style="margin-top: 0;">
+                        <img src="project/Hy_saytoche_2.png" alt="Say Touche catalog cover" class="scroll-anim" style="width: 100%; height: auto; margin-top: 0 !important; display: block;">
+                    </div>
+
+                    <div class="project-section" style="margin-top: 0;">
+                        <div class="photo-slider-container scroll-anim" data-autoplay-interval="2500"
+                            style="margin-top: 0;">
+                            <div class="photo-slider" style="width: 100%; height: auto; aspect-ratio: 2552 / 2481;">
+                                <img src="project/Hy_saytoche_3.png" alt="Say Touche catalog detail 1" class="slider-image active">
+                                <img src="project/Hy_saytoche_4.png" alt="Say Touche catalog detail 2" class="slider-image">
+                                <img src="project/Hy_saytoche_5.png" alt="Say Touche catalog detail 3" class="slider-image">
+                                <img src="project/Hy_saytoche_6.png" alt="Say Touche catalog detail 4" class="slider-image">
+                                <img src="project/Hy_saytoche_7.png" alt="Say Touche catalog detail 5" class="slider-image">
+                                <img src="project/Hy_saytoche_8.png" alt="Say Touche catalog detail 6" class="slider-image">
+                                <img src="project/Hy_saytoche_9.png" alt="Say Touche catalog detail 7" class="slider-image">
                             </div>
                         </div>
                     </div>

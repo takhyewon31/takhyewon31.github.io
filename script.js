@@ -1,5 +1,5 @@
 // 1. 클릭 시 새로운 브라우저 팝업 창으로 project.html 열기
-function openProjectPopup(project = 'black-rubber-shoes') {
+function openProjectPopup(project = 'literature-style-sns') {
     // 팝업 창의 크기 및 옵션 설정 (가로 1100px, 세로 750px 권장) - 가로로 긴 비율
     const popupOptions = "width=1100,height=750,scrollbars=yes,resizable=yes";
     window.open(`project.html?project=${encodeURIComponent(project)}`, "projectPopup", popupOptions);
@@ -246,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 7. URL의 project 값에 맞춰 사이드바 프로젝트 선택
 document.addEventListener('DOMContentLoaded', () => {
-    const projectKey = new URLSearchParams(window.location.search).get('project') || 'black-rubber-shoes';
+    const projectKey = new URLSearchParams(window.location.search).get('project') || 'literature-style-sns';
     const mainViewer = document.querySelector('.main-viewer');
     const resetProjectScroll = () => {
         if (mainViewer) mainViewer.scrollTo({ top: 0, left: 0, behavior: 'auto' });
@@ -311,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 브라우저 뒤로/앞으로 버튼으로 이동할 때도 URL의 project 파라미터에 맞춰 뷰를 업데이트
     window.addEventListener('popstate', () => {
-        const projectKey = new URLSearchParams(window.location.search).get('project') || 'black-rubber-shoes';
+        const projectKey = new URLSearchParams(window.location.search).get('project') || 'literature-style-sns';
         const requestedItem = Array.from(document.querySelectorAll('.work-item[data-project]'))
             .find(item => item.dataset.project === projectKey);
         const requestedContent = Array.from(document.querySelectorAll('[data-project-content]'))
