@@ -1,8 +1,8 @@
 // 1. 클릭 시 새로운 브라우저 팝업 창으로 project.html 열기
-function openProjectPopup() {
+function openProjectPopup(project = 'black-rubber-shoes') {
     // 팝업 창의 크기 및 옵션 설정 (가로 1100px, 세로 750px 권장) - 가로로 긴 비율
     const popupOptions = "width=1100,height=750,scrollbars=yes,resizable=yes";
-    window.open("project.html", "projectPopup", popupOptions);
+    window.open(`project.html?project=${encodeURIComponent(project)}`, "projectPopup", popupOptions);
 }
 // 1. 팝업 모달 오픈 펑션
 function openModal(el) {
@@ -173,13 +173,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// 7. 프로젝트 제목 자동 설정 로직 (work-item.active의 work-title 기준)
+// 7. URL의 project 값에 맞춰 사이드바 프로젝트 선택
 document.addEventListener('DOMContentLoaded', () => {
+    const projectKey = new URLSearchParams(window.location.search).get('project') || 'black-rubber-shoes';
+    const requestedItem = Array.from(document.querySelectorAll('.work-item[data-project]'))
+        .find(item => item.dataset.project === projectKey);
+    const requestedContent = Array.from(document.querySelectorAll('[data-project-content]'))
+        .find(content => content.dataset.projectContent === projectKey);
+
+    if (requestedItem && requestedContent) {
+        document.querySelectorAll('.work-item').forEach(item => item.classList.remove('active'));
+        requestedItem.classList.add('active');
+        document.querySelectorAll('[data-project-content]').forEach(content => {
+            content.hidden = content !== requestedContent;
+        });
+    }
+
     const activeTitleEl = document.querySelector('.work-item.active .work-title');
     if (activeTitleEl) {
         const activeTitleText = activeTitleEl.textContent.trim();
+        document.title = activeTitleText;
         document.querySelectorAll('.dynamic-project-title').forEach(el => {
             el.textContent = activeTitleText;
         });
     }
+
+    document.querySelectorAll('.work-item[data-project]').forEach(item => {
+        item.addEventListener('click', () => {
+            const url = new URL(window.location.href);
+            url.searchParams.set('project', item.dataset.project);
+            window.location.href = url.toString();
+        });
+    });
 });

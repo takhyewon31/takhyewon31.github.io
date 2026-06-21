@@ -258,6 +258,10 @@
             flex-direction: column;
         }
 
+        .project-content[hidden] {
+            display: none;
+        }
+
         .project-top {
             width: 100%;
             display: flex;
@@ -726,7 +730,7 @@
                     <span>Projects</span>
                 </div>
                 <div class="work-list">
-                    <div class="work-item active">
+                    <div class="work-item active" data-project="black-rubber-shoes">
                         <div class="work-thumb">
                             <img src="project/Black Rubber Shoes_poster.png" alt="이우영 회고전">
                         </div>
@@ -736,13 +740,13 @@
                         </div>
                     </div>
 
-                    <div class="work-item">
+                    <div class="work-item" data-project="youth-artist-academy">
                         <div class="work-thumb">
-                            <span style="color:#555; font-size:12px;">Image</span>
+                            <img src="project/Gcf_Cardnews_1.jpg" alt="2023 청년예술인 역량강화 아카데미">
                         </div>
                         <div class="work-info">
-                            <div class="work-title">Arcadia Lotto</div>
-                            <div class="work-cat">Web UI / 3D</div>
+                            <div class="work-title">2023 청년예술인 역량강화 아카데미</div>
+                            <div class="work-cat">Graphic Design</div>
                         </div>
                     </div>
 
@@ -785,7 +789,7 @@
         </aside>
 
         <main class="main-viewer">
-            <div class="project-content">
+            <div class="project-content" data-project-content="black-rubber-shoes">
                 <div class="project-top">
                     <div class="image-section">
                         <img src="project/Black Rubber Shoes_poster.png" alt="이우영 회고전 포스터" class="scroll-anim">
@@ -896,6 +900,51 @@
                         </div>
                         <dl class="photo-details-list">
                         </dl>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-content" data-project-content="youth-artist-academy" hidden>
+                <div class="project-top">
+                    <div class="image-section">
+                        <img src="project/Gcf_Cardnews_1.jpg" alt="2023 청년예술인 역량강화 아카데미 카드뉴스 메인"
+                            class="scroll-anim">
+                    </div>
+
+                    <div class="info-section">
+                        <h2>2023 청년예술인<br>역량강화 아카데미</h2>
+                        <p class="category">홍우주사회적협동조합 • 2023</p>
+
+                        <div class="description">
+                            <div class="poster-text-box">
+                                <p><strong>프로그램:</strong> 청년예술인 역량강화 아카데미</p>
+                                <p><strong>분야:</strong> 카드뉴스 그래픽 디자인</p>
+                            </div>
+                            <p>2023년 청년예술인 지원사업의 프로그램 안내를 위한 카드뉴스 디자인입니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-bottom">
+                    <div class="project-section">
+                        <div class="section-header">
+                            <div class="col-val title" style="grid-column: 1 / -1;">Card News</div>
+                            <div class="header-col">
+                                <div class="col-val spec-list" style="color: #aaaaaa;">
+                                    <span>청년예술인 지원사업의 일정과 프로그램 정보를 전달하는 카드뉴스입니다.</span>
+                                </div>
+                            </div>
+                            <div class="header-col">
+                                <div class="col-val spec-list">
+                                    <span>레이아웃 및 그래픽 | 탁혜원</span>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="project/Gcf_Cardnews_2.jpg" alt="청년예술인 역량강화 아카데미 카드뉴스 2" class="scroll-anim">
+                        <img src="project/Gcf_Cardnews_3.jpg" alt="청년예술인 역량강화 아카데미 카드뉴스 3" class="scroll-anim">
+                        <img src="project/Gcf_Cardnews_4.jpg" alt="청년예술인 역량강화 아카데미 카드뉴스 4" class="scroll-anim">
+                        <img src="project/Gcf_Cardnews_5.jpg" alt="청년예술인 역량강화 아카데미 카드뉴스 5" class="scroll-anim">
+                        <img src="project/Gcf_Cardnews_6.jpg" alt="청년예술인 역량강화 아카데미 카드뉴스 6" class="scroll-anim">
                     </div>
                 </div>
             </div>
