@@ -208,9 +208,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.work-item[data-project]').forEach(item => {
         item.addEventListener('click', () => {
-            const url = new URL(window.location.href);
-            url.searchParams.set('project', item.dataset.project);
-            window.location.href = url.toString();
+            const projectKey = item.dataset.project;
+
+            // URL을 업데이트하되 페이지를 리로드하지 않음
+            try {
+                const url = new URL(window.location.href);
+                url.searchParams.set('project', projectKey);
+                history.pushState({}, '', url.toString());
+            } catch (e) {
+                // URL 생성에 실패하면 fallback으로 location.search만 교체
+                const sep = window.location.href.indexOf('?') === -1 ? '?' : '&';
+                window.history.pushState({}, '', window.location.href + sep + 'project=' + encodeURIComponent(projectKey));
+            }
+
+            // 사이드바의 active 상태 및 메인 뷰어 전환
+            document.querySelectorAll('.work-item').forEach(it => it.classList.remove('active'));
+            item.classList.add('active');
+
+            document.querySelectorAll('[data-project-content]').forEach(content => {
+                content.hidden = (content.dataset.projectContent !== projectKey);
+            });
+
+            const activeTitleEl = item.querySelector('.work-title');
+            if (activeTitleEl) {
+                const activeTitleText = activeTitleEl.textContent.trim();
+                document.title = activeTitleText;
+                document.querySelectorAll('.dynamic-project-title').forEach(el => {
+                    el.textContent = activeTitleText;
+                });
+            }
         });
+    });
+
+    // 브라우저 뒤로/앞으로 버튼으로 이동할 때도 URL의 project 파라미터에 맞춰 뷰를 업데이트
+    window.addEventListener('popstate', () => {
+        const projectKey = new URLSearchParams(window.location.search).get('project') || 'black-rubber-shoes';
+        const requestedItem = Array.from(document.querySelectorAll('.work-item[data-project]'))
+            .find(item => item.dataset.project === projectKey);
+        const requestedContent = Array.from(document.querySelectorAll('[data-project-content]'))
+            .find(content => content.dataset.projectContent === projectKey);
+
+        if (requestedItem && requestedContent) {
+            document.querySelectorAll('.work-item').forEach(item => item.classList.remove('active'));
+            requestedItem.classList.add('active');
+            document.querySelectorAll('[data-project-content]').forEach(content => {
+                content.hidden = (content !== requestedContent);
+            });
+
+            const activeTitleEl = requestedItem.querySelector('.work-title');
+            if (activeTitleEl) {
+                const activeTitleText = activeTitleEl.textContent.trim();
+                document.title = activeTitleText;
+                document.querySelectorAll('.dynamic-project-title').forEach(el => el.textContent = activeTitleText);
+            }
+        }
     });
 });
