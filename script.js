@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 초기 실행 (페이지 로드 시 현재 보이는 프로젝트에 대해)
-        startForVisibleProject();
+        setTimeout(startForVisibleProject, 100);
 
         // 프로젝트 전환 시 인터벌 재설정 (사이드바 클릭 및 popstate에서 모두 적용됨)
         document.querySelectorAll('.work-item[data-project]').forEach(item => {
