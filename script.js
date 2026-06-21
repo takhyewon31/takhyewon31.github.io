@@ -184,6 +184,55 @@ document.addEventListener('DOMContentLoaded', () => {
             updateSlider(nextIdx);
         }, 1000);
     });
+
+    // 메인(왼쪽) 이미지 섹션 자동 전환 (보이는 프로젝트 하나에 대해서만 동작)
+    (function setupMainImageAutoRotate() {
+        let mainInterval = null;
+
+        function clearMainInterval() {
+            if (mainInterval) {
+                clearInterval(mainInterval);
+                mainInterval = null;
+            }
+        }
+
+        function startForVisibleProject() {
+            clearMainInterval();
+            const visibleContent = document.querySelector('[data-project-content]:not([hidden])');
+            if (!visibleContent) return;
+            const container = visibleContent.querySelector('.image-section');
+            if (!container) return;
+            const imgs = Array.from(container.querySelectorAll('img'));
+            if (imgs.length <= 1) return;
+
+            // 초기 상태: 첫 이미지만 보이게
+            imgs.forEach((img, i) => {
+                img.classList.toggle('visible', i === 0);
+            });
+
+            let idx = 0;
+            mainInterval = setInterval(() => {
+                imgs[idx].classList.remove('visible');
+                idx = (idx + 1) % imgs.length;
+                imgs[idx].classList.add('visible');
+            }, 1000);
+        }
+
+        // 초기 실행 (페이지 로드 시 현재 보이는 프로젝트에 대해)
+        startForVisibleProject();
+
+        // 프로젝트 전환 시 인터벌 재설정 (사이드바 클릭 및 popstate에서 모두 적용됨)
+        document.querySelectorAll('.work-item[data-project]').forEach(item => {
+            item.addEventListener('click', () => {
+                // 약간의 지연을 두어 DOM이 업데이트된 후 실행
+                setTimeout(startForVisibleProject, 60);
+            });
+        });
+
+        window.addEventListener('popstate', () => {
+            setTimeout(startForVisibleProject, 60);
+        });
+    })();
 });
 
 // 7. URL의 project 값에 맞춰 사이드바 프로젝트 선택
