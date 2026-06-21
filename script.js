@@ -179,11 +179,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // 초기화
         updateSlider(0);
         if (container.dataset.autoplay !== 'false') {
+            const interval = parseInt(container.dataset.autoplayInterval, 10) || 1000;
             setInterval(() => {
                 let nextIdx = currentIndex + 1;
                 if (nextIdx >= images.length) nextIdx = 0;
                 updateSlider(nextIdx);
-            }, 1000);
+            }, interval);
         }
     });
 

@@ -651,6 +651,65 @@
             margin: 0 !important;
         }
 
+        /* 2-column layout for hong-woo-joo-sns detail page */
+        .project-bottom.sns-two-column-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(24px, 4vw, 60px);
+            align-items: start;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .project-bottom.sns-two-column-layout .project-section:last-child {
+            background-color: #e5e5e5; /* Warm light grey panel background matching David Hockney mockup structure */
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-bottom.sns-two-column-layout .project-section:last-child .section-header {
+            border-top: 1px solid rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+        }
+
+        .project-bottom.sns-two-column-layout .project-section:last-child .col-val.title {
+            color: #000000;
+        }
+
+        .project-bottom.sns-two-column-layout .project-section:last-child .section-header .col-val {
+            color: #444444;
+        }
+
+        .project-bottom.sns-two-column-layout .project-section:last-child .col-label {
+            color: #777777;
+        }
+
+        /* Slider adjustments on light background panel */
+        .project-bottom.sns-two-column-layout .project-section:last-child .photo-slider {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-bottom.sns-two-column-layout .project-section:last-child .slider-btn {
+            color: #000000;
+            opacity: 0.6;
+        }
+
+        .project-bottom.sns-two-column-layout .project-section:last-child .slider-btn:hover {
+            color: #000000;
+            opacity: 1;
+        }
+
+        .project-bottom.sns-two-column-layout .project-section:last-child .slider-counter {
+            color: #555555;
+        }
+
         @media (max-width: 1000px) {
             .window-container {
                 height: 100vh;
@@ -764,6 +823,15 @@
             .sns-detail-grid {
                 grid-template-columns: 1fr;
                 gap: 80px;
+            }
+
+            .project-bottom.sns-two-column-layout {
+                grid-template-columns: 1fr;
+                gap: 80px;
+            }
+
+            .project-bottom.sns-two-column-layout .project-section:last-child {
+                padding: 24px 20px;
             }
         }
 
@@ -1252,7 +1320,7 @@
                     </div>
                 </div>
 
-                <div class="project-bottom">
+                <div class="project-bottom sns-two-column-layout">
                     <div class="project-section">
                         <div class="section-header">
                             <div class="header-col">
@@ -1298,7 +1366,7 @@
                             </div>
                         </div>
 
-                        <div class="photo-slider-container scroll-anim" data-autoplay="false" style="margin-top: 40px;">
+                        <div class="photo-slider-container scroll-anim" data-autoplay-interval="2500" style="margin-top: 40px;">
                             <div class="photo-slider" style="width: 100%; height: auto; aspect-ratio: 4 / 5;">
                                 <img src="project/Huj_Interview_1.png" alt="홍우주 인터뷰 1"
                                     class="slider-image active">
