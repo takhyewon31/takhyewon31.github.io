@@ -240,6 +240,10 @@ document.addEventListener('DOMContentLoaded', () => {
 // 7. URL의 project 값에 맞춰 사이드바 프로젝트 선택
 document.addEventListener('DOMContentLoaded', () => {
     const projectKey = new URLSearchParams(window.location.search).get('project') || 'black-rubber-shoes';
+    const mainViewer = document.querySelector('.main-viewer');
+    const resetProjectScroll = () => {
+        if (mainViewer) mainViewer.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    };
     const requestedItem = Array.from(document.querySelectorAll('.work-item[data-project]'))
         .find(item => item.dataset.project === projectKey);
     const requestedContent = Array.from(document.querySelectorAll('[data-project-content]'))
@@ -251,6 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('[data-project-content]').forEach(content => {
             content.hidden = content !== requestedContent;
         });
+        resetProjectScroll();
     }
 
     const activeTitleEl = document.querySelector('.work-item.active .work-title');
@@ -284,6 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('[data-project-content]').forEach(content => {
                 content.hidden = (content.dataset.projectContent !== projectKey);
             });
+            resetProjectScroll();
 
             const activeTitleEl = item.querySelector('.work-title');
             if (activeTitleEl) {
@@ -310,6 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('[data-project-content]').forEach(content => {
                 content.hidden = (content !== requestedContent);
             });
+            resetProjectScroll();
 
             const activeTitleEl = requestedItem.querySelector('.work-title');
             if (activeTitleEl) {

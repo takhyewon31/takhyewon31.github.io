@@ -238,6 +238,8 @@
         .main-viewer {
             flex: 1;
             overflow-y: auto;
+            overflow-x: hidden;
+            min-width: 0;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -253,6 +255,7 @@
 
         .project-content {
             width: 100%;
+            min-width: 0;
             min-height: 100vh;
             /* full viewport height */
             display: flex;
@@ -266,6 +269,7 @@
 
         .project-top {
             width: 100%;
+            min-width: 0;
             display: flex;
             align-items: stretch;
             padding: 0 80px;
@@ -287,6 +291,7 @@
         /* 좌측: 포스터 이미지 영역 */
         .image-section {
             flex: 1;
+            min-width: 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -318,6 +323,7 @@
         /* 하단: 풀사이즈 이미지 영역 (리플렛 등) */
         .project-bottom {
             width: 100%;
+            min-width: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -414,6 +420,7 @@
         /* 우측: 텍스트 및 정보 영역 */
         .info-section {
             flex: 1;
+            min-width: 0;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -1197,7 +1204,7 @@
                                 <div class="photo-slider" style="--photo-aspect: 2048 / 1365;">
                                     <img src="project/Gcf_Photo_1.webp" alt="청년예술인 역량강화 아카데미 현장 사진 1"
                                         class="slider-image active">
-                                    <img src="project/Gcf_Photo_2.jpeg" alt="청년예술인 역량강화 아카데미 현장 사진 2"
+                                    <img src="project/Gcf_Photo_2.JPG" alt="청년예술인 역량강화 아카데미 현장 사진 2"
                                         class="slider-image gcf-photo-focus">
                                 </div>
                                 <div class="slider-controls">
@@ -1279,7 +1286,7 @@
 
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <script src="script.js?v=20260622-1"></script>
+    <script src="script.js?v=20260622-2"></script>
 </body>
 
 </html>
