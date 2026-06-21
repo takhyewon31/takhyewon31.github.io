@@ -252,15 +252,16 @@
         }
 
         .project-content {
-            width: 100%;
-            min-height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
+    width: 100%;
+    min-height: 100vh; /* full viewport height */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
 
-        .project-content[hidden] {
-            display: none;
-        }
+.project-content[hidden] {
+    display: none;
+}
 
         .project-top {
             width: 100%;
@@ -730,7 +731,8 @@
                     <span>Projects</span>
                 </div>
                 <div class="work-list">
-                    <div class="work-item active" data-project="black-rubber-shoes" id="project-item-black-rubber-shoes">
+                    <div class="work-item active" data-project="black-rubber-shoes"
+                        id="project-item-black-rubber-shoes">
                         <div class="work-thumb">
                             <img src="project/Black Rubber Shoes_poster.png" alt="이우영 회고전">
                         </div>
@@ -789,7 +791,8 @@
         </aside>
 
         <main class="main-viewer">
-            <div class="project-content" data-project-content="black-rubber-shoes" id="project-content-black-rubber-shoes">
+            <div class="project-content" data-project-content="black-rubber-shoes"
+                id="project-content-black-rubber-shoes" hidden>
                 <div class="project-top">
                     <div class="image-section">
                         <img src="project/Black Rubber Shoes_poster.png" alt="이우영 회고전 포스터" class="scroll-anim">
@@ -898,7 +901,8 @@
                 </div>
             </div>
 
-            <div class="project-content" data-project-content="youth-artist-academy" id="project-content-youth-artist-academy" hidden>
+            <div class="project-content" data-project-content="youth-artist-academy"
+                id="project-content-youth-artist-academy" hidden>
                 <div class="project-top">
                     <div class="image-section">
                         <div class="photo-slider-container scroll-anim">
@@ -911,46 +915,49 @@
                                 <img src="project/Gcf_Cardnews_6.jpg" alt="Cardnews 6" class="slider-image">
                             </div>
                             <div class="slider-controls"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="info-section">
-                        <h2>2023 청년예술인<br>역량강화 아카데미</h2>
-                        <p class="category">홍우주사회적협동조합 • 2023</p>
-
-                        <div class="description">
-                            <div class="poster-text-box">
-                                <p><strong>프로그램:</strong> 청년예술인 역량강화 아카데미</p>
-                                <p><strong>분야:</strong> 카드뉴스 그래픽 디자인</p>
-                            </div>
-                            <span><청년예술인 역량강화 아카데미>는 광명문화재단이 운영하는 프로그램으로, 창작활동 시 청년예술가에게 필요한 역량을 강화 시킬 수 있는 강의를 제공합니다.</span>
-                            <span>프로그램 홍보에 필요한 온•오프라인 베리에이션은 온라인 웹 배너를 중심으로 디자인을 진행하였습니다. 숨어 있던 역량이 터지는 듯한 이미지에 푸르고 자유분방함을 표현하기 위해 다채로운 색상을 적용했습니다.</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-bottom">
-                    <div class="project-section">
-                        <div class="section-header">
-                            <div class="col-val title" style="grid-column: 1 / -1;">Leaflet</div>
-                            <div class="header-col">
-                                <div class="col-val spec-list" style="color: #aaaaaa;">
-                                    <span>청년예술인 지원사업의 일정과 프로그램 정보를 전달하는 리플렛입니다.</span>
-                                </div>
-                            </div>
-                            <div class="header-col">
-                                <div class="col-val spec-list">
-                                    <span>레이아웃 및 그래픽 | 탁혜원</span>
-                                </div>
-                            </div>
+                <div class="info-section">
+                    <h2>2023 청년예술인<br>역량강화 아카데미</h2>
+                    <p class="category">홍우주사회적협동조합 • 2023</p>
+
+                    <div class="description">
+                        <div class="poster-text-box">
+                            <p><strong>프로그램:</strong> 청년예술인 역량강화 아카데미</p>
+                            <p><strong>분야:</strong> 카드뉴스 그래픽 디자인</p>
                         </div>
-                        <img src="project/Gcf_Leaflet_1.jpg" alt="청년예술인 역량강화 아카데미 리플렛 1" class="scroll-anim">
-                        <img src="project/Gcf_Leaflet_2.jpg" alt="청년예술인 역량강화 아카데미 리플렛 2" class="scroll-anim">
+                        <span>
+                            <청년예술인 역량강화 아카데미>는 광명문화재단이 운영하는 프로그램으로, 창작활동 시 청년예술가에게 필요한 역량을 강화 시킬 수 있는 강의를 제공합니다.
+                        </span>
+                        <span>프로그램 홍보에 필요한 온•오프라인 베리에이션은 온라인 웹 배너를 중심으로 디자인을 진행하였습니다. 숨어 있던 역량이 터지는 듯한 이미지에 푸르고 자유분방함을
+                            표현하기 위해 다채로운 색상을 적용했습니다.</span>
                     </div>
                 </div>
             </div>
-        </main>
+
+            <div class="project-bottom">
+                <div class="project-section">
+                    <div class="section-header">
+                        <div class="col-val title" style="grid-column: 1 / -1;">Leaflet</div>
+                        <div class="header-col">
+                            <div class="col-val spec-list" style="color: #aaaaaa;">
+                                <span>청년예술인 지원사업의 일정과 프로그램 정보를 전달하는 리플렛입니다.</span>
+                            </div>
+                        </div>
+                        <div class="header-col">
+                            <div class="col-val spec-list">
+                                <span>레이아웃 및 그래픽 | 탁혜원</span>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="project/Gcf_Leaflet_1.jpg" alt="청년예술인 역량강화 아카데미 리플렛 1" class="scroll-anim">
+                    <img src="project/Gcf_Leaflet_2.jpg" alt="청년예술인 역량강화 아카데미 리플렛 2" class="scroll-anim">
+                </div>
+            </div>
+    </div>
+    </main>
     </div>
 
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
