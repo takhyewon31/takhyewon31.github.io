@@ -461,6 +461,21 @@
             width: 100%;
         }
 
+        .description-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            font-size: inherit;
+            line-height: inherit;
+        }
+
+        .description-copy p {
+            margin: 0;
+            color: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+        }
+
         .poster-text-box {
             background: none;
             /* 박스 배경 제거 */
@@ -761,6 +776,10 @@
             object-fit: cover;
         }
 
+        .photo-archive-section .photo-slider img.gcf-photo-focus {
+            object-position: center center;
+        }
+
         .slider-controls {
             display: flex;
             align-items: center;
@@ -867,18 +886,18 @@
                             <img src="project/Gcf_Cardnews_1.jpg" alt="2023 청년예술인 역량강화 아카데미">
                         </div>
                         <div class="work-info">
-                            <div class="work-title">2023 청년예술인 역량강화 아카데미</div>
+                            <div class="work-title">청년예술인 역량강화 아카데미</div>
                             <div class="work-cat">Marketing Design</div>
                         </div>
                     </div>
 
-                    <div class="work-item">
+                    <div class="work-item" data-project="hong-woo-joo-sns" id="project-item-hong-woo-joo-sns">
                         <div class="work-thumb">
                             <span style="color:#555; font-size:12px;">Image</span>
                         </div>
                         <div class="work-info">
-                            <div class="work-title">Personal Resume</div>
-                            <div class="work-cat">Editorial / Web</div>
+                            <div class="work-title">홍우주 SNS 콘텐츠</div>
+                            <div class="work-cat">Digital Content Design</div>
                         </div>
                     </div>
 
@@ -928,12 +947,13 @@
                                 <p><strong>장소:</strong> 경춘선숲길 갤러리</p>
                                 <p><strong>주최·주관:</strong> 홍우주사회적협동조합</p>
                             </div>
-                            <p>
-                                <이우영 1972-2023 매일, 내 일 검정고무신>은 만화 '검정 고무신' 그림 작가인 이우영의 삶을 다양한 시각적 매체를 통해 새롭게 조명하고 추억하는
+                            <div class="description-copy">
+                                <p>
+                                    &lt;이우영 1972-2023 매일, 내 일 검정고무신&gt;은 만화 '검정 고무신' 그림 작가인 이우영의 삶을 다양한 시각적 매체를 통해 새롭게 조명하고 추억하는
                                     특별 기획전입니다.
-                            </p>
-                            <span>전시를 위한 포스터, 리플렛 및 연표 등의 편집물을 디자인하였습니다.</span>
-                            <span>전체적으로 무채색을 사용하여 정적인 분위기를 나타내었으며, 하늘색을 메인 색상으로 설정해 자유로운 느낌을 전달하였습니다.</span>
+                                </p>
+                                <p>전시를 위한 포스터, 리플렛 및 연표 등의 편집물을 디자인하였습니다. 전체적으로 무채색을 사용하여 정적인 분위기를 나타내었으며, 하늘색을 메인 색상으로 설정해 자유로운 느낌을 전달하였습니다.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1045,13 +1065,13 @@
                         <p class="category">광명문화재단 • 2023</p>
 
                         <div class="description">
-                            <div class="poster-text-box">
+                            <div class="description-copy">
                                 <p>
                                     &lt;청년예술인 역량강화 아카데미&gt;는 광명문화재단이 운영하는 프로그램으로, 창작활동 시 청년예술가에게 필요한 역량을 강화 시킬 수 있는 강의를
                                     제공합니다.
                                 </p>
-                                <span>프로그램 홍보에 필요한 온•오프라인 베리에이션은 온라인 웹 배너를 중심으로 디자인을 진행하였습니다. 숨어 있던 역량이 터지는 듯한 이미지에 푸르고
-                                    자유분방함을 표현하기 위해 다채로운 색상을 적용했습니다.</span>
+                                <p>프로그램 홍보에 필요한 온•오프라인 베리에이션은 온라인 웹 배너를 중심으로 디자인을 진행하였습니다. 숨어 있던 역량이 터지는 듯한 이미지에 푸르고
+                                    자유분방함을 표현하기 위해 다채로운 색상을 적용했습니다.</p>
                             </div>
                         </div>
                     </div>
@@ -1095,7 +1115,7 @@
                                 </div>
                                 <div class="header-col text-right">
                                     <div class="col-val spec-list">
-                                        <span>1020 x 479 px / 1300 x 4000 px</span>
+                                        <span>1020 x 479 px,1300 x 4000 px</span>
                                     </div>
                                 </div>
                             </div>
@@ -1118,7 +1138,7 @@
                                     <img src="project/Gcf_Photo_1.webp" alt="청년예술인 역량강화 아카데미 현장 사진 1"
                                         class="slider-image active">
                                     <img src="project/Gcf_Photo_2.jpeg" alt="청년예술인 역량강화 아카데미 현장 사진 2"
-                                        class="slider-image">
+                                        class="slider-image gcf-photo-focus">
                                 </div>
                                 <div class="slider-controls">
                                     <button type="button" class="slider-btn prev-btn" aria-label="이전 현장 사진">←</button>
