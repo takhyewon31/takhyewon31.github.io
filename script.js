@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!hoverPreview) {
         const previewDiv = document.createElement('div');
         previewDiv.id = 'hover-preview';
+        const previewImg = document.createElement('img');
+        previewDiv.appendChild(previewImg);
         document.body.appendChild(previewDiv);
     }
 
@@ -44,7 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (targetPreview && imgPath) {
                 targetPreview.style.display = 'block';
-                targetPreview.style.backgroundImage = `url('${imgPath}')`;
+                const img = targetPreview.querySelector('img');
+                if (img) {
+                    const currentSrc = img.getAttribute('src');
+                    if (currentSrc !== imgPath) {
+                        img.setAttribute('src', imgPath);
+                    }
+                }
                 
                 // 마우스 커서 옆에 살짝 여백(15px)을 두고 따라다니도록 좌표 설정
                 targetPreview.style.left = (e.clientX + 15) + 'px';

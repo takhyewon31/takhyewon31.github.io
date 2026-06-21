@@ -189,18 +189,21 @@
             position: fixed;
             pointer-events: none;
             /* 커서가 이미지 영역에 닿아 버벅이는 현상 방지 */
-            width: 140px;
-            /* 미니멀한 미리보기 가로 폭 */
-            height: 190px;
-            /* 포스터 세로 비율 감안한 높이 */
-            background-size: cover;
-            background-position: center;
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
             display: none;
             /* 평소엔 숨김 */
             z-index: 1000;
+        }
+
+        #hover-preview img {
+            max-width: 150px;
+            max-height: 200px;
+            width: auto;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            display: block;
             border: 2px solid #ffffff;
+            object-fit: contain;
         }
 
         .modal {
@@ -305,12 +308,15 @@
             </div>
             <div class="item-middle">
                 <div style="margin-bottom: 4px;">홍우주사회적협동조합</div>
-                <div class="sub-projects-list" style="display: flex; flex-direction: column; gap: 6px; align-items: flex-start;">
-                    <span class="sub-project" data-img="project/Black Rubber Shoes_poster.png" onclick="openProjectPopup('black-rubber-shoes')"
+                <div class="sub-projects-list"
+                    style="display: flex; flex-direction: column; gap: 6px; align-items: flex-start;">
+                    <span class="sub-project" data-img="project/Black Rubber Shoes_poster.png"
+                        onclick="openProjectPopup('black-rubber-shoes')"
                         style="font-size: 0.8rem; color: #B5B17B; cursor: pointer;">
                         이우영 1972 - 2023 : 매일, 내 일 검정고무신
                     </span>
-                    <span class="sub-project" data-img="" onclick="openProjectPopup('youth-artist-academy')"
+                    <span class="sub-project" data-img="project/Gcf_Cardnews_1.jpg"
+                        onclick="openProjectPopup('youth-artist-academy')"
                         style="font-size: 0.8rem; color: #B5B17B; cursor: pointer;">
                         2023 청년예술인 역량강화 아카데미
                     </span>
@@ -340,7 +346,7 @@
         </footer>
     </div>
 
-    <div id="hover-preview"></div>
+    <div id="hover-preview"><img></div>
 
     <div id="projectModal" class="modal" onclick="closeModal()">
         <div class="modal-content" onclick="event.stopPropagation()">
