@@ -594,6 +594,40 @@
             object-position: top center;
         }
 
+        .sns-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: clamp(24px, 4vw, 60px);
+            width: 100%;
+        }
+
+        .sns-detail-column {
+            min-width: 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .sns-detail-column h3 {
+            margin: 0;
+            color: var(--text-primary);
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .sns-detail-column .photo-slider-container {
+            margin-top: 24px;
+        }
+
+        .sns-detail-column .photo-slider {
+            width: 100%;
+            height: auto;
+            aspect-ratio: var(--detail-aspect);
+        }
+
+        .sns-detail-column .photo-slider img.slider-image {
+            object-fit: contain;
+        }
+
         @media (max-width: 1000px) {
             .window-container {
                 height: 100vh;
@@ -702,6 +736,11 @@
 
             .web-banner-right {
                 height: min(120vw, 680px);
+            }
+
+            .sns-detail-grid {
+                grid-template-columns: 1fr;
+                gap: 80px;
             }
         }
 
@@ -893,7 +932,7 @@
 
                     <div class="work-item" data-project="hong-woo-joo-sns" id="project-item-hong-woo-joo-sns">
                         <div class="work-thumb">
-                            <span style="color:#555; font-size:12px;">Image</span>
+                            <img src="project/Huj_Newsletter_1.png" alt="홍우주사회적협동조합 뉴스레터">
                         </div>
                         <div class="work-info">
                             <div class="work-title">홍우주 SNS 콘텐츠</div>
@@ -1115,7 +1154,7 @@
                                 </div>
                                 <div class="header-col text-right">
                                     <div class="col-val spec-list">
-                                        <span>1020 x 479 px,1300 x 4000 px</span>
+                                        <span>1020 x 479 px, 1300 x 4000 px</span>
                                     </div>
                                 </div>
                             </div>
@@ -1150,6 +1189,69 @@
                             </div>
                             <dl class="photo-details-list">
                             </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-content" data-project-content="hong-woo-joo-sns"
+                id="project-content-hong-woo-joo-sns" hidden>
+                <div class="project-top">
+                    <div class="image-section">
+                        <div class="photo-slider-container scroll-anim">
+                            <div class="photo-slider">
+                                <img src="project/Huj_Newsletter_1.png" alt="홍우주 뉴스레터 1"
+                                    class="slider-image active">
+                                <img src="project/Huj_Newsletter_2.png" alt="홍우주 뉴스레터 2" class="slider-image">
+                                <img src="project/Huj_Newsletter_3.png" alt="홍우주 뉴스레터 3" class="slider-image">
+                                <img src="project/Huj_Newsletter_4.png" alt="홍우주 뉴스레터 4" class="slider-image">
+                            </div>
+                            <div class="slider-controls"></div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h2>홍우주사회적협동조합<br>뉴스레터</h2>
+                        <p class="category">Newsletter &amp; Interview</p>
+                    </div>
+                </div>
+
+                <div class="project-bottom">
+                    <div class="project-section">
+                        <div class="sns-detail-grid">
+                            <div class="sns-detail-column">
+                                <h3>Newsletter Detail</h3>
+                                <div class="photo-slider-container scroll-anim">
+                                    <div class="photo-slider" style="--detail-aspect: 1 / 1;">
+                                        <img src="project/Huj_Newsletter_detail_1.png" alt="홍우주 뉴스레터 상세 1"
+                                            class="slider-image active">
+                                        <img src="project/Huj_Newsletter_detail_2.png" alt="홍우주 뉴스레터 상세 2"
+                                            class="slider-image">
+                                        <img src="project/Huj_Newsletter_detail_3.png" alt="홍우주 뉴스레터 상세 3"
+                                            class="slider-image">
+                                        <img src="project/Huj_Newsletter_detail_4.png" alt="홍우주 뉴스레터 상세 4"
+                                            class="slider-image">
+                                    </div>
+                                    <div class="slider-controls"></div>
+                                </div>
+                            </div>
+
+                            <div class="sns-detail-column">
+                                <h3>Interview</h3>
+                                <div class="photo-slider-container scroll-anim">
+                                    <div class="photo-slider" style="--detail-aspect: 4 / 5;">
+                                        <img src="project/Huj_Interview_1.png" alt="홍우주 인터뷰 1"
+                                            class="slider-image active">
+                                        <img src="project/Huj_Interview_2.png" alt="홍우주 인터뷰 2" class="slider-image">
+                                        <img src="project/Huj_Interview_3.png" alt="홍우주 인터뷰 3" class="slider-image">
+                                        <img src="project/Huj_Interview_4.png" alt="홍우주 인터뷰 4" class="slider-image">
+                                        <img src="project/Huj_Interview_5.png" alt="홍우주 인터뷰 5" class="slider-image">
+                                        <img src="project/Huj_Interview_6.png" alt="홍우주 인터뷰 6" class="slider-image">
+                                        <img src="project/Huj_Interview_7.png" alt="홍우주 인터뷰 7" class="slider-image">
+                                    </div>
+                                    <div class="slider-controls"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
