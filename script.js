@@ -178,11 +178,13 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // 초기화
         updateSlider(0);
-        const autoSlide = setInterval(() => {
-            let nextIdx = currentIndex + 1;
-            if (nextIdx >= images.length) nextIdx = 0;
-            updateSlider(nextIdx);
-        }, 1000);
+        if (container.dataset.autoplay !== 'false') {
+            setInterval(() => {
+                let nextIdx = currentIndex + 1;
+                if (nextIdx >= images.length) nextIdx = 0;
+                updateSlider(nextIdx);
+            }, 1000);
+        }
     });
 
     // 메인(왼쪽) 이미지 섹션 자동 전환 (보이는 프로젝트 하나에 대해서만 동작)

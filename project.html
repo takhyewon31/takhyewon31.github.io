@@ -751,6 +751,16 @@
             pointer-events: auto;
         }
 
+        .photo-archive-section .photo-slider {
+            width: 100%;
+            height: auto;
+            aspect-ratio: var(--photo-aspect);
+        }
+
+        .photo-archive-section .photo-slider img.slider-image {
+            object-fit: cover;
+        }
+
         .slider-controls {
             display: flex;
             align-items: center;
@@ -990,8 +1000,8 @@
 
                     <div class="project-section photo-archive-section">
                         <div class="photo-section-title dynamic-project-title"></div>
-                        <div class="photo-slider-container scroll-anim">
-                            <div class="photo-slider">
+                        <div class="photo-slider-container scroll-anim" data-autoplay="false">
+                            <div class="photo-slider" style="--photo-aspect: 1058 / 680;">
                                 <img src="project/Black Rubber Shoes_Photo_1.jpg" alt="현장 사진 1"
                                     class="slider-image active">
                                 <img src="project/Black Rubber Shoes_Photo_2.JPG" alt="현장 사진 2" class="slider-image">
@@ -1000,9 +1010,11 @@
                                 <img src="project/Black Rubber Shoes_Photo_5.JPG" alt="현장 사진 5" class="slider-image">
                             </div>
                             <div class="slider-controls">
+                                <button type="button" class="slider-btn prev-btn" aria-label="이전 현장 사진">←</button>
                                 <div class="slider-counter">
                                     <span class="current-index">1</span> / <span class="total-slides">5</span>
                                 </div>
+                                <button type="button" class="slider-btn next-btn" aria-label="다음 현장 사진">→</button>
                             </div>
                         </div>
                         <dl class="photo-details-list">
@@ -1098,6 +1110,27 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="project-section photo-archive-section">
+                            <div class="photo-section-title dynamic-project-title"></div>
+                            <div class="photo-slider-container scroll-anim" data-autoplay="false">
+                                <div class="photo-slider" style="--photo-aspect: 2048 / 1365;">
+                                    <img src="project/Gcf_Photo_1.webp" alt="청년예술인 역량강화 아카데미 현장 사진 1"
+                                        class="slider-image active">
+                                    <img src="project/Gcf_Photo_2.jpeg" alt="청년예술인 역량강화 아카데미 현장 사진 2"
+                                        class="slider-image">
+                                </div>
+                                <div class="slider-controls">
+                                    <button type="button" class="slider-btn prev-btn" aria-label="이전 현장 사진">←</button>
+                                    <div class="slider-counter">
+                                        <span class="current-index">1</span> / <span class="total-slides">2</span>
+                                    </div>
+                                    <button type="button" class="slider-btn next-btn" aria-label="다음 현장 사진">→</button>
+                                </div>
+                            </div>
+                            <dl class="photo-details-list">
+                            </dl>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1106,7 +1139,7 @@
 
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <script src="script.js?v=20260621-2"></script>
+    <script src="script.js?v=20260622-1"></script>
 </body>
 
 </html>
