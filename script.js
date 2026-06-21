@@ -205,6 +205,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!visibleContent) return;
             const container = visibleContent.querySelector('.image-section');
             if (!container) return;
+
+            // If the image section uses a photo slider, let the photo slider script handle autoplay
+            if (container.querySelector('.photo-slider')) {
+                return;
+            }
+
             const imgs = Array.from(container.querySelectorAll('img'));
             if (imgs.length <= 1) return;
 

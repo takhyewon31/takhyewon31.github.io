@@ -651,6 +651,10 @@
             margin: 0 !important;
         }
 
+        .project-bottom.sns-two-column-layout .photo-slider img.slider-image {
+            object-fit: cover;
+        }
+
         /* 2-column layout for hong-woo-joo-sns detail page */
         .project-bottom.sns-two-column-layout {
             display: grid;
@@ -659,55 +663,6 @@
             align-items: start;
             max-width: 100%;
             box-sizing: border-box;
-        }
-
-        .project-bottom.sns-two-column-layout .project-section:last-child {
-            background-color: #e5e5e5; /* Warm light grey panel background matching David Hockney mockup structure */
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-bottom.sns-two-column-layout .project-section:last-child .section-header {
-            border-top: 1px solid rgba(0, 0, 0, 0.15);
-            margin-bottom: 20px;
-        }
-
-        .project-bottom.sns-two-column-layout .project-section:last-child .col-val.title {
-            color: #000000;
-        }
-
-        .project-bottom.sns-two-column-layout .project-section:last-child .section-header .col-val {
-            color: #444444;
-        }
-
-        .project-bottom.sns-two-column-layout .project-section:last-child .col-label {
-            color: #777777;
-        }
-
-        /* Slider adjustments on light background panel */
-        .project-bottom.sns-two-column-layout .project-section:last-child .photo-slider {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .project-bottom.sns-two-column-layout .project-section:last-child .slider-btn {
-            color: #000000;
-            opacity: 0.6;
-        }
-
-        .project-bottom.sns-two-column-layout .project-section:last-child .slider-btn:hover {
-            color: #000000;
-            opacity: 1;
-        }
-
-        .project-bottom.sns-two-column-layout .project-section:last-child .slider-counter {
-            color: #555555;
         }
 
         @media (max-width: 1000px) {
@@ -828,10 +783,6 @@
             .project-bottom.sns-two-column-layout {
                 grid-template-columns: 1fr;
                 gap: 80px;
-            }
-
-            .project-bottom.sns-two-column-layout .project-section:last-child {
-                padding: 24px 20px;
             }
         }
 
@@ -1321,23 +1272,24 @@
                 </div>
 
                 <div class="project-bottom sns-two-column-layout">
-                    <div class="project-section">
-                        <div class="section-header">
-                            <div class="header-col">
-                                <div class="col-val title">Newsletter Detail</div>
-                            </div>
-                            <div class="header-col">
-                                <div class="col-val spec-list">
-                                    <span>레이아웃 및 그래픽 | 탁혜원</span>
-                                </div>
-                            </div>
-                            <div class="header-col text-right">
-                                <div class="col-val spec-list">
-                                    <span>1040 x 1040 px</span>
-                                </div>
+                    <div class="section-header" style="grid-column: 1 / -1; margin-bottom: 40px;">
+                        <div class="header-col">
+                            <div class="col-val title">Newsletter Detail</div>
+                        </div>
+                        <div class="header-col">
+                            <div class="col-val spec-list">
+                                <span>레이아웃 및 그래픽 | 탁혜원</span>
                             </div>
                         </div>
-                        <div class="newsletter-detail-gallery">
+                        <div class="header-col text-right">
+                            <div class="col-val spec-list">
+                                <span>1040 x 1040 px, 1080 x 1350 px</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-section" style="margin-top: 0;">
+                        <div class="newsletter-detail-gallery" style="margin-top: 0;">
                             <img src="project/Huj_Newsletter_detail_1.png" alt="홍우주 뉴스레터 상세 1"
                                 class="scroll-anim">
                             <img src="project/Huj_Newsletter_detail_2.png" alt="홍우주 뉴스레터 상세 2"
@@ -1349,24 +1301,8 @@
                         </div>
                     </div>
 
-                    <div class="project-section">
-                        <div class="section-header">
-                            <div class="header-col">
-                                <div class="col-val title">Interview</div>
-                            </div>
-                            <div class="header-col">
-                                <div class="col-val spec-list">
-                                    <span>레이아웃 및 그래픽 | 탁혜원</span>
-                                </div>
-                            </div>
-                            <div class="header-col text-right">
-                                <div class="col-val spec-list">
-                                    <span>1080 x 1350 px</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="photo-slider-container scroll-anim" data-autoplay-interval="2500" style="margin-top: 40px;">
+                    <div class="project-section" style="margin-top: 0;">
+                        <div class="photo-slider-container scroll-anim" data-autoplay-interval="2500" style="margin-top: 0;">
                             <div class="photo-slider" style="width: 100%; height: auto; aspect-ratio: 4 / 5;">
                                 <img src="project/Huj_Interview_1.png" alt="홍우주 인터뷰 1"
                                     class="slider-image active">
@@ -1377,13 +1313,6 @@
                                 <img src="project/Huj_Interview_6.png" alt="홍우주 인터뷰 6" class="slider-image">
                                 <img src="project/Huj_Interview_7.png" alt="홍우주 인터뷰 7" class="slider-image">
                             </div>
-                            <div class="slider-controls">
-                                <button type="button" class="slider-btn prev-btn" aria-label="이전 인터뷰">←</button>
-                                <div class="slider-counter">
-                                    <span class="current-index">1</span> / <span class="total-slides">7</span>
-                                </div>
-                                <button type="button" class="slider-btn next-btn" aria-label="다음 인터뷰">→</button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1393,7 +1322,7 @@
 
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <script src="script.js?v=20260622-2"></script>
+    <script src="script.js?v=20260622-3"></script>
 </body>
 
 </html>
