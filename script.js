@@ -178,6 +178,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // 초기화
         updateSlider(0);
+        const autoSlide = setInterval(() => {
+            let nextIdx = currentIndex + 1;
+            if (nextIdx >= images.length) nextIdx = 0;
+            updateSlider(nextIdx);
+        }, 1000);
     });
 });
 
