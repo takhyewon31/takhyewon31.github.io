@@ -801,6 +801,18 @@
             }
         }
 
+        /* Card Border Overlay for Say Touche Cover */
+        .card-border-overlay {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .card-border-overlay.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* 포토 슬라이더 스타일 */
         .photo-slider-container {
             width: 100%;
@@ -1420,9 +1432,10 @@
                         </div>
                     </div>
 
-                    <div class="project-section" style="margin-top: 0;">
+                    <div class="project-section" style="margin-top: 0; position: relative;">
                         <img src="project/Hy_saytoche_2.png" alt="Say Touche catalog cover" class="scroll-anim"
                             style="width: 100%; height: auto; margin-top: 0 !important; display: block;">
+                        <div class="card-border-overlay scroll-anim" style="position: absolute; top: 0; right: 0; width: 50%; height: 100%; border: 1px solid rgba(255, 255, 255, 0.15); pointer-events: none; box-sizing: border-box;"></div>
                     </div>
 
                     <div class="project-section" style="margin-top: 0;">
