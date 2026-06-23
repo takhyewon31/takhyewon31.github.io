@@ -49,40 +49,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Top Header Navigation */
-        .top-header {
-            position: absolute;
-            top: 40px;
-            left: 60px;
-            right: 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: var(--font-mono);
-            font-size: 0.72rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            z-index: 100;
-        }
-
-        .top-header a {
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: color 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .top-header a:hover {
-            color: var(--accent-color);
-        }
-
-        .top-header .nav-links {
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
         /* Horizontal Scroll Gallery Container */
         .scroll-container {
             width: 100%;
@@ -92,7 +58,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 110px 0 90px 0;
+            padding: 0;
             position: relative;
             cursor: grab;
             user-select: none;
@@ -113,7 +79,7 @@
             display: flex;
             gap: 60px;
             width: max-content;
-            height: 34vh;
+            height: 38vh;
         }
 
         .top-track {
@@ -153,6 +119,43 @@
                 transform: translateX(0);
                 opacity: 1;
             }
+        }
+
+        /* Centered Middle Navigation Banner */
+        .middle-nav {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            z-index: 10;
+            pointer-events: auto;
+        }
+
+        .middle-nav a {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .middle-nav a:hover {
+            color: var(--accent-color);
+        }
+
+        .middle-nav .title {
+            font-family: 'Caveat', cursive;
+            font-size: 2.8rem;
+            color: var(--text-primary);
+            font-weight: 400;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            user-select: none;
         }
 
         /* Gallery Item (Image Card) */
@@ -297,53 +300,15 @@
             right: 20px;
         }
 
-        /* Footer */
-        .page-footer {
-            position: absolute;
-            bottom: 30px;
-            left: 60px;
-            right: 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            z-index: 100;
-        }
-
-        .page-footer a {
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .page-footer a:hover {
-            color: var(--accent-color);
-        }
-
         /* Responsive Layout */
         @media (max-width: 768px) {
-            .top-header {
-                top: 20px;
-                left: 20px;
-                right: 20px;
-            }
-
-            .page-footer {
-                bottom: 20px;
-                left: 20px;
-                right: 20px;
-                font-size: 0.6rem;
-            }
-
             .scroll-container {
-                padding: 90px 0 80px 0;
+                padding: 0;
             }
 
             .top-track,
             .bottom-track {
-                height: 28vh;
+                height: 32vh;
                 gap: 30px;
             }
 
@@ -355,6 +320,19 @@
             .bottom-track {
                 padding-left: 20vw;
                 padding-right: 5vw;
+            }
+
+            .middle-nav {
+                gap: 20px;
+            }
+
+            .middle-nav .title {
+                font-size: 1.8rem;
+            }
+
+            .middle-nav a {
+                font-size: 0.62rem;
+                letter-spacing: 1px;
             }
 
             .lightbox-nav {
@@ -371,55 +349,48 @@
 </head>
 
 <body>
-    <!-- Top Header Navigation -->
-    <header class="top-header">
-        <div class="header-left">
-            <a href="../index.html">← Back</a>
-        </div>
-    </header>
-
     <!-- Scroll Container holding both rows -->
     <main class="scroll-container" id="scroll-container">
         <!-- Row 1: Staggered Top Track -->
         <div class="top-track">
             <!-- 01 -->
-            <div class="gallery-item" data-index="0" style="height: 34vh; aspect-ratio: 3 / 4;">
+            <div class="gallery-item" data-index="0" style="height: 38vh; aspect-ratio: 3 / 4;">
                 <div class="image-wrapper">
                     <img src="340EDF6B-C513-478E-B3C3-38017D7C36BA.JPG" alt="Photo Archive 1">
                 </div>
             </div>
             <!-- 02 -->
-            <div class="gallery-item" data-index="1" style="height: 28vh; aspect-ratio: 3 / 2;">
+            <div class="gallery-item" data-index="1" style="height: 31vh; aspect-ratio: 3 / 2;">
                 <div class="image-wrapper">
                     <img src="00120019.JPG" alt="Photo Archive 2">
                 </div>
             </div>
             <!-- 03 -->
-            <div class="gallery-item" data-index="2" style="height: 32vh; aspect-ratio: 3 / 4;">
+            <div class="gallery-item" data-index="2" style="height: 36vh; aspect-ratio: 3 / 4;">
                 <div class="image-wrapper">
                     <img src="82739FCF-F841-4A18-B5E3-E52CAA0D971E.JPG" alt="Photo Archive 3">
                 </div>
             </div>
             <!-- 04 -->
-            <div class="gallery-item" data-index="3" style="height: 30vh; aspect-ratio: 4 / 3;">
+            <div class="gallery-item" data-index="3" style="height: 33vh; aspect-ratio: 4 / 3;">
                 <div class="image-wrapper">
                     <img src="993DA023-D2E3-460F-AF71-A61516FBE37B.JPG" alt="Photo Archive 4">
                 </div>
             </div>
             <!-- 05 -->
-            <div class="gallery-item" data-index="4" style="height: 33vh; aspect-ratio: 3 / 4;">
+            <div class="gallery-item" data-index="4" style="height: 37vh; aspect-ratio: 3 / 4;">
                 <div class="image-wrapper">
                     <img src="00120024.JPG" alt="Photo Archive 5">
                 </div>
             </div>
             <!-- 06 -->
-            <div class="gallery-item" data-index="5" style="height: 29vh; aspect-ratio: 3 / 2;">
+            <div class="gallery-item" data-index="5" style="height: 32vh; aspect-ratio: 3 / 2;">
                 <div class="image-wrapper">
                     <img src="11E6FC36-2562-4612-AE15-3F45127E8CBF.JPG" alt="Photo Archive 6">
                 </div>
             </div>
             <!-- 07 -->
-            <div class="gallery-item" data-index="6" style="height: 31vh; aspect-ratio: 3 / 4;">
+            <div class="gallery-item" data-index="6" style="height: 35vh; aspect-ratio: 3 / 4;">
                 <div class="image-wrapper">
                     <img src="00120029.JPG" alt="Photo Archive 7">
                 </div>
@@ -429,49 +400,49 @@
         <!-- Row 2: Staggered Bottom Track -->
         <div class="bottom-track">
             <!-- 08 -->
-            <div class="gallery-item" data-index="7" style="height: 28vh; aspect-ratio: 3 / 2;">
+            <div class="gallery-item" data-index="7" style="height: 31vh; aspect-ratio: 3 / 2;">
                 <div class="image-wrapper">
                     <img src="00120030.JPG" alt="Photo Archive 8">
                 </div>
             </div>
             <!-- 09 -->
-            <div class="gallery-item" data-index="8" style="height: 33vh; aspect-ratio: 3 / 4;">
+            <div class="gallery-item" data-index="8" style="height: 37vh; aspect-ratio: 3 / 4;">
                 <div class="image-wrapper">
                     <img src="4A688B09-4814-479E-BF40-A092C54BE887.JPG" alt="Photo Archive 9">
                 </div>
             </div>
             <!-- 10 -->
-            <div class="gallery-item" data-index="9" style="height: 30vh; aspect-ratio: 4 / 3;">
+            <div class="gallery-item" data-index="9" style="height: 33vh; aspect-ratio: 4 / 3;">
                 <div class="image-wrapper">
                     <img src="00120031.JPG" alt="Photo Archive 10">
                 </div>
             </div>
             <!-- 11 -->
-            <div class="gallery-item" data-index="10" style="height: 34vh; aspect-ratio: 3 / 4;">
+            <div class="gallery-item" data-index="10" style="height: 38vh; aspect-ratio: 3 / 4;">
                 <div class="image-wrapper">
                     <img src="IMG_6623.JPG" alt="Photo Archive 11">
                 </div>
             </div>
             <!-- 12 -->
-            <div class="gallery-item" data-index="11" style="height: 29vh; aspect-ratio: 3 / 2;">
+            <div class="gallery-item" data-index="11" style="height: 32vh; aspect-ratio: 3 / 2;">
                 <div class="image-wrapper">
                     <img src="C581C6AE-5B77-4C02-B329-811E24CF0E1F.JPG" alt="Photo Archive 12">
                 </div>
             </div>
             <!-- 13 -->
-            <div class="gallery-item" data-index="12" style="height: 32vh; aspect-ratio: 3 / 4;">
+            <div class="gallery-item" data-index="12" style="height: 36vh; aspect-ratio: 3 / 4;">
                 <div class="image-wrapper">
                     <img src="00120032.JPG" alt="Photo Archive 13">
                 </div>
             </div>
             <!-- 14 -->
-            <div class="gallery-item" data-index="13" style="height: 30vh; aspect-ratio: 4 / 3;">
+            <div class="gallery-item" data-index="13" style="height: 33vh; aspect-ratio: 4 / 3;">
                 <div class="image-wrapper">
                     <img src="DA8A5E42-E350-4853-AA3A-66B53A60FE0D.JPG" alt="Photo Archive 14">
                 </div>
             </div>
             <!-- 15 -->
-            <div class="gallery-item" data-index="14" style="height: 33vh; aspect-ratio: 3 / 4;">
+            <div class="gallery-item" data-index="14" style="height: 37vh; aspect-ratio: 3 / 4;">
                 <div class="image-wrapper">
                     <img src="000041.JPG" alt="Photo Archive 15">
                 </div>
@@ -479,27 +450,24 @@
         </div>
     </main>
 
-        <!-- Bottom Page Footer -->
-        <footer class="page-footer">
-            <div class="footer-left">
-                <span>© 2026 Tak Hye-won. All rights reserved.</span>
-            </div>
-            <div class="footer-right">
-                <a href="../index.html">Portfolio</a>
-            </div>
-        </footer>
+    <!-- Overlay Navigation elements fixed in the center of the viewport -->
+    <div class="middle-nav">
+        <a href="../index.html">Artists</a>
+        <span class="title">FOR YOUR CONSIDERATION</span>
+        <a href="../index.html">About</a>
+    </div>
 
-        <!-- Lightbox Modal -->
-        <div class="lightbox" id="lightbox">
-            <button class="lightbox-close" id="lightbox-close">CLOSE</button>
-            <button class="lightbox-nav lightbox-prev" id="lightbox-prev">←</button>
-            <button class="lightbox-nav lightbox-next" id="lightbox-next">→</button>
-            <div class="lightbox-content">
-                <div class="lightbox-image-container">
-                    <img id="lightbox-img" src="" alt="Enlarged Photo">
-                </div>
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close">CLOSE</button>
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev">←</button>
+        <button class="lightbox-nav lightbox-next" id="lightbox-next">→</button>
+        <div class="lightbox-content">
+            <div class="lightbox-image-container">
+                <img id="lightbox-img" src="" alt="Enlarged Photo">
             </div>
         </div>
+    </div>
 
         <script>
             // Horizontal Mouse Wheel Scroll helper
