@@ -1,19 +1,41 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hye-won Tak | Photography Archive</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts: Cormorant Garamond (Serif), Inter (Sans-serif), JetBrains Mono (Monospace), Caveat (Handwriting) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Caveat:wght@400;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --bg-color: #ffffff;
-            --text-primary: #000000;
+            /* Default Theme: Dark (since photos look beautiful on black) */
+            --bg-color: #0a0a0a;
+            --text-primary: #f3f3f3;
+            --text-secondary: #8e8e8e;
+            --text-muted: #555555;
+            --border-color: #1a1a1a;
+            --card-bg: #121212;
+            --accent-color: #B5B17B;
+            /* Olive gold matching homepage subprojects */
+
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --transition-speed: 0.5s;
+            --transition-ease: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #fafafa;
+            --text-primary: #111111;
             --text-secondary: #666666;
-            --border-color: #e2e2e2;
-            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            --gallery-gap: 32px;
+            --text-muted: #b0b0b0;
+            --border-color: #e5e5e5;
+            --card-bg: #ffffff;
         }
 
         * {
@@ -26,273 +48,838 @@
             font-family: var(--font-main);
             color: var(--text-primary);
             background-color: var(--bg-color);
-            line-height: 1.5;
-            min-height: 100vh;
-            padding: 40px 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        .page-wrapper {
-            width: 100%;
-            max-width: 1200px;
-            padding: 0 40px;
+            line-height: 1.6;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            transition: background-color var(--transition-speed) var(--transition-ease), color var(--transition-speed) var(--transition-ease);
+            -webkit-font-smoothing: antialiased;
         }
 
         /* Top Header Navigation */
         .top-header {
+            position: absolute;
+            top: 40px;
+            left: 60px;
+            right: 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 1px;
             text-transform: uppercase;
+            z-index: 100;
         }
 
         .top-header a {
-            color: inherit;
+            color: var(--text-primary);
             text-decoration: none;
+            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .top-header .nav-links a {
-            text-decoration: underline;
-            margin-left: 4px;
+        .top-header a:hover {
+            color: var(--accent-color);
         }
 
-        .top-header .nav-links a:first-child {
-            margin-left: 0;
-        }
-
-        /* Sub Header Title / Description */
-        .sub-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 24px 0 32px 0;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 40px;
-        }
-
-        .sub-header-left {
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .sub-header-right {
-            max-width: 480px;
-            font-size: 0.8rem;
-            line-height: 1.6;
+        .top-header .nav-links {
             color: var(--text-secondary);
-            text-align: justify;
-            word-break: keep-all;
+            font-weight: 500;
         }
 
-        /* Gallery Rows and Grid */
-        .gallery-row {
-            display: grid;
-            column-gap: var(--gallery-gap);
-            row-gap: 0;
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: color 0.3s, background-color 0.3s;
+        }
+
+        .theme-toggle:hover {
+            color: var(--accent-color);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="light"] .theme-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Horizontal Scroll Gallery Container */
+        .scroll-container {
             width: 100%;
-            margin-bottom: 48px;
-        }
-
-        .grid-4 {
-            grid-template-columns: repeat(4, 1fr);
-        }
-
-        .grid-2 {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .gallery-item {
+            height: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 110px 0 90px 0;
             position: relative;
-            overflow: hidden;
+            cursor: grab;
+            user-select: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scroll-container.active {
+            cursor: grabbing;
+        }
+
+        /* Parallel Horizontal Tracks */
+        .top-track,
+        .bottom-track {
+            display: flex;
+            gap: 60px;
+            width: max-content;
+            height: 34vh;
+        }
+
+        .top-track {
+            align-items: flex-start;
+            padding-left: 10vw;
+            padding-right: 15vw;
+            animation: slideLeftTop 2.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .bottom-track {
+            align-items: flex-end;
+            padding-left: 25vw;
+            /* Stagger start offset */
+            padding-right: 10vw;
+            animation: slideLeftBottom 2.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideLeftTop {
+            0% {
+                transform: translateX(450px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideLeftBottom {
+            0% {
+                transform: translateX(600px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Centered Middle Navigation Banner */
+        .middle-nav {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            z-index: 10;
+            pointer-events: auto;
+        }
+
+        .middle-nav a {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .middle-nav a:hover {
+            color: var(--accent-color);
+        }
+
+        .middle-nav .title {
+            font-family: 'Caveat', cursive;
+            font-size: 2.8rem;
+            color: var(--text-primary);
+            font-weight: 400;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            user-select: none;
+        }
+
+        /* Gallery Item (Image Card) */
+        .gallery-item {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .image-wrapper {
+            position: relative;
             width: 100%;
+            height: calc(100% - 36px);
+            overflow: hidden;
+            background-color: var(--border-color);
+            transition: background-color var(--transition-speed) var(--transition-ease);
         }
 
         .gallery-item img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: grayscale(15%) contrast(95%);
+            transition: transform 1.2s var(--transition-ease), filter 0.8s var(--transition-ease);
         }
 
         .gallery-item:hover img {
-            transform: scale(1.03);
+            transform: scale(1.05);
+            filter: grayscale(0%) contrast(100%);
         }
 
-        /* Caption Bar spanning the entire row */
-        .caption-bar {
-            grid-column: 1 / -1;
-            display: grid;
-            grid-template-columns: inherit;
-            column-gap: inherit;
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            margin-top: 16px;
-            padding: 10px 0;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
+        /* Individual Image Caption */
+        .item-caption {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-top: 10px;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
             letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            padding-top: 6px;
+            height: 26px;
+            transition: border-color var(--transition-speed) var(--transition-ease), color var(--transition-speed) var(--transition-ease);
         }
 
-        .caption-col {
-            position: relative;
-            padding-left: 2px;
+        .gallery-item:hover .item-caption {
+            color: var(--text-primary);
+            border-top-color: var(--text-primary);
         }
 
-        .caption-col:not(:last-child)::after {
-            content: '';
-            position: absolute;
+        .item-number {
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-right: 8px;
+        }
+
+        .item-title {
+            font-weight: 500;
+            flex-grow: 1;
+            text-transform: uppercase;
+        }
+
+        .item-meta {
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .gallery-item:hover .item-meta {
+            color: var(--text-secondary);
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
             top: 0;
-            bottom: 0;
-            right: calc(var(--gallery-gap) / -2);
-            width: 1px;
-            background-color: var(--border-color);
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(8, 8, 8, 0.98);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s var(--transition-ease);
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-image-container {
+            width: 100%;
+            height: 72vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: scale(0.97);
+            transition: opacity 0.4s var(--transition-ease), transform 0.4s var(--transition-ease);
+        }
+
+        .lightbox.active img.loaded {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Lightbox Controls */
+        .lightbox-close {
+            position: fixed;
+            top: 30px;
+            right: 40px;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            cursor: pointer;
+            letter-spacing: 1px;
+            padding: 8px;
+            z-index: 2100;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .lightbox-close:hover {
+            opacity: 1;
+            color: var(--accent-color);
+        }
+
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: 200;
+            cursor: pointer;
+            padding: 20px;
+            z-index: 2100;
+            opacity: 0.5;
+            transition: opacity 0.3s, color 0.3s;
+            user-select: none;
+        }
+
+        .lightbox-nav:hover {
+            opacity: 1;
+            color: var(--accent-color);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-caption {
+            margin-top: 24px;
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: #a0a0a0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            width: 100%;
+        }
+
+        .lightbox-caption .title {
+            color: #ffffff;
+            font-weight: 500;
+            margin-right: 12px;
         }
 
         /* Footer */
-        footer {
-            margin-top: 40px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
+        .page-footer {
+            position: absolute;
+            bottom: 30px;
+            left: 60px;
+            right: 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.75rem;
-            font-weight: 500;
-            text-transform: uppercase;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
             color: var(--text-secondary);
+            z-index: 100;
         }
 
-        footer a {
-            color: inherit;
-            text-decoration: underline;
+        .page-footer a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .page-footer a:hover {
+            color: var(--accent-color);
         }
 
         /* Responsive Layout */
-        @media (max-width: 1024px) {
-            :root {
-                --gallery-gap: 20px;
-            }
-
-            .page-wrapper {
-                padding: 0 24px;
-            }
-
-            .grid-4 {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .grid-4 .caption-bar {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            /* Adjust dividers in wrapped caption-bar */
-            .grid-4 .caption-col:nth-child(2n)::after {
-                display: none;
-            }
-
-            .grid-4 .caption-col:nth-child(2n-1)::after {
-                display: block;
-                right: calc(var(--gallery-gap) / -2);
-            }
-        }
-
         @media (max-width: 768px) {
-
-            .top-header,
-            .sub-header,
-            footer {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
+            .top-header {
+                top: 20px;
+                left: 20px;
+                right: 20px;
             }
 
-            .sub-header-right {
-                max-width: 100%;
+            .page-footer {
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                font-size: 0.6rem;
             }
 
-            .grid-4,
-            .grid-2 {
-                grid-template-columns: 1fr;
+            .scroll-container {
+                padding: 90px 0 80px 0;
             }
 
-            .grid-4 .caption-bar,
-            .grid-2 .caption-bar {
-                grid-template-columns: 1fr;
-                gap: 8px;
+            .top-track,
+            .bottom-track {
+                height: 28vh;
+                gap: 30px;
             }
 
-            .caption-col::after {
-                display: none !important;
+            .top-track {
+                padding-left: 5vw;
+                padding-right: 10vw;
+            }
+
+            .bottom-track {
+                padding-left: 20vw;
+                padding-right: 5vw;
+            }
+
+            .middle-nav {
+                gap: 20px;
+            }
+
+            .middle-nav .title {
+                font-size: 1.8rem;
+            }
+
+            .middle-nav a {
+                font-size: 0.62rem;
+                letter-spacing: 1px;
+            }
+
+            .lightbox-nav {
+                display: none;
+                /* Hide nav arrows on mobile */
+            }
+
+            .lightbox-close {
+                top: 20px;
+                right: 20px;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="page-wrapper">
-        <header class="top-header">
-            <div class="header-left">
-                <a href="../index.html">←</a>
-            </div>
-            <div class="header-center nav-links">
-                 Photography
-            </div>
-        </header>
-        <main>
-            <!-- Row 1: 4 columns of portrait images -->
-            <div class="gallery-row grid-4">
-                <div class="gallery-item">
+    <!-- Top Header Navigation -->
+    <header class="top-header">
+        <div class="header-left">
+            <a href="../index.html">← Back</a>
+        </div>
+        <div class="header-center nav-links">
+            Photography Archive
+        </div>
+        <div class="header-right">
+            <button class="theme-toggle" id="theme-toggle">Light</button>
+        </div>
+    </header>
+
+    <!-- Scroll Container holding both rows -->
+    <main class="scroll-container" id="scroll-container">
+        <!-- Row 1: Staggered Top Track -->
+        <div class="top-track">
+            <!-- 01 -->
+            <div class="gallery-item" data-index="0" style="height: 34vh; aspect-ratio: 3 / 4;">
+                <div class="image-wrapper">
                     <img src="340EDF6B-C513-478E-B3C3-38017D7C36BA.JPG" alt="Photo Archive 1">
                 </div>
-                <div class="gallery-item">
-                    <img src="4A688B09-4814-479E-BF40-A092C54BE887.JPG" alt="Photo Archive 2">
+                <div class="item-caption">
+                    <span class="item-number">01</span>
+                    <span class="item-title">Over the Wall</span>
+                    <span class="item-meta">Seoul / 2024</span>
                 </div>
-                <div class="gallery-item">
+            </div>
+            <!-- 02 -->
+            <div class="gallery-item" data-index="1" style="height: 28vh; aspect-ratio: 3 / 2;">
+                <div class="image-wrapper">
+                    <img src="00120019.JPG" alt="Photo Archive 2">
+                </div>
+                <div class="item-caption">
+                    <span class="item-number">02</span>
+                    <span class="item-title">Window Light</span>
+                    <span class="item-meta">Seoul / 2025</span>
+                </div>
+            </div>
+            <!-- 03 -->
+            <div class="gallery-item" data-index="2" style="height: 32vh; aspect-ratio: 3 / 4;">
+                <div class="image-wrapper">
                     <img src="82739FCF-F841-4A18-B5E3-E52CAA0D971E.JPG" alt="Photo Archive 3">
                 </div>
-                <div class="gallery-item">
+                <div class="item-caption">
+                    <span class="item-number">03</span>
+                    <span class="item-title">Still Life</span>
+                    <span class="item-meta">Seoul / 2024</span>
+                </div>
+            </div>
+            <!-- 04 -->
+            <div class="gallery-item" data-index="3" style="height: 30vh; aspect-ratio: 4 / 3;">
+                <div class="image-wrapper">
                     <img src="993DA023-D2E3-460F-AF71-A61516FBE37B.JPG" alt="Photo Archive 4">
                 </div>
-                <div class="caption-bar">
+                <div class="item-caption">
+                    <span class="item-number">04</span>
+                    <span class="item-title">Urban Geometric</span>
+                    <span class="item-meta">Incheon / 2024</span>
                 </div>
             </div>
+            <!-- 05 -->
+            <div class="gallery-item" data-index="4" style="height: 33vh; aspect-ratio: 3 / 4;">
+                <div class="image-wrapper">
+                    <img src="00120024.JPG" alt="Photo Archive 5">
+                </div>
+                <div class="item-caption">
+                    <span class="item-number">05</span>
+                    <span class="item-title">Passing By</span>
+                    <span class="item-meta">Tokyo / 2025</span>
+                </div>
+            </div>
+            <!-- 06 -->
+            <div class="gallery-item" data-index="5" style="height: 29vh; aspect-ratio: 3 / 2;">
+                <div class="image-wrapper">
+                    <img src="11E6FC36-2562-4612-AE15-3F45127E8CBF.JPG" alt="Photo Archive 6">
+                </div>
+                <div class="item-caption">
+                    <span class="item-number">06</span>
+                    <span class="item-title">Serenity</span>
+                    <span class="item-meta">Jeju / 2025</span>
+                </div>
+            </div>
+            <!-- 07 -->
+            <div class="gallery-item" data-index="6" style="height: 31vh; aspect-ratio: 3 / 4;">
+                <div class="image-wrapper">
+                    <img src="00120029.JPG" alt="Photo Archive 7">
+                </div>
+                <div class="item-caption">
+                    <span class="item-number">07</span>
+                    <span class="item-title">Abstract Texture</span>
+                    <span class="item-meta">Seoul / 2025</span>
+                </div>
+            </div>
+        </div>
 
-            <!-- Row 2: 2 columns of landscape images -->
-            <div class="gallery-row grid-2">
-                <div class="gallery-item">
-                    <img src="11E6FC36-2562-4612-AE15-3F45127E8CBF.JPG" alt="Photo Archive 5">
+        <!-- Row 2: Staggered Bottom Track -->
+        <div class="bottom-track">
+            <!-- 08 -->
+            <div class="gallery-item" data-index="7" style="height: 28vh; aspect-ratio: 3 / 2;">
+                <div class="image-wrapper">
+                    <img src="00120030.JPG" alt="Photo Archive 8">
                 </div>
-                <div class="gallery-item">
-                    <img src="IMG_6623.JPG" alt="Photo Archive 6">
-                </div>
-                <div class="caption-bar">
+                <div class="item-caption">
+                    <span class="item-number">08</span>
+                    <span class="item-title">Contrast</span>
+                    <span class="item-meta">Busan / 2025</span>
                 </div>
             </div>
+            <!-- 09 -->
+            <div class="gallery-item" data-index="8" style="height: 33vh; aspect-ratio: 3 / 4;">
+                <div class="image-wrapper">
+                    <img src="4A688B09-4814-479E-BF40-A092C54BE887.JPG" alt="Photo Archive 9">
+                </div>
+                <div class="item-caption">
+                    <span class="item-number">09</span>
+                    <span class="item-title">Shadow Play</span>
+                    <span class="item-meta">Tokyo / 2024</span>
+                </div>
+            </div>
+            <!-- 10 -->
+            <div class="gallery-item" data-index="9" style="height: 30vh; aspect-ratio: 4 / 3;">
+                <div class="image-wrapper">
+                    <img src="00120031.JPG" alt="Photo Archive 10">
+                </div>
+                <div class="item-caption">
+                    <span class="item-number">10</span>
+                    <span class="item-title">Minimal Frame</span>
+                    <span class="item-meta">Seoul / 2025</span>
+                </div>
+            </div>
+            <!-- 11 -->
+            <div class="gallery-item" data-index="10" style="height: 34vh; aspect-ratio: 3 / 4;">
+                <div class="image-wrapper">
+                    <img src="IMG_6623.JPG" alt="Photo Archive 11">
+                </div>
+                <div class="item-caption">
+                    <span class="item-number">11</span>
+                    <span class="item-title">After the Rain</span>
+                    <span class="item-meta">Seoul / 2025</span>
+                </div>
+            </div>
+            <!-- 12 -->
+            <div class="gallery-item" data-index="11" style="height: 29vh; aspect-ratio: 3 / 2;">
+                <div class="image-wrapper">
+                    <img src="C581C6AE-5B77-4C02-B329-811E24CF0E1F.JPG" alt="Photo Archive 12">
+                </div>
+                <div class="item-caption">
+                    <span class="item-number">12</span>
+                    <span class="item-title">Portrait of Light</span>
+                    <span class="item-meta">Gyeongju / 2025</span>
+                </div>
+            </div>
+            <!-- 13 -->
+            <div class="gallery-item" data-index="12" style="height: 32vh; aspect-ratio: 3 / 4;">
+                <div class="image-wrapper">
+                    <img src="00120032.JPG" alt="Photo Archive 13">
+                </div>
+                <div class="item-caption">
+                    <span class="item-number">13</span>
+                    <span class="item-title">Evening Glow</span>
+                    <span class="item-meta">Incheon / 2025</span>
+                </div>
+            </div>
+            <!-- 14 -->
+            <div class="gallery-item" data-index="13" style="height: 30vh; aspect-ratio: 4 / 3;">
+                <div class="image-wrapper">
+                    <img src="DA8A5E42-E350-4853-AA3A-66B53A60FE0D.JPG" alt="Photo Archive 14">
+                </div>
+                <div class="item-caption">
+                    <span class="item-number">14</span>
+                    <span class="item-title">Nostalgia</span>
+                    <span class="item-meta">Gangneung / 2025</span>
+                </div>
+            </div>
+            <!-- 15 -->
+            <div class="gallery-item" data-index="14" style="height: 33vh; aspect-ratio: 3 / 4;">
+                <div class="image-wrapper">
+                    <img src="000041.JPG" alt="Photo Archive 15">
+                </div>
+                <div class="item-caption">
+                    <span class="item-number">15</span>
+                    <span class="item-title">Solitude</span>
+                    <span class="item-meta">Jeju / 2024</span>
+                </div>
+            </div>
+        </div>
+    </main>
 
-            <!-- Row 3: 2 columns of portrait images -->
-            <div class="gallery-row grid-2">
-                <div class="gallery-item">
-                    <img src="C581C6AE-5B77-4C02-B329-811E24CF0E1F.JPG" alt="Photo Archive 7">
-                </div>
-                <div class="gallery-item">
-                    <img src="DA8A5E42-E350-4853-AA3A-66B53A60FE0D.JPG" alt="Photo Archive 8">
-                </div>
-                <div class="caption-bar">
-                </div>
-            </div>
-        </main>
+    <!-- Overlay Navigation elements fixed in the center of the viewport -->
+    <div class="middle-nav">
+        <a href="../index.html">Artists</a>
+        <span class="title">for your consideration</span>
+        <a href="../index.html">About</a>
     </div>
+
+    <!-- Bottom Page Footer -->
+    <footer class="page-footer">
+        <div class="footer-left">
+            <span>© 2026 Tak Hye-won. All rights reserved.</span>
+        </div>
+        <div class="footer-right">
+            <a href="../index.html">Portfolio</a>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close">CLOSE</button>
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev">←</button>
+        <button class="lightbox-nav lightbox-next" id="lightbox-next">→</button>
+        <div class="lightbox-content">
+            <div class="lightbox-image-container">
+                <img id="lightbox-img" src="" alt="Enlarged Photo">
+            </div>
+            <div class="lightbox-caption" id="lightbox-caption">
+                <span class="title"></span>
+                <span class="meta"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Load saved theme or default to dark
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        themeToggle.textContent = savedTheme === 'dark' ? 'Light' : 'Dark';
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? 'Light' : 'Dark';
+        });
+
+        // Horizontal Mouse Wheel Scroll helper
+        const scrollContainer = document.getElementById('scroll-container');
+        scrollContainer.addEventListener('wheel', (e) => {
+            if (e.deltaY !== 0) {
+                e.preventDefault();
+                scrollContainer.scrollLeft += e.deltaY;
+            }
+        });
+
+        // Mouse Drag to Scroll Logic
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        scrollContainer.addEventListener('mousedown', (e) => {
+            // Check if clicking links or interactive elements to prevent blocking clicks
+            if (e.target.closest('a') || e.target.closest('button')) return;
+            isDown = true;
+            scrollContainer.classList.add('active');
+            startX = e.pageX - scrollContainer.offsetLeft;
+            scrollLeft = scrollContainer.scrollLeft;
+        });
+
+        scrollContainer.addEventListener('mouseleave', () => {
+            isDown = false;
+            scrollContainer.classList.remove('active');
+        });
+
+        scrollContainer.addEventListener('mouseup', () => {
+            isDown = false;
+            scrollContainer.classList.remove('active');
+        });
+
+        scrollContainer.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - scrollContainer.offsetLeft;
+            const walk = (x - startX) * 1.5; // Scroll speed multiplier
+            scrollContainer.scrollLeft = scrollLeft - walk;
+        });
+
+        // Lightbox Logic
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const lightboxPrev = document.getElementById('lightbox-prev');
+        const lightboxNext = document.getElementById('lightbox-next');
+        const lightboxTitle = document.querySelector('#lightbox-caption .title');
+        const lightboxMeta = document.querySelector('#lightbox-caption .meta');
+
+        let currentIndex = 0;
+        const imagesData = [];
+
+        // Extract image data from DOM
+        galleryItems.forEach((item, index) => {
+            const img = item.querySelector('img');
+            const title = item.querySelector('.item-title').textContent;
+            const meta = item.querySelector('.item-meta').textContent;
+            const num = item.querySelector('.item-number').textContent;
+            imagesData.push({
+                src: img.getAttribute('src'),
+                title: `${num} ${title}`,
+                meta: meta
+            });
+
+            item.addEventListener('click', (e) => {
+                // Ensure drag does not trigger click
+                if (scrollContainer.classList.contains('active')) return;
+                openLightbox(index);
+            });
+        });
+
+        function openLightbox(index) {
+            currentIndex = index;
+            const data = imagesData[currentIndex];
+
+            lightboxImg.classList.remove('loaded');
+            lightboxImg.src = data.src;
+            lightboxTitle.textContent = data.title;
+            lightboxMeta.textContent = data.meta;
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Fade image in after source is set
+            lightboxImg.onload = () => {
+                lightboxImg.classList.add('loaded');
+            };
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            lightboxImg.classList.remove('loaded');
+            document.body.style.overflow = '';
+        }
+
+        function showNext() {
+            currentIndex = (currentIndex + 1) % imagesData.length;
+            openLightbox(currentIndex);
+        }
+
+        function showPrev() {
+            currentIndex = (currentIndex - 1 + imagesData.length) % imagesData.length;
+            openLightbox(currentIndex);
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxNext.addEventListener('click', showNext);
+        lightboxPrev.addEventListener('click', showPrev);
+
+        // Click outside image to close
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target === document.querySelector('.lightbox-image-container') || e.target === lightbox.querySelector('.lightbox-content')) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard Navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') showNext();
+            if (e.key === 'ArrowLeft') showPrev();
+        });
+    </script>
 </body>
 
 </html>
