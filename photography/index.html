@@ -149,46 +149,42 @@
                 <!-- Absolute Markers (Seoul, Gangwon, Gyeongju, Jeju) -->
                 <!-- Seoul Marker (Centroid Approx: top-[20.1%] left-[29.1%]) -->
                 <div data-marker="seoul" onclick="scrollToSection('seoul')"
-                    class="map-marker absolute top-[20.1%] left-[29.1%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer group z-20">
-                    <div
-                        class="marker-dot w-2 h-2 bg-black rounded-full transition-transform duration-500 ease-out group-hover:scale-[1.5] scale-100">
-                    </div>
-                    <span
-                        class="marker-label absolute top-3 font-sans text-[10px] tracking-wider font-semibold text-zinc-500 bg-white/80 backdrop-blur-[1px] px-1.5 py-0.5 rounded border border-zinc-100 opacity-80 transition-all duration-300 group-hover:text-black group-hover:opacity-100 group-hover:border-zinc-300 whitespace-nowrap">서울
-                        Seoul</span>
+                    class="map-marker absolute top-[20.1%] left-[29.1%] -translate-x-1/2 -translate-y-[calc(100%-3px)] flex flex-col items-center cursor-pointer group z-20">
+                    <span class="bg-white border border-zinc-950 px-2 py-0.5 text-[9px] font-mono text-zinc-950 tracking-widest uppercase transition-colors group-hover:bg-zinc-50 whitespace-nowrap">
+                        서울 Seoul
+                    </span>
+                    <div class="w-[1px] h-6 bg-zinc-300 group-hover:bg-zinc-950 transition-colors"></div>
+                    <div class="marker-dot w-1.5 h-1.5 bg-zinc-400 rounded-full group-hover:bg-zinc-950 transition-colors -mt-0.5"></div>
                 </div>
 
                 <!-- Gangwon Marker (Centroid Approx: top-[15.3%] left-[51.5%]) -->
                 <div data-marker="gangwon" onclick="scrollToSection('gangwon')"
-                    class="map-marker absolute top-[15.3%] left-[51.5%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer group z-20">
-                    <div
-                        class="marker-dot w-2 h-2 bg-black rounded-full transition-transform duration-500 ease-out group-hover:scale-[1.5] scale-100">
-                    </div>
-                    <span
-                        class="marker-label absolute top-3 font-sans text-[10px] tracking-wider font-semibold text-zinc-500 bg-white/80 backdrop-blur-[1px] px-1.5 py-0.5 rounded border border-zinc-100 opacity-80 transition-all duration-300 group-hover:text-black group-hover:opacity-100 group-hover:border-zinc-300 whitespace-nowrap">강원
-                        Gangwon</span>
+                    class="map-marker absolute top-[15.3%] left-[51.5%] -translate-x-1/2 -translate-y-[calc(100%-3px)] flex flex-col items-center cursor-pointer group z-20">
+                    <span class="bg-white border border-zinc-950 px-2 py-0.5 text-[9px] font-mono text-zinc-950 tracking-widest uppercase transition-colors group-hover:bg-zinc-50 whitespace-nowrap">
+                        강원 Gangwon
+                    </span>
+                    <div class="w-[1px] h-6 bg-zinc-300 group-hover:bg-zinc-950 transition-colors"></div>
+                    <div class="marker-dot w-1.5 h-1.5 bg-zinc-400 rounded-full group-hover:bg-zinc-950 transition-colors -mt-0.5"></div>
                 </div>
 
                 <!-- Gyeongju Marker (Centroid Approx: top-[52.3%] left-[66.8%]) -->
                 <div data-marker="gyeongju" onclick="scrollToSection('gyeongju')"
-                    class="map-marker absolute top-[52.3%] left-[66.8%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer group z-20">
-                    <div
-                        class="marker-dot w-2 h-2 bg-black rounded-full transition-transform duration-500 ease-out group-hover:scale-[1.5] scale-100">
-                    </div>
-                    <span
-                        class="marker-label absolute top-3 font-sans text-[10px] tracking-wider font-semibold text-zinc-500 bg-white/80 backdrop-blur-[1px] px-1.5 py-0.5 rounded border border-zinc-100 opacity-80 transition-all duration-300 group-hover:text-black group-hover:opacity-100 group-hover:border-zinc-300 whitespace-nowrap">경주
-                        Gyeongju</span>
+                    class="map-marker absolute top-[52.3%] left-[66.8%] -translate-x-1/2 -translate-y-[calc(100%-3px)] flex flex-col items-center cursor-pointer group z-20">
+                    <span class="bg-white border border-zinc-950 px-2 py-0.5 text-[9px] font-mono text-zinc-950 tracking-widest uppercase transition-colors group-hover:bg-zinc-50 whitespace-nowrap">
+                        경주 Gyeongju
+                    </span>
+                    <div class="w-[1px] h-6 bg-zinc-300 group-hover:bg-zinc-950 transition-colors"></div>
+                    <div class="marker-dot w-1.5 h-1.5 bg-zinc-400 rounded-full group-hover:bg-zinc-950 transition-colors -mt-0.5"></div>
                 </div>
 
                 <!-- Jeju Marker (Centroid Approx: top-[95.4%] left-[22.5%]) -->
                 <div data-marker="jeju" onclick="scrollToSection('jeju')"
-                    class="map-marker absolute top-[95.4%] left-[22.5%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer group z-20">
-                    <div
-                        class="marker-dot w-2 h-2 bg-black rounded-full transition-transform duration-500 ease-out group-hover:scale-[1.5] scale-100">
-                    </div>
-                    <span
-                        class="marker-label absolute top-3 font-sans text-[10px] tracking-wider font-semibold text-zinc-500 bg-white/80 backdrop-blur-[1px] px-1.5 py-0.5 rounded border border-zinc-100 opacity-80 transition-all duration-300 group-hover:text-black group-hover:opacity-100 group-hover:border-zinc-300 whitespace-nowrap">제주
-                        Jeju</span>
+                    class="map-marker absolute top-[95.4%] left-[22.5%] -translate-x-1/2 -translate-y-[calc(100%-3px)] flex flex-col items-center cursor-pointer group z-20">
+                    <span class="bg-white border border-zinc-950 px-2 py-0.5 text-[9px] font-mono text-zinc-950 tracking-widest uppercase transition-colors group-hover:bg-zinc-50 whitespace-nowrap">
+                        제주 Jeju
+                    </span>
+                    <div class="w-[1px] h-6 bg-zinc-300 group-hover:bg-zinc-950 transition-colors"></div>
+                    <div class="marker-dot w-1.5 h-1.5 bg-zinc-400 rounded-full group-hover:bg-zinc-950 transition-colors -mt-0.5"></div>
                 </div>
             </div>
         </aside>
