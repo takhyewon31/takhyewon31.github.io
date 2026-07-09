@@ -629,7 +629,7 @@
             const photoCounts = {
                 'seoul': 4,
                 'gangwon': 4,
-                'north-gyeongsang': 3, // Gyeongju (Gyeongsangbuk-do)
+                'gyeongju': 3,
                 'jeju': 4
             };
 
@@ -653,21 +653,30 @@
                     }
 
                     if (matchingPath) {
-                        const regionId = matchingPath.id;
+                        let regionId = matchingPath.id;
+
+                        // Custom check for Gyeongju city within North Gyeongsang province
+                        if (regionId === 'north-gyeongsang') {
+                            const distToGyeongju = Math.hypot(x - 350, y - 330);
+                            if (distToGyeongju < 30) {
+                                regionId = 'gyeongju';
+                            }
+                        }
+
                         const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
                         circle.setAttribute('cx', x.toFixed(1));
                         circle.setAttribute('cy', y.toFixed(1));
                         circle.setAttribute('r', r);
 
                         const count = photoCounts[regionId] || 0;
-                        let fill = '#e4e4e7'; // light gray for 0 photos
+                        let fill = '#e5e5e5'; // achromatic light gray for 0 photos
 
                         if (count > 0) {
                             // Saturation scaled based on photos (HSL 56, Saturation, Lightness)
-                            // 3 photos (Gyeongju): HSL 56, 18%, 65%
-                            // 4 photos (Seoul, Gangwon, Jeju): HSL 56, 32%, 58% (the #B5B17B accent)
-                            const s = count === 3 ? 18 : 32;
-                            const l = count === 3 ? 65 : 58;
+                            // 3 photos (Gyeongju): HSL 56, 32%, 58% (standard accent)
+                            // 4 photos (Seoul, Gangwon, Jeju): HSL 56, 50%, 48% (rich gold accent)
+                            const s = count === 3 ? 32 : 50;
+                            const l = count === 3 ? 58 : 48;
                             fill = `hsl(56, ${s}%, ${l}%)`;
                         }
 
@@ -682,7 +691,7 @@
                             const regionToSectionMap = {
                                 'seoul': 'seoul',
                                 'gangwon': 'gangwon',
-                                'north-gyeongsang': 'gyeongju',
+                                'gyeongju': 'gyeongju',
                                 'jeju': 'jeju'
                             };
                             const sectionId = regionToSectionMap[regionId];
@@ -701,7 +710,7 @@
             const photoCounts = {
                 'seoul': 4,
                 'gangwon': 4,
-                'north-gyeongsang': 3,
+                'gyeongju': 3,
                 'jeju': 4
             };
             const count = photoCounts[regionId] || 0;
@@ -712,10 +721,10 @@
                     dot.style.transform = 'scale(2)';
                     dot.style.transformOrigin = `${dot.getAttribute('cx')}px ${dot.getAttribute('cy')}px`;
                 } else {
-                    let fill = '#e4e4e7';
+                    let fill = '#e5e5e5';
                     if (count > 0) {
-                        const s = count === 3 ? 18 : 32;
-                        const l = count === 3 ? 65 : 58;
+                        const s = count === 3 ? 32 : 50;
+                        const l = count === 3 ? 58 : 48;
                         fill = `hsl(56, ${s}%, ${l}%)`;
                     }
                     dot.style.fill = fill;
@@ -724,8 +733,7 @@
             });
 
             // Map path IDs to absolute markers
-            const markerKey = regionId === 'north-gyeongsang' ? 'gyeongju' : regionId;
-            const marker = markers[markerKey];
+            const marker = markers[regionId];
             if (marker) {
                 const dot = marker.querySelector('.marker-dot');
                 const label = marker.querySelector('.marker-label');
@@ -749,16 +757,14 @@
 
         // Hook photo card mouse hover to highlight regions
         photoCards.forEach(card => {
-            const region = card.getAttribute('data-region');
-            if (!region) return;
+            const regionId = card.getAttribute('data-region');
+            if (!regionId) return;
 
             card.addEventListener('mouseenter', () => {
-                const regionId = region === 'gyeongju' ? 'north-gyeongsang' : region;
                 highlightRegion(regionId, true);
             });
 
             card.addEventListener('mouseleave', () => {
-                const regionId = region === 'gyeongju' ? 'north-gyeongsang' : region;
                 highlightRegion(regionId, false);
             });
         });
@@ -789,26 +795,24 @@
                 if (region === currentActiveRegion) {
                     dot.classList.add('ring-4', 'ring-accent/30');
                     // Also subtly highlight the pixel region dots
-                    const regionId = region === 'gyeongju' ? 'north-gyeongsang' : region;
-                    document.querySelectorAll(`.dot-${regionId}`).forEach(d => {
-                        d.style.fill = 'hsl(56, 45%, 52%)';
+                    document.querySelectorAll(`.dot-${region}`).forEach(d => {
+                        d.style.fill = 'hsl(56, 65%, 48%)';
                     });
                 } else {
                     dot.classList.remove('ring-4', 'ring-accent/30');
                     // Reset pixel region dots
-                    const regionId = region === 'gyeongju' ? 'north-gyeongsang' : region;
                     const photoCounts = {
                         'seoul': 4,
                         'gangwon': 4,
-                        'north-gyeongsang': 3,
+                        'gyeongju': 3,
                         'jeju': 4
                     };
-                    const count = photoCounts[regionId] || 0;
-                    document.querySelectorAll(`.dot-${regionId}`).forEach(d => {
-                        let fill = '#e4e4e7';
+                    const count = photoCounts[region] || 0;
+                    document.querySelectorAll(`.dot-${region}`).forEach(d => {
+                        let fill = '#e5e5e5';
                         if (count > 0) {
-                            const s = count === 3 ? 18 : 32;
-                            const l = count === 3 ? 65 : 58;
+                            const s = count === 3 ? 32 : 50;
+                            const l = count === 3 ? 58 : 48;
                             fill = `hsl(56, ${s}%, ${l}%)`;
                         }
                         d.style.fill = fill;
