@@ -635,28 +635,32 @@
                 { id: 'seoul', x: 138, y: 140, province: 'seoul' },
                 // Incheon
                 { id: 'incheon', x: 113, y: 124, province: 'incheon' },
-                // Gyeonggi-do (e.g. Yeoncheon, Ganghwa, Guri, Hanam, Yangpyeong)
+                // Gyeonggi-do (e.g. Yeoncheon, Ganghwa, Guri, Hanam, Yangpyeong, Gimpo, Suwon, Pyeongtaek)
                 { id: 'yeoncheon', x: 135, y: 45, province: 'gyeonggi' },
                 { id: 'ganghwa', x: 79, y: 100, province: 'gyeonggi' },
                 { id: 'guri', x: 160, y: 130, province: 'gyeonggi' },
-                { id: 'hanam', x: 160, y: 150, province: 'gyeonggi' },
+                { id: 'hanam', x: 165, y: 150, province: 'gyeonggi' },
                 { id: 'yangpyeong', x: 190, y: 160, province: 'gyeonggi' },
-                // Gangwon-do (Sokcho, Hongcheon, Chuncheon, Yangyang, Inje)
-                { id: 'gangwon', x: 340, y: 80, province: 'gangwon' }, // Sokcho/Seoraksan area mapped directly to 'gangwon' ID
-                { id: 'hongcheon', x: 230, y: 110, province: 'gangwon' },
+                { id: 'gimpo', x: 100, y: 115, province: 'gyeonggi' },
+                { id: 'suwon', x: 140, y: 185, province: 'gyeonggi' },
+                { id: 'pyeongtaek', x: 130, y: 220, province: 'gyeonggi' },
+                // Gangwon-do (Sokcho, Yangyang, Inje all map to 'gangwon' ID)
+                { id: 'gangwon', x: 340, y: 80, province: 'gangwon' }, // Sokcho
+                { id: 'gangwon', x: 350, y: 110, province: 'gangwon' }, // Yangyang
+                { id: 'gangwon', x: 300, y: 80, province: 'gangwon' },  // Inje
+                { id: 'goseong', x: 330, y: 40, province: 'gangwon' },
                 { id: 'chuncheon', x: 220, y: 70, province: 'gangwon' },
-                { id: 'yangyang', x: 350, y: 110, province: 'gangwon' },
-                { id: 'inje', x: 300, y: 80, province: 'gangwon' },
-                // North Gyeongsang (Gyeongju, Pohang, Daegu)
+                { id: 'hongcheon', x: 230, y: 110, province: 'gangwon' },
+                { id: 'gangneung', x: 360, y: 150, province: 'gangwon' },
+                // North Gyeongsang (Gyeongju, Pohang, Yeongcheon, Cheongdo, Andong)
                 { id: 'gyeongju', x: 350, y: 330, province: 'north-gyeongsang' },
                 { id: 'pohang', x: 360, y: 290, province: 'north-gyeongsang' },
-                { id: 'daegu', x: 298, y: 351, province: 'north-gyeongsang' },
+                { id: 'yeongcheon', x: 310, y: 320, province: 'north-gyeongsang' },
+                { id: 'cheongdo', x: 310, y: 350, province: 'north-gyeongsang' },
+                { id: 'andong', x: 300, y: 240, province: 'north-gyeongsang' },
                 // North Jeolla (Jeonju, Muju)
                 { id: 'jeonju', x: 160, y: 310, province: 'north-jeolla' },
-                { id: 'muju', x: 210, y: 300, province: 'north-jeolla' },
-                // Jeju (Jeju-si, Seogwipo-si)
-                { id: 'jeju', x: 118, y: 595, province: 'jeju' },
-                { id: 'seogwipo', x: 118, y: 612, province: 'jeju' }
+                { id: 'muju', x: 210, y: 300, province: 'north-jeolla' }
             ];
 
             const step = 4; // spacing between dots
@@ -681,20 +685,22 @@
                     if (matchingPath) {
                         let regionId = matchingPath.id;
 
-                        // Find the closest municipal centroid within the province to partition the dots
-                        let closestCentroid = null;
-                        let minDistance = Infinity;
-                        for (const centroid of municipalCentroids) {
-                            if (centroid.province === regionId) {
-                                const dist = Math.hypot(x - centroid.x, y - centroid.y);
-                                if (dist < minDistance) {
-                                    minDistance = dist;
-                                    closestCentroid = centroid;
+                        // Find the closest municipal centroid within the province to partition the dots (except Jeju which highlights fully)
+                        if (regionId !== 'jeju') {
+                            let closestCentroid = null;
+                            let minDistance = Infinity;
+                            for (const centroid of municipalCentroids) {
+                                if (centroid.province === regionId) {
+                                    const dist = Math.hypot(x - centroid.x, y - centroid.y);
+                                    if (dist < minDistance) {
+                                        minDistance = dist;
+                                        closestCentroid = centroid;
+                                    }
                                 }
                             }
-                        }
-                        if (closestCentroid) {
-                            regionId = closestCentroid.id;
+                            if (closestCentroid) {
+                                regionId = closestCentroid.id;
+                            }
                         }
 
                         const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
