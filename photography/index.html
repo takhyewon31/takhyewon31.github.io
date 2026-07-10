@@ -170,7 +170,7 @@
 
                 <!-- Sokcho Marker -->
                 <div data-marker="sokcho" onclick="scrollToSection('gangwon')"
-                    class="map-marker absolute top-[12.7%] left-[64.9%] -translate-x-1/2 -translate-y-full flex flex-col items-center cursor-pointer group z-20">
+                    class="map-marker absolute top-[12.7%] left-[63.0%] -translate-x-1/2 -translate-y-full flex flex-col items-center cursor-pointer group z-20">
                     <span class="marker-label bg-white border border-zinc-950 px-2 py-0.5 text-[9px] font-mono text-zinc-950 tracking-widest uppercase transition-all duration-300 group-hover:bg-zinc-50 whitespace-nowrap">
                         속초 Sokcho
                     </span>
@@ -179,7 +179,7 @@
 
                 <!-- Yangyang Marker -->
                 <div data-marker="yangyang" onclick="scrollToSection('gangwon')"
-                    class="map-marker absolute top-[17.4%] left-[66.8%] -translate-x-1/2 -translate-y-full flex flex-col items-center cursor-pointer group z-20">
+                    class="map-marker absolute top-[17.4%] left-[64.9%] -translate-x-1/2 -translate-y-full flex flex-col items-center cursor-pointer group z-20">
                     <span class="marker-label bg-white border border-zinc-950 px-2 py-0.5 text-[9px] font-mono text-zinc-950 tracking-widest uppercase transition-all duration-300 group-hover:bg-zinc-50 whitespace-nowrap">
                         양양 Yangyang
                     </span>
@@ -188,7 +188,7 @@
 
                 <!-- Inje Marker -->
                 <div data-marker="inje" onclick="scrollToSection('gangwon')"
-                    class="map-marker absolute top-[12.7%] left-[52.5%] -translate-x-1/2 -translate-y-full flex flex-col items-center cursor-pointer group z-20">
+                    class="map-marker absolute top-[12.7%] left-[53.5%] -translate-x-1/2 -translate-y-full flex flex-col items-center cursor-pointer group z-20">
                     <span class="marker-label bg-white border border-zinc-950 px-2 py-0.5 text-[9px] font-mono text-zinc-950 tracking-widest uppercase transition-all duration-300 group-hover:bg-zinc-50 whitespace-nowrap">
                         인제 Inje
                     </span>
@@ -697,11 +697,12 @@
                 { id: 'hwaseong', x: 105, y: 195, province: 'gyeonggi' },
                 { id: 'suwon', x: 135, y: 185, province: 'gyeonggi' },
                 { id: 'ansan-siheung', x: 110, y: 170, province: 'gyeonggi' },
-                // Gangwon-do (Sokcho, Yangyang, Inje separated)
+                // Gangwon-do (Sokcho, Yangyang, Inje separated; two Inje centroids to shape correct borders)
                 { id: 'sokcho', x: 340, y: 80, province: 'gangwon' }, // Sokcho
                 { id: 'yangyang', x: 350, y: 110, province: 'gangwon' }, // Yangyang
-                { id: 'inje', x: 275, y: 80, province: 'gangwon' },  // Inje (shifted left to 275)
-                { id: 'goseong', x: 330, y: 40, province: 'gangwon' },
+                { id: 'inje', x: 270, y: 65, province: 'gangwon' },  // Inje (north-west centroid)
+                { id: 'inje', x: 305, y: 95, province: 'gangwon' },  // Inje (south-east centroid)
+                { id: 'goseong', x: 335, y: 35, province: 'gangwon' }, // Goseong (shifted slightly north-east)
                 { id: 'chuncheon', x: 220, y: 70, province: 'gangwon' },
                 { id: 'hongcheon', x: 230, y: 110, province: 'gangwon' },
                 { id: 'gangneung', x: 360, y: 150, province: 'gangwon' },
