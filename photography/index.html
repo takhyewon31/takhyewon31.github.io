@@ -624,10 +624,40 @@
             // Photo counts per region path ID for saturation coloring
             const photoCounts = {
                 'seoul': 4,
-                'gangwon': 4,
+                'gangwon': 4, // Sokcho area mapped directly as 'gangwon'
                 'gyeongju': 3,
                 'jeju': 4
             };
+
+            // Define municipal centroids for detailed local partitioning (시군구 단위 분할)
+            const municipalCentroids = [
+                // Seoul
+                { id: 'seoul', x: 138, y: 140, province: 'seoul' },
+                // Incheon
+                { id: 'incheon', x: 113, y: 124, province: 'incheon' },
+                // Gyeonggi-do (e.g. Yeoncheon, Ganghwa, Guri, Hanam, Yangpyeong)
+                { id: 'yeoncheon', x: 135, y: 45, province: 'gyeonggi' },
+                { id: 'ganghwa', x: 79, y: 100, province: 'gyeonggi' },
+                { id: 'guri', x: 160, y: 130, province: 'gyeonggi' },
+                { id: 'hanam', x: 160, y: 150, province: 'gyeonggi' },
+                { id: 'yangpyeong', x: 190, y: 160, province: 'gyeonggi' },
+                // Gangwon-do (Sokcho, Hongcheon, Chuncheon, Yangyang, Inje)
+                { id: 'gangwon', x: 340, y: 80, province: 'gangwon' }, // Sokcho/Seoraksan area mapped directly to 'gangwon' ID
+                { id: 'hongcheon', x: 230, y: 110, province: 'gangwon' },
+                { id: 'chuncheon', x: 220, y: 70, province: 'gangwon' },
+                { id: 'yangyang', x: 350, y: 110, province: 'gangwon' },
+                { id: 'inje', x: 300, y: 80, province: 'gangwon' },
+                // North Gyeongsang (Gyeongju, Pohang, Daegu)
+                { id: 'gyeongju', x: 350, y: 330, province: 'north-gyeongsang' },
+                { id: 'pohang', x: 360, y: 290, province: 'north-gyeongsang' },
+                { id: 'daegu', x: 298, y: 351, province: 'north-gyeongsang' },
+                // North Jeolla (Jeonju, Muju)
+                { id: 'jeonju', x: 160, y: 310, province: 'north-jeolla' },
+                { id: 'muju', x: 210, y: 300, province: 'north-jeolla' },
+                // Jeju (Jeju-si, Seogwipo-si)
+                { id: 'jeju', x: 118, y: 595, province: 'jeju' },
+                { id: 'seogwipo', x: 118, y: 612, province: 'jeju' }
+            ];
 
             const step = 4; // spacing between dots
             const r = 1.3;   // dot radius
@@ -651,30 +681,20 @@
                     if (matchingPath) {
                         let regionId = matchingPath.id;
 
-                        // Custom check for Gyeongju city within North Gyeongsang province
-                        if (regionId === 'north-gyeongsang') {
-                            const distToGyeongju = Math.hypot(x - 350, y - 330);
-                            if (distToGyeongju < 18) {
-                                regionId = 'gyeongju';
+                        // Find the closest municipal centroid within the province to partition the dots
+                        let closestCentroid = null;
+                        let minDistance = Infinity;
+                        for (const centroid of municipalCentroids) {
+                            if (centroid.province === regionId) {
+                                const dist = Math.hypot(x - centroid.x, y - centroid.y);
+                                if (dist < minDistance) {
+                                    minDistance = dist;
+                                    closestCentroid = centroid;
+                                }
                             }
                         }
-
-                        // Custom check for Sokcho/East Gangwon area within Gangwon province
-                        if (regionId === 'gangwon') {
-                            if (x > 295 && y < 130) {
-                                regionId = 'gangwon';
-                            } else {
-                                regionId = 'gangwon-other';
-                            }
-                        }
-
-                        // Custom check for Jeju City (Northern half of Jeju Island)
-                        if (regionId === 'jeju') {
-                            if (y < 603) {
-                                regionId = 'jeju';
-                            } else {
-                                regionId = 'jeju-other';
-                            }
+                        if (closestCentroid) {
+                            regionId = closestCentroid.id;
                         }
 
                         const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
