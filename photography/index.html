@@ -56,6 +56,18 @@
             opacity: 0 !important;
             pointer-events: none !important;
         }
+
+        /* Absolute Map Markers (Hidden by default, shown on active/hover) */
+        .map-marker {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .map-marker.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
     </style>
 </head>
 
@@ -916,11 +928,13 @@
                 const line = marker.querySelector('.marker-line');
                 if (label && line) {
                     if (isHighlighted) {
+                        marker.classList.add('active');
                         label.style.backgroundColor = '#B5B17B';
                         label.style.borderColor = '#B5B17B';
                         label.style.color = '#ffffff';
                         line.style.backgroundColor = '#B5B17B';
                     } else {
+                        marker.classList.remove('active');
                         label.style.backgroundColor = '';
                         label.style.borderColor = '';
                         label.style.color = '';
@@ -981,6 +995,7 @@
                 const line = marker.querySelector('.marker-line');
                 
                 if (region === currentActiveRegion) {
+                    marker.classList.add('active');
                     if (label && line) {
                         label.style.backgroundColor = '#B5B17B';
                         label.style.borderColor = '#B5B17B';
@@ -992,6 +1007,7 @@
                         d.style.fill = 'hsl(56, 75%, 45%)';
                     });
                 } else {
+                    marker.classList.remove('active');
                     if (label && line) {
                         label.style.backgroundColor = '';
                         label.style.borderColor = '';
