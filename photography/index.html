@@ -157,9 +157,9 @@
                     <div class="marker-dot w-1.5 h-1.5 bg-zinc-400 rounded-full group-hover:bg-zinc-950 transition-colors -mt-0.5"></div>
                 </div>
 
-                <!-- Gangwon Marker (Centroid Approx: top-[15.3%] left-[51.5%]) -->
+                <!-- Gangwon Marker (Sokcho/North-East Centroid Approx: top-[12.7%] left-[64.9%]) -->
                 <div data-marker="gangwon" onclick="scrollToSection('gangwon')"
-                    class="map-marker absolute top-[15.3%] left-[51.5%] -translate-x-1/2 -translate-y-[calc(100%-3px)] flex flex-col items-center cursor-pointer group z-20">
+                    class="map-marker absolute top-[12.7%] left-[64.9%] -translate-x-1/2 -translate-y-[calc(100%-3px)] flex flex-col items-center cursor-pointer group z-20">
                     <span class="bg-white border border-zinc-950 px-2 py-0.5 text-[9px] font-mono text-zinc-950 tracking-widest uppercase transition-colors group-hover:bg-zinc-50 whitespace-nowrap">
                         강원 Gangwon
                     </span>
@@ -654,8 +654,26 @@
                         // Custom check for Gyeongju city within North Gyeongsang province
                         if (regionId === 'north-gyeongsang') {
                             const distToGyeongju = Math.hypot(x - 350, y - 330);
-                            if (distToGyeongju < 30) {
+                            if (distToGyeongju < 18) {
                                 regionId = 'gyeongju';
+                            }
+                        }
+
+                        // Custom check for Sokcho/East Gangwon area within Gangwon province
+                        if (regionId === 'gangwon') {
+                            if (x > 295 && y < 130) {
+                                regionId = 'gangwon';
+                            } else {
+                                regionId = 'gangwon-other';
+                            }
+                        }
+
+                        // Custom check for Jeju City (Northern half of Jeju Island)
+                        if (regionId === 'jeju') {
+                            if (y < 603) {
+                                regionId = 'jeju';
+                            } else {
+                                regionId = 'jeju-other';
                             }
                         }
 
