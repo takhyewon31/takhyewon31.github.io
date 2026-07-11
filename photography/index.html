@@ -761,24 +761,27 @@
                 { id: 'hwaseong', x: 105, y: 195, province: 'gyeonggi' },
                 { id: 'suwon', x: 135, y: 185, province: 'gyeonggi' },
                 { id: 'ansan-siheung', x: 110, y: 170, province: 'gyeonggi' },
-                // Gangwon-do (Sokcho, Yangyang, Inje separated; single centroids matching official administrative shapes)
-                { id: 'sokcho', x: 316, y: 76, province: 'gangwon' }, // Sokcho (horizontal inland extension)
-                { id: 'yangyang', x: 335, y: 114, province: 'gangwon' }, // Yangyang (coastal strip)
-                { id: 'inje', x: 275, y: 80, province: 'gangwon' },  // Inje (single unified inland centroid)
-                { id: 'goseong', x: 310, y: 30, province: 'gangwon' }, // Goseong (single northern peak centroid)
-                { id: 'chuncheon', x: 220, y: 70, province: 'gangwon' },
-                { id: 'hongcheon', x: 230, y: 110, province: 'gangwon' },
-                { id: 'gangneung', x: 360, y: 150, province: 'gangwon' },
-                { id: 'samcheok', x: 380, y: 180, province: 'gangwon' },
-                { id: 'taebaek', x: 340, y: 195, province: 'gangwon' },
-                { id: 'jeongseon', x: 320, y: 160, province: 'gangwon' },
-                { id: 'pyeongchang', x: 290, y: 130, province: 'gangwon' },
+                // Gangwon-do — centroids calibrated to actual SVG path boundary (max east x≈378)
+                // East coast latitude analysis: goseong y<50, sokcho y=50~80, yangyang y=80~115,
+                //   gangneung y=115~155, donghae y=155~175, samcheok y=175+
+                { id: 'goseong', x: 318, y: 26, province: 'gangwon' },   // 고성: northern tip coast
+                { id: 'sokcho', x: 333, y: 65, province: 'gangwon' },    // 속초: small coastal city, pushed east
+                { id: 'yangyang', x: 348, y: 107, province: 'gangwon' }, // 양양: coastal strip, boundary x≈344
+                { id: 'inje', x: 268, y: 82, province: 'gangwon' },      // 인제: large inland county
+                { id: 'chuncheon', x: 218, y: 70, province: 'gangwon' },
+                { id: 'hongcheon', x: 232, y: 112, province: 'gangwon' },
+                { id: 'gangneung', x: 360, y: 135, province: 'gangwon' }, // 강릉: boundary x≈346~368, y=115~154
+                { id: 'donghae', x: 370, y: 163, province: 'gangwon' },  // 동해: ADDED — boundary x≈369~376, y=155~173
+                { id: 'samcheok', x: 370, y: 180, province: 'gangwon' }, // 삼척: fixed (was 380 = outside boundary max 378)
+                { id: 'taebaek', x: 348, y: 200, province: 'gangwon' },  // 태백: inland, south Gangwon
+                { id: 'jeongseon', x: 322, y: 162, province: 'gangwon' },
+                { id: 'pyeongchang', x: 292, y: 132, province: 'gangwon' },
                 { id: 'yeongwool', x: 310, y: 172, province: 'gangwon' },
                 { id: 'wonju', x: 250, y: 170, province: 'gangwon' },
                 { id: 'hoengseong', x: 260, y: 135, province: 'gangwon' },
                 { id: 'cheorwon', x: 180, y: 45, province: 'gangwon' },
                 { id: 'hwacheon', x: 210, y: 55, province: 'gangwon' },
-                { id: 'yanggu', x: 235, y: 55, province: 'gangwon' },
+                { id: 'yanggu', x: 238, y: 55, province: 'gangwon' },
                 // North Gyeongsang (Gyeongju shifted inland to (335, 335))
                 { id: 'gyeongju', x: 335, y: 335, province: 'north-gyeongsang' },
                 { id: 'pohang', x: 360, y: 290, province: 'north-gyeongsang' },
