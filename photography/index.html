@@ -632,8 +632,8 @@
         <!-- Right Scrollable Panel (Bar Acacia Project Details) -->
         <main id="right-panel"
             class="w-full md:w-3/5 h-[65vh] md:h-full overflow-y-auto bg-white p-8 md:p-16 lg:p-24 custom-scrollbar scroll-smooth relative selection:bg-zinc-100 selection:text-zinc-950">
-            <!-- Text Content Wrapper (Constrained) -->
-            <div class="max-w-xl mx-auto font-mono text-zinc-800 flex flex-col pt-4">
+            <!-- Unified Content Wrapper (Aligned to same width) -->
+            <div class="w-full font-mono text-zinc-800 flex flex-col pt-4 pb-20">
                 <!-- Header Section -->
                 <div class="flex justify-between items-start mb-6">
                     <div>
@@ -658,14 +658,14 @@
 
                 <!-- Separator -->
                 <div class="border-b border-zinc-200/80 w-full mb-10"></div>
-            </div>
 
-            <!-- Wide Poster Image Area (Full Width inside main panel) -->
-            <div class="w-full flex flex-col items-center pb-20">
-                <img src="seoul_children_grandpark.png" alt="Bar Acacia Poster" class="w-full h-auto object-contain cursor-zoom-in hover:opacity-95 transition-opacity duration-300" onclick="openLightbox(0)">
-                <p class="text-[9px] uppercase tracking-widest text-zinc-400 mt-4 text-center font-mono">
-                    Click to enlarge frame
-                </p>
+                <!-- Poster Image Area -->
+                <div class="w-full flex flex-col items-center">
+                    <img src="seoul_children_grandpark.png" alt="Bar Acacia Poster" class="w-full h-auto object-contain cursor-zoom-in hover:opacity-95 transition-opacity duration-300" onclick="openLightbox(0)">
+                    <p class="text-[9px] uppercase tracking-widest text-zinc-400 mt-4 text-center font-mono">
+                        Click to enlarge frame
+                    </p>
+                </div>
             </div>
         </main>
     </div>
