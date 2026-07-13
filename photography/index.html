@@ -629,294 +629,56 @@
             </div>
         </aside>
 
-        <!-- Right Scrollable Panel (Editorial Film Grid) -->
+        <!-- Right Scrollable Panel (Bar Acacia Project Details) -->
         <main id="right-panel"
-            class="w-full md:w-3/5 h-[65vh] md:h-full overflow-y-auto bg-zinc-50/30 p-6 md:p-16 custom-scrollbar scroll-smooth relative">
-            <!-- Seoul Section -->
-            <section id="section-seoul" class="mb-20">
-                <div class="mb-8 border-b border-zinc-200 pb-3 flex justify-between items-baseline">
-                    <h2 class="font-serif text-3xl italic tracking-wide text-zinc-900">SEOUL</h2>
-                    <span class="font-mono text-[9px] uppercase tracking-widest text-zinc-400">서울 — 4 Archival
-                        Frames</span>
+            class="w-full md:w-3/5 h-[65vh] md:h-full overflow-y-auto bg-black p-8 md:p-16 lg:p-24 custom-scrollbar scroll-smooth relative selection:bg-zinc-800 selection:text-white">
+            <!-- Content Wrapper -->
+            <div class="max-w-xl mx-auto font-mono text-zinc-100 flex flex-col pt-4 pb-20">
+                <!-- Header Section -->
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h1 class="text-lg font-bold tracking-wider uppercase text-white">BAR ACACIA</h1>
+                        <p class="text-xs text-zinc-400 mt-1 uppercase tracking-widest">S2 - 30/May to 15/Jul</p>
+                    </div>
+                    <a href="#" class="underline text-sm text-zinc-300 hover:text-white transition-colors">BA</a>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                    <!-- Photo 1: Landscape (Col span 2) -->
-                    <div class="md:col-span-2">
-                        <div data-region="seoul" onclick="openLightbox(0)"
-                            class="photo-card group relative bg-white border border-zinc-100 p-4 transition-all duration-500 hover:shadow-xl hover:border-zinc-200 cursor-pointer">
-                            <div class="overflow-hidden aspect-[3/2] bg-zinc-100 relative">
-                                <img src="00120019.JPG" alt="Seoul Cityscape I"
-                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-out">
-                                <div class="absolute bottom-3 right-3 font-mono text-[10px] text-zinc-400">01</div>
-                            </div>
-                            <div class="mt-4 flex justify-between items-baseline font-mono text-[10px]">
-                                <span class="font-serif text-sm italic text-zinc-700 font-normal">Seoul Cityscape
-                                    I</span>
-                                <span class="text-zinc-400 uppercase tracking-wider">35mm film • Portra 400</span>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Separator -->
+                <div class="border-b border-zinc-800/80 w-full mb-8"></div>
 
-                    <!-- Photo 2: Landscape (Col span 2) -->
-                    <div class="md:col-span-2">
-                        <div data-region="seoul" onclick="openLightbox(1)"
-                            class="photo-card group relative bg-white border border-zinc-100 p-4 transition-all duration-500 hover:shadow-xl hover:border-zinc-200 cursor-pointer">
-                            <div class="overflow-hidden aspect-[3/2] bg-zinc-100 relative">
-                                <img src="11E6FC36-2562-4612-AE15-3F45127E8CBF.JPG" alt="Seoul Cityscape II"
-                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-out">
-                                <div class="absolute bottom-3 right-3 font-mono text-[10px] text-zinc-400">02</div>
-                            </div>
-                            <div class="mt-4 flex justify-between items-baseline font-mono text-[10px]">
-                                <span class="font-serif text-sm italic text-zinc-700 font-normal">Seoul Cityscape
-                                    II</span>
-                                <span class="text-zinc-400 uppercase tracking-wider">35mm film • Ektar 100</span>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Description Paragraph -->
+                <p class="text-xs leading-relaxed text-justify text-zinc-300 tracking-wide mb-8">
+                    A space devoted to contemplating a blank wall, or perhaps a refuge to indulge in a drink glass, curse the relentless heat of Athens, share homemade snacks, or wait for the often-delayed projectionist. A place to watch black-and-white films lit by the soft glow of Christmas lights, or perhaps, above all, a space to share in the cinema we are so deeply passionate about.
+                </p>
 
-                    <!-- Photo 3: Portrait (Col span 1) -->
-                    <div class="md:col-span-1">
-                        <div data-region="seoul" onclick="openLightbox(2)"
-                            class="photo-card group relative bg-white border border-zinc-100 p-4 transition-all duration-500 hover:shadow-xl hover:border-zinc-200 cursor-pointer">
-                            <div class="overflow-hidden aspect-[3/4] bg-zinc-100 relative">
-                                <img src="4A688B09-4814-479E-BF40-A092C54BE887.JPG" alt="Daily Light"
-                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-out">
-                                <div class="absolute bottom-3 right-3 font-mono text-[10px] text-zinc-400">03</div>
-                            </div>
-                            <div class="mt-4 flex flex-col justify-between font-mono text-[10px] gap-1">
-                                <span class="font-serif text-sm italic text-zinc-700 font-normal">Daily Light</span>
-                                <span class="text-zinc-400 uppercase tracking-wider">35mm film • Tri-X 400</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Photo 4: Portrait (Col span 1, Staggered margin) -->
-                    <div class="md:col-span-1 md:mt-12">
-                        <div data-region="seoul" onclick="openLightbox(3)"
-                            class="photo-card group relative bg-white border border-zinc-100 p-4 transition-all duration-500 hover:shadow-xl hover:border-zinc-200 cursor-pointer">
-                            <div class="overflow-hidden aspect-[3/4] bg-zinc-100 relative">
-                                <img src="00120029.JPG" alt="Subway Shadows"
-                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-out">
-                                <div class="absolute bottom-3 right-3 font-mono text-[10px] text-zinc-400">04</div>
-                            </div>
-                            <div class="mt-4 flex flex-col justify-between font-mono text-[10px] gap-1">
-                                <span class="font-serif text-sm italic text-zinc-700 font-normal">Subway Shadows</span>
-                                <span class="text-zinc-400 uppercase tracking-wider">35mm film • Portra 400</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Gangwon Section -->
-            <section id="section-gangwon" class="mb-20">
-                <div class="mb-8 border-b border-zinc-200 pb-3 flex justify-between items-baseline">
-                    <h2 class="font-serif text-3xl italic tracking-wide text-zinc-900">GANGWON</h2>
-                    <span class="font-mono text-[9px] uppercase tracking-widest text-zinc-400">강원 — 4 Archival
-                        Frames</span>
+                <!-- Hanja text -->
+                <div class="text-sm font-normal text-zinc-400 mb-8 select-all">
+                    無
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                    <!-- Photo 5: Portrait -->
-                    <div class="md:col-span-1">
-                        <div data-region="inje" onclick="openLightbox(4)"
-                            class="photo-card group relative bg-white border border-zinc-100 p-4 transition-all duration-500 hover:shadow-xl hover:border-zinc-200 cursor-pointer">
-                            <div class="overflow-hidden aspect-[3/4] bg-zinc-100 relative">
-                                <img src="00120032.JPG" alt="Winter Forest"
-                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-out">
-                                <div class="absolute bottom-3 right-3 font-mono text-[10px] text-zinc-400">05</div>
-                            </div>
-                            <div class="mt-4 flex flex-col justify-between font-mono text-[10px] gap-1">
-                                <span class="font-serif text-sm italic text-zinc-700 font-normal">Winter Forest</span>
-                                <span class="text-zinc-400 uppercase tracking-wider">35mm film • Portra 400</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Photo 6: Portrait (Staggered) -->
-                    <div class="md:col-span-1 md:mt-12">
-                        <div data-region="inje" onclick="openLightbox(5)"
-                            class="photo-card group relative bg-white border border-zinc-100 p-4 transition-all duration-500 hover:shadow-xl hover:border-zinc-200 cursor-pointer">
-                            <div class="overflow-hidden aspect-[3/4] bg-zinc-100 relative">
-                                <img src="000041.JPG" alt="Deep Woods"
-                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-out">
-                                <div class="absolute bottom-3 right-3 font-mono text-[10px] text-zinc-400">06</div>
-                            </div>
-                            <div class="mt-4 flex flex-col justify-between font-mono text-[10px] gap-1">
-                                <span class="font-serif text-sm italic text-zinc-700 font-normal">Deep Woods</span>
-                                <span class="text-zinc-400 uppercase tracking-wider">35mm film • Portra 160</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Photo 7: Landscape (Col span 2) -->
-                    <div class="md:col-span-2">
-                        <div data-region="sokcho" onclick="openLightbox(6)"
-                            class="photo-card group relative bg-white border border-zinc-100 p-4 transition-all duration-500 hover:shadow-xl hover:border-zinc-200 cursor-pointer">
-                            <div class="overflow-hidden aspect-[4/3] bg-zinc-100 relative">
-                                <img src="DA8A5E42-E350-4853-AA3A-66B53A60FE0D.JPG" alt="Sokcho Coast"
-                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-out">
-                                <div class="absolute bottom-3 right-3 font-mono text-[10px] text-zinc-400">07</div>
-                            </div>
-                            <div class="mt-4 flex justify-between items-baseline font-mono text-[10px]">
-                                <span class="font-serif text-sm italic text-zinc-700 font-normal">Sokcho Coast</span>
-                                <span class="text-zinc-400 uppercase tracking-wider">Medium Format • Gold 200</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Photo 8: Portrait -->
-                    <div class="md:col-span-1">
-                        <div data-region="yangyang" onclick="openLightbox(7)"
-                            class="photo-card group relative bg-white border border-zinc-100 p-4 transition-all duration-500 hover:shadow-xl hover:border-zinc-200 cursor-pointer">
-                            <div class="overflow-hidden aspect-[3/4] bg-zinc-100 relative">
-                                <img src="00120024.JPG" alt="Mountain Mist"
-                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-out">
-                                <div class="absolute bottom-3 right-3 font-mono text-[10px] text-zinc-400">08</div>
-                            </div>
-                            <div class="mt-4 flex flex-col justify-between font-mono text-[10px] gap-1">
-                                <span class="font-serif text-sm italic text-zinc-700 font-normal">Mountain Mist</span>
-                                <span class="text-zinc-400 uppercase tracking-wider">35mm film • HP5 Plus</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Gyeongju Section -->
-            <section id="section-gyeongju" class="mb-20">
-                <div class="mb-8 border-b border-zinc-200 pb-3 flex justify-between items-baseline">
-                    <h2 class="font-serif text-3xl italic tracking-wide text-zinc-900">GYEONGJU</h2>
-                    <span class="font-mono text-[9px] uppercase tracking-widest text-zinc-400">경주 — 3 Archival
-                        Frames</span>
+                <!-- Action Links -->
+                <div class="flex flex-col gap-3 text-xs mb-8">
+                    <a href="mailto:takhyewon@gmail.com" class="group flex items-center gap-1.5 hover:text-white text-zinc-400 transition-colors">
+                        <span>→</span> <span class="underline underline-offset-4 group-hover:text-white transition-colors">Email</span>
+                    </a>
+                    <a href="#" class="group flex items-center gap-1.5 hover:text-white text-zinc-400 transition-colors">
+                        <span>→</span> <span class="underline underline-offset-4 group-hover:text-white transition-colors">Fydani</span>
+                    </a>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                    <!-- Photo 9: Portrait -->
-                    <div class="md:col-span-1">
-                        <div data-region="gyeongju" onclick="openLightbox(8)"
-                            class="photo-card group relative bg-white border border-zinc-100 p-4 transition-all duration-500 hover:shadow-xl hover:border-zinc-200 cursor-pointer">
-                            <div class="overflow-hidden aspect-[3/4] bg-zinc-100 relative">
-                                <img src="82739FCF-F841-4A18-B5E3-E52CAA0D971E.JPG" alt="Historic Wall"
-                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-out">
-                                <div class="absolute bottom-3 right-3 font-mono text-[10px] text-zinc-400">09</div>
-                            </div>
-                            <div class="mt-4 flex flex-col justify-between font-mono text-[10px] gap-1">
-                                <span class="font-serif text-sm italic text-zinc-700 font-normal">Historic Wall</span>
-                                <span class="text-zinc-400 uppercase tracking-wider">35mm film • Portra 160</span>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Separator -->
+                <div class="border-b border-zinc-800/80 w-full mb-10"></div>
 
-                    <!-- Photo 10: Portrait (Staggered) -->
-                    <div class="md:col-span-1 md:mt-12">
-                        <div data-region="gyeongju" onclick="openLightbox(10)"
-                            class="photo-card group relative bg-white border border-zinc-100 p-4 transition-all duration-500 hover:shadow-xl hover:border-zinc-200 cursor-pointer">
-                            <div class="overflow-hidden aspect-[3/4] bg-zinc-100 relative">
-                                <img src="340EDF6B-C513-478E-B3C3-38017D7C36BA.JPG" alt="Pine Forest"
-                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-out">
-                                <div class="absolute bottom-3 right-3 font-mono text-[10px] text-zinc-400">11</div>
-                            </div>
-                            <div class="mt-4 flex flex-col justify-between font-mono text-[10px] gap-1">
-                                <span class="font-serif text-sm italic text-zinc-700 font-normal">Pine Forest</span>
-                                <span class="text-zinc-400 uppercase tracking-wider">35mm film • Portra 400</span>
-                            </div>
-                        </div>
+                <!-- Poster Image Area -->
+                <div class="w-full flex flex-col items-center">
+                    <div class="w-full border border-zinc-900 bg-zinc-950/20 p-2 md:p-3 transition-all duration-500 hover:border-zinc-800/60 cursor-zoom-in" onclick="openLightbox(0)">
+                        <img src="acacia-poster.png" alt="Bar Acacia Poster" class="w-full h-auto object-contain">
                     </div>
-
-                    <!-- Photo 11: Landscape (Col span 2) -->
-                    <div class="md:col-span-2">
-                        <div data-region="gyeongju" onclick="openLightbox(9)"
-                            class="photo-card group relative bg-white border border-zinc-100 p-4 transition-all duration-500 hover:shadow-xl hover:border-zinc-200 cursor-pointer">
-                            <div class="overflow-hidden aspect-[3/2] bg-zinc-100 relative">
-                                <img src="00120030.JPG" alt="Anapji Pond"
-                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-out">
-                                <div class="absolute bottom-3 right-3 font-mono text-[10px] text-zinc-400">10</div>
-                            </div>
-                            <div class="mt-4 flex justify-between items-baseline font-mono text-[10px]">
-                                <span class="font-serif text-sm italic text-zinc-700 font-normal">Anapji Pond</span>
-                                <span class="text-zinc-400 uppercase tracking-wider">35mm film • Portra 400</span>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="text-[9px] uppercase tracking-widest text-zinc-500 mt-4 text-center">
+                        Click to enlarge frame
+                    </p>
                 </div>
-            </section>
-
-            <!-- Jeju Section -->
-            <section id="section-jeju" class="mb-20">
-                <div class="mb-8 border-b border-zinc-200 pb-3 flex justify-between items-baseline">
-                    <h2 class="font-serif text-3xl italic tracking-wide text-zinc-900">JEJU</h2>
-                    <span class="font-mono text-[9px] uppercase tracking-widest text-zinc-400">제주 — 4 Archival
-                        Frames</span>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                    <!-- Photo 12: Landscape (Col span 2) -->
-                    <div class="md:col-span-2">
-                        <div data-region="jeju" onclick="openLightbox(11)"
-                            class="photo-card group relative bg-white border border-zinc-100 p-4 transition-all duration-500 hover:shadow-xl hover:border-zinc-200 cursor-pointer">
-                            <div class="overflow-hidden aspect-[3/2] bg-zinc-100 relative">
-                                <img src="C581C6AE-5B77-4C02-B329-811E24CF0E1F.JPG" alt="Jeju Ocean"
-                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-out">
-                                <div class="absolute bottom-3 right-3 font-mono text-[10px] text-zinc-400">12</div>
-                            </div>
-                            <div class="mt-4 flex justify-between items-baseline font-mono text-[10px]">
-                                <span class="font-serif text-sm italic text-zinc-700 font-normal">Jeju Ocean</span>
-                                <span class="text-zinc-400 uppercase tracking-wider">35mm film • Ektar 100</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Photo 13: Landscape -->
-                    <div class="md:col-span-2">
-                        <div data-region="jeju" onclick="openLightbox(12)"
-                            class="photo-card group relative bg-white border border-zinc-100 p-4 transition-all duration-500 hover:shadow-xl hover:border-zinc-200 cursor-pointer">
-                            <div class="overflow-hidden aspect-[4/3] bg-zinc-100 relative">
-                                <img src="993DA023-D2E3-460F-AF71-A61516FBE37B.JPG" alt="Green Hills"
-                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-out">
-                                <div class="absolute bottom-3 right-3 font-mono text-[10px] text-zinc-400">13</div>
-                            </div>
-                            <div class="mt-4 flex justify-between items-baseline font-mono text-[10px]">
-                                <span class="font-serif text-sm italic text-zinc-700 font-normal">Green Hills</span>
-                                <span class="text-zinc-400 uppercase tracking-wider">35mm film • Portra 400</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Photo 14: Portrait -->
-                    <div class="md:col-span-1">
-                        <div data-region="jeju" onclick="openLightbox(13)"
-                            class="photo-card group relative bg-white border border-zinc-100 p-4 transition-all duration-500 hover:shadow-xl hover:border-zinc-200 cursor-pointer">
-                            <div class="overflow-hidden aspect-[3/4] bg-zinc-100 relative">
-                                <img src="IMG_6623.JPG" alt="Island Wind"
-                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-out">
-                                <div class="absolute bottom-3 right-3 font-mono text-[10px] text-zinc-400">14</div>
-                            </div>
-                            <div class="mt-4 flex flex-col justify-between font-mono text-[10px] gap-1">
-                                <span class="font-serif text-sm italic text-zinc-700 font-normal">Island Wind</span>
-                                <span class="text-zinc-400 uppercase tracking-wider">35mm film • Portra 400</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Photo 15: Landscape (Staggered) -->
-                    <div class="md:col-span-1 md:mt-12">
-                        <div data-region="jeju" onclick="openLightbox(14)"
-                            class="photo-card group relative bg-white border border-zinc-100 p-4 transition-all duration-500 hover:shadow-xl hover:border-zinc-200 cursor-pointer">
-                            <div class="overflow-hidden aspect-[4/3] bg-zinc-100 relative">
-                                <img src="00120031.JPG" alt="Sunset Beach"
-                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-out">
-                                <div class="absolute bottom-3 right-3 font-mono text-[10px] text-zinc-400">15</div>
-                            </div>
-                            <div class="mt-4 flex flex-col justify-between font-mono text-[10px] gap-1">
-                                <span class="font-serif text-sm italic text-zinc-700 font-normal">Sunset Beach</span>
-                                <span class="text-zinc-400 uppercase tracking-wider">35mm film • Gold 200</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            </div>
         </main>
     </div>
 
@@ -951,21 +713,7 @@
     <script>
         // Photo Data for Lightbox
         const imagesData = [
-            { "src": "00120019.JPG", "title": "Seoul Cityscape I", "info": "35mm film • Portra 400" },
-            { "src": "11E6FC36-2562-4612-AE15-3F45127E8CBF.JPG", "title": "Seoul Cityscape II", "info": "35mm film • Ektar 100" },
-            { "src": "4A688B09-4814-479E-BF40-A092C54BE887.JPG", "title": "Daily Light", "info": "35mm film • Tri-X 400" },
-            { "src": "00120029.JPG", "title": "Subway Shadows", "info": "35mm film • Portra 400" },
-            { "src": "00120032.JPG", "title": "Winter Forest", "info": "35mm film • Portra 400" },
-            { "src": "000041.JPG", "title": "Deep Woods", "info": "35mm film • Portra 160" },
-            { "src": "DA8A5E42-E350-4853-AA3A-66B53A60FE0D.JPG", "title": "Sokcho Coast", "info": "Medium Format • Gold 200" },
-            { "src": "00120024.JPG", "title": "Mountain Mist", "info": "35mm film • HP5 Plus" },
-            { "src": "82739FCF-F841-4A18-B5E3-E52CAA0D971E.JPG", "title": "Historic Wall", "info": "35mm film • Portra 160" },
-            { "src": "00120030.JPG", "title": "Anapji Pond", "info": "35mm film • Portra 400" },
-            { "src": "340EDF6B-C513-478E-B3C3-38017D7C36BA.JPG", "title": "Pine Forest", "info": "35mm film • Portra 400" },
-            { "src": "C581C6AE-5B77-4C02-B329-811E24CF0E1F.JPG", "title": "Jeju Ocean", "info": "35mm film • Ektar 100" },
-            { "src": "993DA023-D2E3-460F-AF71-A61516FBE37B.JPG", "title": "Green Hills", "info": "35mm film • Portra 400" },
-            { "src": "IMG_6623.JPG", "title": "Island Wind", "info": "35mm film • Portra 400" },
-            { "src": "00120031.JPG", "title": "Sunset Beach", "info": "35mm film • Gold 200" }
+            { "src": "acacia-poster.png", "title": "BAR ACACIA Season 2 Poster", "info": "Fydani Chiou 27, ATH 10438 | Athens, Greece" }
         ];
 
         let currentIndex = 0;
