@@ -644,14 +644,9 @@
             class="w-full md:w-3/5 h-[65vh] md:h-full overflow-y-auto bg-white p-8 md:p-16 lg:p-24 custom-scrollbar scroll-smooth relative selection:bg-zinc-100 selection:text-zinc-950">
             <!-- Unified Content Wrapper (Aligned to same width) -->
             <div class="w-full font-mono text-zinc-800 flex flex-col pt-4 pb-20">
-                <div id="seoul-images-container" class="relative w-full mb-8">
+                <div id="seoul-images-container" class="relative w-full">
                     <!-- Dynamic images scanned from photography folder will be inserted here -->
                 </div>
-
-
-
-                <!-- Separator -->
-                <div class="border-b border-zinc-200/80 w-full mb-10"></div>
             </div>
         </main>
     </div>
@@ -790,9 +785,11 @@
             // Populate imagesData dynamically for lightbox
             imagesData = seoulImages.map((src, index) => {
                 let title = "Seoul Exhibit " + (index + 1);
-                let info = "광진구, 어린이대공원";
+                let info = "Seoul Archive";
                 if (src === 'seoul_children_grandpark.png') {
-                    title = "Bar acacia season 2 poster";
+                    title = "광진구, 어린이대공원";
+                } else if (src.startsWith('seoul_sewoon')) {
+                    title = "종로구, 세운상가";
                 }
                 return {
                     src: src,
@@ -804,48 +801,18 @@
             // Clear dynamic content container
             container.innerHTML = '';
 
-            // Layout rendering based on image count
-            if (seoulImages.length === 1) {
-                container.className = "relative w-full mb-8 flex justify-center";
-                container.innerHTML = `
-                    <div class="photo-card group relative w-full h-auto transition-all duration-300 cursor-zoom-in" data-region="seoul" onclick="openLightbox(0)">
-                        <img src="${seoulImages[0]}" alt="Seoul Archive Photo"
-                            class="w-full h-auto object-contain hover:opacity-95 transition-opacity duration-300">
-                    </div>
-                `;
-            } else {
-                // Multi-image stack overlap layout matching design aesthetics (full size, frameless)
-                container.className = "relative w-full aspect-[4/3] mb-8";
-
-                let html = '';
-
-                // 1st Main Base Image
+            // Layout rendering: stack images vertically with zero gaps/margins
+            container.className = "flex flex-col w-full mb-0";
+            
+            let html = '';
+            seoulImages.forEach((src, idx) => {
                 html += `
-                    <div class="photo-card absolute inset-0 w-full h-full cursor-zoom-in group transition-all duration-500" data-region="seoul" onclick="openLightbox(0)">
-                        <img src="${seoulImages[0]}" alt="Seoul Archive Photo Base" class="w-full h-full object-cover hover:opacity-95 transition-opacity duration-300">
+                    <div class="photo-card w-full h-auto cursor-zoom-in group transition-all duration-300 block mb-0" data-region="seoul" onclick="openLightbox(${idx})">
+                        <img src="${src}" alt="Seoul Archive Photo ${idx}" class="w-full h-auto object-cover hover:opacity-95 transition-opacity duration-300 block">
                     </div>
                 `;
-
-                // 2nd Left Vertical Overlapping Image (remains overlapping, drop frame, minor shadow allowed for separation)
-                if (seoulImages.length > 1) {
-                    html += `
-                        <div class="photo-card absolute top-[15%] left-[8%] w-[28%] aspect-[3/4] shadow-2xl hover:shadow-xl transition-all duration-500 cursor-zoom-in group z-10 hover:scale-105" data-region="seoul" onclick="openLightbox(1)">
-                            <img src="${seoulImages[1]}" alt="Seoul Archive Photo Overlay L" class="w-full h-full object-cover">
-                        </div>
-                    `;
-                }
-
-                // 3rd Right Horizontal Overlapping Image
-                if (seoulImages.length > 2) {
-                    html += `
-                        <div class="photo-card absolute bottom-[10%] right-[6%] w-[38%] aspect-[4/3] shadow-2xl hover:shadow-xl transition-all duration-500 cursor-zoom-in group z-10 hover:scale-105" data-region="seoul" onclick="openLightbox(2)">
-                            <img src="${seoulImages[2]}" alt="Seoul Archive Photo Overlay R" class="w-full h-full object-cover">
-                        </div>
-                    `;
-                }
-
-                container.innerHTML = html;
-            }
+            });
+            container.innerHTML = html;
 
             // Update global queried photo-cards reference
             photoCards = document.querySelectorAll('.photo-card');
