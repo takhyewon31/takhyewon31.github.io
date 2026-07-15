@@ -800,29 +800,29 @@
             if (seoulImages.length === 1) {
                 container.className = "relative w-full mb-8 flex justify-center";
                 container.innerHTML = `
-                    <div class="photo-card group relative bg-white border border-zinc-100 p-2 transition-all duration-300 hover:shadow-lg shrink-0 cursor-zoom-in rounded-lg shadow-sm" data-region="seoul" onclick="openLightbox(0)">
+                    <div class="photo-card group relative w-full h-auto transition-all duration-300 cursor-zoom-in" data-region="seoul" onclick="openLightbox(0)">
                         <img src="${seoulImages[0]}" alt="Seoul Archive Photo"
-                            class="w-full max-w-[480px] h-auto object-contain hover:opacity-95 transition-opacity duration-300">
+                            class="w-full h-auto object-contain hover:opacity-95 transition-opacity duration-300">
                     </div>
                 `;
             } else {
-                // Multi-image stack overlap layout matching design aesthetics
-                container.className = "relative w-full aspect-[4/3] max-w-[640px] mx-auto mb-8";
+                // Multi-image stack overlap layout matching design aesthetics (full size, frameless)
+                container.className = "relative w-full aspect-[4/3] mb-8";
                 
                 let html = '';
                 
                 // 1st Main Base Image
                 html += `
-                    <div class="photo-card absolute inset-0 w-full h-full p-2 bg-white border border-zinc-100 hover:shadow-xl transition-all duration-500 cursor-zoom-in group rounded-lg shadow-sm" data-region="seoul" onclick="openLightbox(0)">
-                        <img src="${seoulImages[0]}" alt="Seoul Archive Photo Base" class="w-full h-full object-cover rounded hover:opacity-95 transition-opacity duration-300">
+                    <div class="photo-card absolute inset-0 w-full h-full cursor-zoom-in group transition-all duration-500" data-region="seoul" onclick="openLightbox(0)">
+                        <img src="${seoulImages[0]}" alt="Seoul Archive Photo Base" class="w-full h-full object-cover hover:opacity-95 transition-opacity duration-300">
                     </div>
                 `;
                 
-                // 2nd Left Vertical Overlapping Image
+                // 2nd Left Vertical Overlapping Image (remains overlapping, drop frame, minor shadow allowed for separation)
                 if (seoulImages.length > 1) {
                     html += `
-                        <div class="photo-card absolute top-[15%] left-[8%] w-[28%] aspect-[3/4] p-1.5 bg-white border border-zinc-200/90 shadow-2xl hover:shadow-xl transition-all duration-500 cursor-zoom-in group z-10 hover:scale-105 rounded" data-region="seoul" onclick="openLightbox(1)">
-                            <img src="${seoulImages[1]}" alt="Seoul Archive Photo Overlay L" class="w-full h-full object-cover rounded">
+                        <div class="photo-card absolute top-[15%] left-[8%] w-[28%] aspect-[3/4] shadow-2xl hover:shadow-xl transition-all duration-500 cursor-zoom-in group z-10 hover:scale-105" data-region="seoul" onclick="openLightbox(1)">
+                            <img src="${seoulImages[1]}" alt="Seoul Archive Photo Overlay L" class="w-full h-full object-cover">
                         </div>
                     `;
                 }
@@ -830,8 +830,8 @@
                 // 3rd Right Horizontal Overlapping Image
                 if (seoulImages.length > 2) {
                     html += `
-                        <div class="photo-card absolute bottom-[10%] right-[6%] w-[38%] aspect-[4/3] p-1.5 bg-white border border-zinc-200/90 shadow-2xl hover:shadow-xl transition-all duration-500 cursor-zoom-in group z-10 hover:scale-105 rounded" data-region="seoul" onclick="openLightbox(2)">
-                            <img src="${seoulImages[2]}" alt="Seoul Archive Photo Overlay R" class="w-full h-full object-cover rounded">
+                        <div class="photo-card absolute bottom-[10%] right-[6%] w-[38%] aspect-[4/3] shadow-2xl hover:shadow-xl transition-all duration-500 cursor-zoom-in group z-10 hover:scale-105" data-region="seoul" onclick="openLightbox(2)">
+                            <img src="${seoulImages[2]}" alt="Seoul Archive Photo Overlay R" class="w-full h-full object-cover">
                         </div>
                     `;
                 }
