@@ -782,15 +782,17 @@
                 seoulImages = [
                     'seoul_sewoon.png',
                     'seoul_street.png',
+                    'seoul_ seoungsu.png',
                     'seoul_children_grandpark.png'
                 ];
             }
 
-            // Sort to ensure custom order: sewoon (1st) -> street (2nd) -> children_grandpark (3rd)
+            // Sort to ensure custom order: sewoon (1st) -> street (2nd) -> seoungsu (3rd) -> children_grandpark (4th)
             const orderMap = {
                 'seoul_sewoon': 1,
                 'seoul_street': 2,
-                'seoul_children_grandpark': 3
+                'seoul_ seoungsu': 3,
+                'seoul_children_grandpark': 4
             };
             seoulImages.sort((a, b) => {
                 let weightA = 999;
@@ -815,6 +817,8 @@
                     title = "종로구, 세운상가";
                 } else if (src.startsWith('seoul_street')) {
                     title = "종로구, 창경궁로";
+                } else if (src.startsWith('seoul_ seoungsu')) {
+                    title = "성동구, 성수동";
                 }
                 return {
                     src: src,
