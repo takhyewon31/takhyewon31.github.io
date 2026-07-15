@@ -634,36 +634,13 @@
             class="w-full md:w-3/5 h-[65vh] md:h-full overflow-y-auto bg-white p-8 md:p-16 lg:p-24 custom-scrollbar scroll-smooth relative selection:bg-zinc-100 selection:text-zinc-950">
             <!-- Unified Content Wrapper (Aligned to same width) -->
             <div class="w-full font-mono text-zinc-800 flex flex-col pt-4 pb-20">
-                <!-- Header Section -->
-                <div class="flex justify-between items-start mb-6">
-                    <div>
-                        <h1 class="text-lg font-bold tracking-wider uppercase text-zinc-950">Seoul</h1>
-                        <p class="text-xs text-zinc-400 mt-1 uppercase tracking-widest">광진구, 어린이대공원</p>
-                    </div>
-                </div>
-                </div>
-
-                <!-- Separator -->
-                <div class="border-b border-zinc-200/80 w-full mb-8"></div>
-
-                <div class="flex flex-col gap-4 mb-8">
-                    <div class="flex items-start gap-4">
-                        <img src="seoul_children_grandpark.png" alt="Bar Acacia Poster"
-                            class="w-28 sm:w-36 md:w-40 h-auto object-contain cursor-zoom-in hover:opacity-95 transition-opacity duration-300 shrink-0"
-                            onclick="openLightbox(0)">
-                        <p class="text-xs text-zinc-400 mt-1 uppercase tracking-widest">
-                        </p>
-                    </div>
-
-                    <!-- Hanja text -->
-                    <div class="text-sm font-normal text-zinc-400 select-all">
-                        無
-                    </div>
+                <div id="seoul-images-container" class="relative w-full mb-8">
+                    <!-- Dynamic images scanned from photography folder will be inserted here -->
                 </div>
 
                 <!-- Description Paragraph -->
                 <p class="text-xs leading-relaxed text-justify text-zinc-600 tracking-wide mb-8">
-                    A space devoted to contemplating a blank wall, or perhaps a refuge to indulge in a drink glass, curse the relentless heat of Athens, share homemade snacks, or wait for the often-delayed projectionist. A place to watch black-and-white films lit by the soft glow of Christmas lights, or perhaps, above all, a space to share in the cinema we are so deeply passionate about.
+                    광진구, 어린이대공원. A space devoted to contemplating a blank wall, or perhaps a refuge to indulge in a drink glass, curse the relentless heat of Athens, share homemade snacks, or wait for the often-delayed projectionist. A place to watch black-and-white films lit by the soft glow of Christmas lights, or perhaps, above all, a space to share in the cinema we are so deeply passionate about.
                 </p>
 
                 <!-- Separator -->
@@ -701,11 +678,8 @@
 
     <!-- Interactive Script -->
     <script>
-        // Photo Data for Lightbox
-        const imagesData = [
-            { "src": "seoul_children_grandpark.png", "title": "BAR ACACIA Season 2 Poster", "info": "Fydani Chiou 27, ATH 10438 | Athens, Greece" }
-        ];
-
+        // Photo Data for Lightbox (will be populated dynamically)
+        let imagesData = [];
         let currentIndex = 0;
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
@@ -770,8 +744,110 @@
             }
         }
 
+        // Scan directory dynamically for 'seoul*' prefix image files
+        async function loadSeoulImages() {
+            const container = document.getElementById('seoul-images-container');
+            if (!container) return;
+
+            let seoulImages = [];
+            
+            try {
+                const response = await fetch('./');
+                if (response.ok) {
+                    const text = await response.text();
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(text, 'text/html');
+                    const links = doc.querySelectorAll('a');
+                    
+                    links.forEach(link => {
+                        const href = link.getAttribute('href');
+                        if (href) {
+                            const filename = href.split('/').pop();
+                            if (filename.startsWith('seoul') && /\.(png|jpg|jpeg|gif|webp)$/i.test(filename)) {
+                                if (!seoulImages.includes(filename)) {
+                                    seoulImages.push(filename);
+                                }
+                            }
+                        }
+                    });
+                }
+            } catch (e) {
+                console.error("Failed to fetch photography directory list:", e);
+            }
+
+            // Fallback to default image if empty
+            if (seoulImages.length === 0) {
+                seoulImages = ['seoul_children_grandpark.png'];
+            }
+
+            // Populate imagesData dynamically for lightbox
+            imagesData = seoulImages.map((src, index) => {
+                let title = "Seoul Exhibit " + (index + 1);
+                if (src === 'seoul_children_grandpark.png') {
+                    title = "BAR ACACIA Season 2 Poster";
+                }
+                return {
+                    src: src,
+                    title: title,
+                    info: "Seoul Photography Archive"
+                };
+            });
+
+            // Clear dynamic content container
+            container.innerHTML = '';
+
+            // Layout rendering based on image count
+            if (seoulImages.length === 1) {
+                container.className = "relative w-full mb-8 flex justify-center";
+                container.innerHTML = `
+                    <div class="photo-card group relative bg-white border border-zinc-100 p-2 transition-all duration-300 hover:shadow-lg shrink-0 cursor-zoom-in rounded-lg shadow-sm" data-region="seoul" onclick="openLightbox(0)">
+                        <img src="${seoulImages[0]}" alt="Seoul Archive Photo"
+                            class="w-full max-w-[480px] h-auto object-contain hover:opacity-95 transition-opacity duration-300">
+                    </div>
+                `;
+            } else {
+                // Multi-image stack overlap layout matching design aesthetics
+                container.className = "relative w-full aspect-[4/3] max-w-[640px] mx-auto mb-8";
+                
+                let html = '';
+                
+                // 1st Main Base Image
+                html += `
+                    <div class="photo-card absolute inset-0 w-full h-full p-2 bg-white border border-zinc-100 hover:shadow-xl transition-all duration-500 cursor-zoom-in group rounded-lg shadow-sm" data-region="seoul" onclick="openLightbox(0)">
+                        <img src="${seoulImages[0]}" alt="Seoul Archive Photo Base" class="w-full h-full object-cover rounded hover:opacity-95 transition-opacity duration-300">
+                    </div>
+                `;
+                
+                // 2nd Left Vertical Overlapping Image
+                if (seoulImages.length > 1) {
+                    html += `
+                        <div class="photo-card absolute top-[15%] left-[8%] w-[28%] aspect-[3/4] p-1.5 bg-white border border-zinc-200/90 shadow-2xl hover:shadow-xl transition-all duration-500 cursor-zoom-in group z-10 hover:scale-105 rounded" data-region="seoul" onclick="openLightbox(1)">
+                            <img src="${seoulImages[1]}" alt="Seoul Archive Photo Overlay L" class="w-full h-full object-cover rounded">
+                        </div>
+                    `;
+                }
+                
+                // 3rd Right Horizontal Overlapping Image
+                if (seoulImages.length > 2) {
+                    html += `
+                        <div class="photo-card absolute bottom-[10%] right-[6%] w-[38%] aspect-[4/3] p-1.5 bg-white border border-zinc-200/90 shadow-2xl hover:shadow-xl transition-all duration-500 cursor-zoom-in group z-10 hover:scale-105 rounded" data-region="seoul" onclick="openLightbox(2)">
+                            <img src="${seoulImages[2]}" alt="Seoul Archive Photo Overlay R" class="w-full h-full object-cover rounded">
+                        </div>
+                    `;
+                }
+                
+                container.innerHTML = html;
+            }
+
+            // Update global queried photo-cards reference
+            photoCards = document.querySelectorAll('.photo-card');
+            
+            // Re-apply event listeners for hovers
+            bindPhotoCardEvents();
+        }
+
         // Hover Linkage: Photo Card hover highlights Map Marker & Pixel Dots
-        const photoCards = document.querySelectorAll('.photo-card');
+        let photoCards = document.querySelectorAll('.photo-card');
         const markers = {
             seoul: document.querySelector('[data-marker="seoul"]'),
             sokcho: document.querySelector('[data-marker="sokcho"]'),
@@ -953,19 +1029,22 @@
             }
         }
 
-        // Hook photo card mouse hover to highlight regions
-        photoCards.forEach(card => {
-            const regionId = card.getAttribute('data-region');
-            if (!regionId) return;
+        // Hook photo card mouse hover to highlight regions (Refactored for dynamic cards)
+        function bindPhotoCardEvents() {
+            photoCards.forEach(card => {
+                const regionId = card.getAttribute('data-region');
+                if (!regionId) return;
 
-            card.addEventListener('mouseenter', () => {
-                highlightRegion(regionId, true);
-            });
+                card.removeEventListener('mouseenter', card._enterHandler);
+                card.removeEventListener('mouseleave', card._leaveHandler);
 
-            card.addEventListener('mouseleave', () => {
-                highlightRegion(regionId, false);
+                card._enterHandler = () => highlightRegion(regionId, true);
+                card._leaveHandler = () => highlightRegion(regionId, false);
+
+                card.addEventListener('mouseenter', card._enterHandler);
+                card.addEventListener('mouseleave', card._leaveHandler);
             });
-        });
+        }
 
         // Enable pointer-events on municipal overlays for direct SVG hover interaction
         const overlayPaths = document.querySelectorAll('.municipal-highlight');
@@ -977,8 +1056,9 @@
             path.addEventListener('mouseleave', () => highlightRegion(regionId, false));
         });
 
-        // Initialize pixel map
+        // Initialize pixel map and load dynamic images
         generatePixelMap();
+        loadSeoulImages();
 
         // Right panel scroll highlight linkage (highlight closest card in viewport)
         rightPanel.addEventListener('scroll', () => {
