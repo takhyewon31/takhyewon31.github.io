@@ -782,6 +782,13 @@
                 seoulImages = ['seoul_children_grandpark.png'];
             }
 
+            // Sort to ensure seoul_sewoon comes first (since children is later film)
+            seoulImages.sort((a, b) => {
+                if (a.startsWith('seoul_sewoon') && !b.startsWith('seoul_sewoon')) return -1;
+                if (!a.startsWith('seoul_sewoon') && b.startsWith('seoul_sewoon')) return 1;
+                return b.localeCompare(a);
+            });
+
             // Populate imagesData dynamically for lightbox
             imagesData = seoulImages.map((src, index) => {
                 let title = "Seoul Exhibit " + (index + 1);
