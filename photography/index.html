@@ -781,14 +781,27 @@
             if (seoulImages.length === 0) {
                 seoulImages = [
                     'seoul_sewoon.png',
+                    'seoul_street.png',
                     'seoul_children_grandpark.png'
                 ];
             }
 
-            // Sort to ensure seoul_sewoon comes first (since children is later film)
+            // Sort to ensure custom order: sewoon (1st) -> street (2nd) -> children_grandpark (3rd)
+            const orderMap = {
+                'seoul_sewoon': 1,
+                'seoul_street': 2,
+                'seoul_children_grandpark': 3
+            };
             seoulImages.sort((a, b) => {
-                if (a.startsWith('seoul_sewoon') && !b.startsWith('seoul_sewoon')) return -1;
-                if (!a.startsWith('seoul_sewoon') && b.startsWith('seoul_sewoon')) return 1;
+                let weightA = 999;
+                let weightB = 999;
+                Object.keys(orderMap).forEach(key => {
+                    if (a.startsWith(key)) weightA = orderMap[key];
+                    if (b.startsWith(key)) weightB = orderMap[key];
+                });
+                if (weightA !== weightB) {
+                    return weightA - weightB;
+                }
                 return b.localeCompare(a);
             });
 
@@ -800,6 +813,8 @@
                     title = "광진구, 어린이대공원";
                 } else if (src.startsWith('seoul_sewoon')) {
                     title = "종로구, 세운상가";
+                } else if (src.startsWith('seoul_street')) {
+                    title = "종로구, 창경궁로";
                 }
                 return {
                     src: src,
