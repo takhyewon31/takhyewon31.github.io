@@ -830,18 +830,29 @@
             // Clear dynamic content container
             container.innerHTML = '';
 
-            // Layout rendering: 2-column horizontal grid layout with zero gaps
-            container.className = "grid grid-cols-2 gap-0 w-full mb-0";
+            // Layout rendering: 2-column independent vertical stacks with zero gaps (inspired by septianpriyatna.com)
+            container.className = "flex flex-row w-full gap-0 mb-0 items-start";
             
-            let html = '';
+            let col1Html = '';
+            let col2Html = '';
+            
             seoulImages.forEach((src, idx) => {
-                html += `
+                const cardHtml = `
                     <div class="photo-card w-full h-auto cursor-zoom-in group transition-all duration-300 block mb-0" data-region="seoul" onclick="openLightbox(${idx})">
                         <img src="${src}" alt="Seoul Archive Photo ${idx}" class="w-full h-auto object-cover hover:opacity-95 transition-opacity duration-300 block">
                     </div>
                 `;
+                if (idx % 2 === 0) {
+                    col1Html += cardHtml;
+                } else {
+                    col2Html += cardHtml;
+                }
             });
-            container.innerHTML = html;
+            
+            container.innerHTML = `
+                <div class="flex flex-col w-1/2 mb-0 items-start">${col1Html}</div>
+                <div class="flex flex-col w-1/2 mb-0 items-start">${col2Html}</div>
+            `;
 
             // Update global queried photo-cards reference
             photoCards = document.querySelectorAll('.photo-card');
