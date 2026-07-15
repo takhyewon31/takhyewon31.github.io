@@ -831,7 +831,8 @@
             container.innerHTML = '';
 
             // Layout rendering: 2-column independent vertical stacks with zero gaps (inspired by septianpriyatna.com)
-            container.className = "flex flex-row w-full gap-0 mb-0 items-start";
+            // Mobile (flex-col / full width) -> Desktop (flex-row / 2-column half width)
+            container.className = "flex flex-col md:flex-row w-full gap-0 mb-0 items-start";
             
             let col1Html = '';
             let col2Html = '';
@@ -850,8 +851,8 @@
             });
             
             container.innerHTML = `
-                <div class="flex flex-col w-1/2 mb-0 items-start">${col1Html}</div>
-                <div class="flex flex-col w-1/2 mb-0 items-start">${col2Html}</div>
+                <div class="flex flex-col w-full md:w-1/2 mb-0 items-start">${col1Html}</div>
+                <div class="flex flex-col w-full md:w-1/2 mb-0 items-start">${col2Html}</div>
             `;
 
             // Update global queried photo-cards reference
