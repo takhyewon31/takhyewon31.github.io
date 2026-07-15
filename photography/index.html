@@ -830,13 +830,13 @@
             // Clear dynamic content container
             container.innerHTML = '';
 
-            // Layout rendering: 2-column masonry brick wall layout with zero gaps
-            container.className = "columns-2 gap-0 w-full mb-0";
+            // Layout rendering: 2-column horizontal grid layout with zero gaps
+            container.className = "grid grid-cols-2 gap-0 w-full mb-0";
             
             let html = '';
             seoulImages.forEach((src, idx) => {
                 html += `
-                    <div class="photo-card break-inside-avoid w-full h-auto cursor-zoom-in group transition-all duration-300 block mb-0" data-region="seoul" onclick="openLightbox(${idx})">
+                    <div class="photo-card w-full h-auto cursor-zoom-in group transition-all duration-300 block mb-0" data-region="seoul" onclick="openLightbox(${idx})">
                         <img src="${src}" alt="Seoul Archive Photo ${idx}" class="w-full h-auto object-cover hover:opacity-95 transition-opacity duration-300 block">
                     </div>
                 `;
