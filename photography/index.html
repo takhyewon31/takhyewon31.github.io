@@ -777,9 +777,12 @@
                 console.error("Failed to fetch photography directory list:", e);
             }
 
-            // Fallback to default image if empty
+            // Fallback to default images if empty (essential for GitHub Pages static hosting)
             if (seoulImages.length === 0) {
-                seoulImages = ['seoul_children_grandpark.png'];
+                seoulImages = [
+                    'seoul_sewoon.png',
+                    'seoul_children_grandpark.png'
+                ];
             }
 
             // Sort to ensure seoul_sewoon comes first (since children is later film)
