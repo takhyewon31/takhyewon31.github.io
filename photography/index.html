@@ -783,23 +783,26 @@
                     'seoul_sewoon.png',
                     'seoul_street.png',
                     'seoul_ seoungsu.png',
-                    'seoul_children_grandpark.png'
+                    'seoul_children_grandpark.png',
+                    'seoul_children_grandpark_2.png'
                 ];
             }
 
-            // Sort to ensure custom order: sewoon (1st) -> street (2nd) -> seoungsu (3rd) -> children_grandpark (4th)
+            // Sort to ensure custom order: sewoon (1st) -> street (2nd) -> seoungsu (3rd) -> children_grandpark (4th) -> children_grandpark_2 (5th)
             const orderMap = {
                 'seoul_sewoon': 1,
                 'seoul_street': 2,
                 'seoul_ seoungsu': 3,
+                'seoul_children_grandpark_2': 5,
                 'seoul_children_grandpark': 4
             };
             seoulImages.sort((a, b) => {
                 let weightA = 999;
                 let weightB = 999;
-                Object.keys(orderMap).forEach(key => {
-                    if (a.startsWith(key)) weightA = orderMap[key];
-                    if (b.startsWith(key)) weightB = orderMap[key];
+                const sortedKeys = Object.keys(orderMap).sort((k1, k2) => k2.length - k1.length);
+                sortedKeys.forEach(key => {
+                    if (a.startsWith(key) && weightA === 999) weightA = orderMap[key];
+                    if (b.startsWith(key) && weightB === 999) weightB = orderMap[key];
                 });
                 if (weightA !== weightB) {
                     return weightA - weightB;
@@ -811,7 +814,7 @@
             imagesData = seoulImages.map((src, index) => {
                 let title = "Seoul Exhibit " + (index + 1);
                 let info = "Seoul Archive";
-                if (src === 'seoul_children_grandpark.png') {
+                if (src === 'seoul_children_grandpark.png' || src.startsWith('seoul_children_grandpark_2')) {
                     title = "광진구, 어린이대공원";
                 } else if (src.startsWith('seoul_sewoon')) {
                     title = "종로구, 세운상가";
