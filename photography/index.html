@@ -830,17 +830,17 @@
             // Clear dynamic content container
             container.innerHTML = '';
 
-            // Layout rendering: 2-column independent vertical stacks with zero gaps (inspired by septianpriyatna.com)
+            // Layout rendering: 2-column independent vertical stacks with beautiful gaps (inspired by septianpriyatna.com)
             // Mobile (flex-col / full width) -> Desktop (flex-row / 2-column half width)
-            container.className = "flex flex-col md:flex-row w-full gap-0 mb-0 items-start";
+            container.className = "flex flex-col md:flex-row w-full gap-4 mb-0 items-start";
             
             let col1Html = '';
             let col2Html = '';
             
             seoulImages.forEach((src, idx) => {
                 const cardHtml = `
-                    <div class="photo-card w-full h-auto cursor-zoom-in group transition-all duration-300 block mb-0" data-region="seoul" onclick="openLightbox(${idx})">
-                        <img src="${src}" alt="Seoul Archive Photo ${idx}" class="w-full h-auto object-cover hover:opacity-95 transition-opacity duration-300 block">
+                    <div class="photo-card w-full h-auto cursor-zoom-in group transition-all duration-300 block" data-region="seoul" onclick="openLightbox(${idx})">
+                        <img src="${src}" alt="Seoul Archive Photo ${idx}" class="w-full h-auto object-contain hover:opacity-95 transition-opacity duration-300 block">
                     </div>
                 `;
                 if (idx % 2 === 0) {
@@ -851,8 +851,8 @@
             });
             
             container.innerHTML = `
-                <div class="flex flex-col w-full md:w-1/2 mb-0 items-start">${col1Html}</div>
-                <div class="flex flex-col w-full md:w-1/2 mb-0 items-start">${col2Html}</div>
+                <div class="flex flex-col w-full md:w-1/2 mb-0 gap-4 items-start">${col1Html}</div>
+                <div class="flex flex-col w-full md:w-1/2 mb-0 gap-4 items-start">${col2Html}</div>
             `;
 
             // Update global queried photo-cards reference
