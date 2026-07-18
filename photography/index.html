@@ -653,17 +653,17 @@
         <main id="right-panel"
             class="w-full md:w-3/5 h-[65vh] md:h-full overflow-y-auto bg-white p-8 md:p-16 lg:p-24 custom-scrollbar scroll-smooth relative selection:bg-zinc-100 selection:text-zinc-950">
             <!-- Unified Content Wrapper (Aligned to same width) -->
-            <div class="w-full font-mono text-zinc-800 flex flex-col pt-4 pb-20 gap-16">
-                <!-- Seoul Section -->
-                <section id="section-seoul" class="w-full flex flex-col mb-4">
-                    <div id="seoul-images-container" class="relative w-full">
+            <div class="w-full font-mono text-zinc-800 grid grid-cols-2 pt-4 pb-20 gap-0 items-start">
+                <!-- Seoul Section (Left Column) -->
+                <section id="section-seoul" class="w-full flex flex-col mb-0">
+                    <div id="seoul-images-container" class="relative w-full flex flex-col w-full mb-0">
                         <!-- Dynamic images scanned from photography folder will be inserted here -->
                     </div>
                 </section>
                 
-                <!-- Gunsan Section -->
-                <section id="section-gunsan" class="w-full flex flex-col mb-4">
-                    <div id="gunsan-images-container" class="relative w-full">
+                <!-- Gunsan Section (Right Column) -->
+                <section id="section-gunsan" class="w-full flex flex-col mb-0">
+                    <div id="gunsan-images-container" class="relative w-full flex flex-col w-full mb-0">
                         <!-- Dynamic gunsan images will be inserted here -->
                     </div>
                 </section>
@@ -993,15 +993,28 @@
                 const y = dot[1];
                 const regionId = regionKeys[dot[2]];
 
+                // Map logical photo regions to visual dot regions
+                let activeCountRegion = regionId;
+                if (regionId === "incheon" || regionId === "gyeonggi") {
+                    activeCountRegion = "seoul";
+                } else if (regionId === "north-jeolla") {
+                    activeCountRegion = "gunsan";
+                }
+
+                const count = photoCounts[activeCountRegion] || 0;
+                if (count === 0) {
+                    return; // 사진이 없는 도트는 렌더링하지 않고 생략 (지도에서 제거)
+                }
+
                 const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
                 circle.setAttribute('cx', x.toFixed(1));
                 circle.setAttribute('cy', y.toFixed(1));
                 circle.setAttribute('r', r);
 
-                const count = photoCounts[regionId] || 0;
                 circle.setAttribute('fill', getRegionFillColor(count));
-                circle.setAttribute('class', `pixel-dot dot-${regionId}`);
+                circle.setAttribute('class', `pixel-dot dot-${regionId} dot-mapped-${activeCountRegion}`);
                 circle.setAttribute('data-region', regionId);
+                circle.setAttribute('data-active-region', activeCountRegion);
 
                 // SVG Tooltip for administrative name scans on hover
                 const titleEl = document.createElementNS('http://www.w3.org/2000/svg', 'title');
@@ -1020,7 +1033,7 @@
                         'gyeongju': 'gyeongju',
                         'jeju': 'jeju'
                     };
-                    const sectionId = regionToSectionMap[regionId];
+                    const sectionId = regionToSectionMap[activeCountRegion] || regionToSectionMap[regionId];
                     if (sectionId) scrollToSection(sectionId);
                 });
 
@@ -1030,8 +1043,15 @@
             // Activate mouse events on base paths directly
             paths.forEach(path => {
                 const regionId = path.id;
-                path.addEventListener('mouseenter', () => highlightRegion(regionId, true));
-                path.addEventListener('mouseleave', () => highlightRegion(regionId, false));
+                let activeCountRegion = regionId;
+                if (regionId === "incheon" || regionId === "gyeonggi") {
+                    activeCountRegion = "seoul";
+                } else if (regionId === "north-jeolla") {
+                    activeCountRegion = "gunsan";
+                }
+
+                path.addEventListener('mouseenter', () => highlightRegion(activeCountRegion, true));
+                path.addEventListener('mouseleave', () => highlightRegion(activeCountRegion, false));
                 path.addEventListener('click', () => {
                     const regionToSectionMap = {
                         'seoul': 'seoul',
@@ -1042,7 +1062,7 @@
                         'gyeongju': 'gyeongju',
                         'jeju': 'jeju'
                     };
-                    const sectionId = regionToSectionMap[regionId];
+                    const sectionId = regionToSectionMap[activeCountRegion] || regionToSectionMap[regionId];
                     if (sectionId) scrollToSection(sectionId);
                 });
             });
@@ -1050,7 +1070,14 @@
 
         // Highlight whole region's pixel dots + corresponding absolute marker
         function highlightRegion(regionId, isHighlighted) {
-            const dots = document.querySelectorAll(`.dot-${regionId}`);
+            let targetClass = `.dot-${regionId}`;
+            if (regionId === "seoul" || regionId === "incheon" || regionId === "gyeonggi") {
+                targetClass = ".dot-mapped-seoul";
+            } else if (regionId === "gunsan" || regionId === "north-jeolla") {
+                targetClass = ".dot-mapped-gunsan";
+            }
+
+            const dots = document.querySelectorAll(targetClass);
             const count = photoCounts[regionId] || 0;
 
             dots.forEach(dot => {
@@ -1120,8 +1147,16 @@
             path.style.pointerEvents = 'fill'; // 'fill' means only filled area registers hits
             const regionId = path.getAttribute('data-region');
             if (!regionId) return;
-            path.addEventListener('mouseenter', () => highlightRegion(regionId, true));
-            path.addEventListener('mouseleave', () => highlightRegion(regionId, false));
+
+            let activeCountRegion = regionId;
+            if (regionId === "incheon" || regionId === "gyeonggi") {
+                activeCountRegion = "seoul";
+            } else if (regionId === "north-jeolla") {
+                activeCountRegion = "gunsan";
+            }
+
+            path.addEventListener('mouseenter', () => highlightRegion(activeCountRegion, true));
+            path.addEventListener('mouseleave', () => highlightRegion(activeCountRegion, false));
         });
 
         // Initialize pixel map and load dynamic images
@@ -1170,7 +1205,11 @@
                         line.style.backgroundColor = '#B5B17B';
                     }
                     // Also subtly highlight the pixel region dots
-                    document.querySelectorAll(`.dot-${region}`).forEach(d => {
+                    let targetClass = `.dot-${region}`;
+                    if (region === "seoul") targetClass = ".dot-mapped-seoul";
+                    else if (region === "gunsan") targetClass = ".dot-mapped-gunsan";
+
+                    document.querySelectorAll(targetClass).forEach(d => {
                         d.style.fill = 'hsl(56, 75%, 45%)';
                     });
                 } else {
@@ -1182,8 +1221,12 @@
                         line.style.backgroundColor = '';
                     }
                     // Reset pixel region dots
+                    let targetClass = `.dot-${region}`;
+                    if (region === "seoul") targetClass = ".dot-mapped-seoul";
+                    else if (region === "gunsan") targetClass = ".dot-mapped-gunsan";
+
                     const count = photoCounts[region] || 0;
-                    document.querySelectorAll(`.dot-${region}`).forEach(d => {
+                    document.querySelectorAll(targetClass).forEach(d => {
                         d.style.fill = getRegionFillColor(count);
                     });
                 }
