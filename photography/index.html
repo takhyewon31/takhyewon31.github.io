@@ -986,9 +986,7 @@
                 }
 
                 const count = photoCounts[activeCountRegion] || 0;
-                if (count === 0) {
-                    return; // 사진이 없는 도트는 렌더링하지 않고 생략 (지도에서 제거)
-                }
+
 
                 const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
                 circle.setAttribute('cx', x.toFixed(1));
