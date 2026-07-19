@@ -760,9 +760,6 @@
 
         // Dynamic region image loader helper
         async function loadRegionImages(regionId, prefix, defaultImages) {
-            const container = document.getElementById(`${regionId}-images-container`);
-            if (!container) return [];
-
             let images = [];
             try {
                 const response = await fetch('./');
@@ -792,35 +789,8 @@
                 images = defaultImages;
             }
 
-            // Custom sort per region if needed
-            if (regionId === 'seoul') {
-                const orderMap = {
-                    'seoul_sewoon': 1,
-                    'seoul_street': 2,
-                    'seoul_ seoungsu': 3,
-                    'seoul_children_grandpark_2': 5,
-                    'seoul_children_grandpark': 4
-                };
-                images.sort((a, b) => {
-                    let weightA = 999;
-                    let weightB = 999;
-                    const sortedKeys = Object.keys(orderMap).sort((k1, k2) => k2.length - k1.length);
-                    sortedKeys.forEach(key => {
-                        if (a.startsWith(key) && weightA === 999) weightA = orderMap[key];
-                        if (b.startsWith(key) && weightB === 999) weightB = orderMap[key];
-                    });
-                    if (weightA !== weightB) {
-                        return weightA - weightB;
-                    }
-                    return b.localeCompare(a);
-                });
-            } else if (regionId === 'gunsan') {
-                images.sort((a, b) => b.localeCompare(a));
-            }
-
             return images;
         }
-
         // Initialize all dynamic region galleries
         async function initAllGallery() {
             const seoulFallback = [
