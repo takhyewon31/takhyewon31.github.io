@@ -653,20 +653,10 @@
         <main id="right-panel"
             class="w-full md:w-3/5 h-[65vh] md:h-full overflow-y-auto bg-white p-8 md:p-16 lg:p-24 custom-scrollbar scroll-smooth relative selection:bg-zinc-100 selection:text-zinc-950">
             <!-- Unified Content Wrapper (Aligned to same width) -->
-            <div class="w-full font-mono text-zinc-800 grid grid-cols-2 pt-4 pb-20 gap-0 items-start">
-                <!-- Seoul Section (Left Column) -->
-                <section id="section-seoul" class="w-full flex flex-col mb-0">
-                    <div id="seoul-images-container" class="relative w-full flex flex-col w-full mb-0">
-                        <!-- Dynamic images scanned from photography folder will be inserted here -->
-                    </div>
-                </section>
-                
-                <!-- Gunsan Section (Right Column) -->
-                <section id="section-gunsan" class="w-full flex flex-col mb-0">
-                    <div id="gunsan-images-container" class="relative w-full flex flex-col w-full mb-0">
-                        <!-- Dynamic gunsan images will be inserted here -->
-                    </div>
-                </section>
+            <div class="w-full font-mono text-zinc-800 flex flex-col pt-4 pb-20">
+                <div id="gallery-container" class="relative w-full flex flex-col w-full mb-0">
+                    <!-- Dynamic images scanned from photography folder will be inserted here in exact sequence -->
+                </div>
             </div>
         </main>
     </div>
@@ -847,62 +837,86 @@
             const seoulImages = await loadRegionImages('seoul', 'seoul', seoulFallback);
             const gunsanImages = await loadRegionImages('gunsan', 'gunsan', gunsanFallback);
 
-            // 1. Build imagesData sequence (first Seoul, then Gunsan)
-            imagesData = [];
-            
-            // Seoul metadata map
-            const seoulData = seoulImages.map(src => {
-                let title = "Seoul Exhibit";
-                let info = "Seoul Archive";
-                if (src === 'seoul_children_grandpark.png' || src.startsWith('seoul_children_grandpark_2')) {
-                    title = "광진구, 어린이대공원";
-                } else if (src.startsWith('seoul_sewoon')) {
-                    title = "종로구, 세운상가";
-                } else if (src.startsWith('seoul_street')) {
-                    title = "종로구, 창경궁로";
-                } else if (src.startsWith('seoul_ seoungsu')) {
-                    title = "성동구, 성수동";
+            // Combine all scanned images
+            const allFileNames = Array.from(new Set([...seoulImages, ...gunsanImages]));
+
+            // Global order mapping: gunsan_munyeodo placed 2nd
+            const globalOrderMap = {
+                'seoul_sewoon': 1,
+                'gunsan_munyeodo': 2,
+                'seoul_street': 3,
+                'seoul_ seoungsu': 4,
+                'seoul_children_grandpark_2': 6,
+                'seoul_children_grandpark': 5
+            };
+
+            const sortedKeys = Object.keys(globalOrderMap).sort((k1, k2) => k2.length - k1.length);
+
+            allFileNames.sort((a, b) => {
+                let weightA = 999;
+                let weightB = 999;
+                sortedKeys.forEach(key => {
+                    if (a.startsWith(key) && weightA === 999) weightA = globalOrderMap[key];
+                    if (b.startsWith(key) && weightB === 999) weightB = globalOrderMap[key];
+                });
+                if (weightA !== weightB) {
+                    return weightA - weightB;
                 }
-                return { src, title, info };
+                return a.localeCompare(b);
             });
 
-            // Gunsan metadata map
-            const gunsanData = gunsanImages.map(src => {
-                let title = "Gunsan Exhibit";
-                let info = "Gunsan Archive";
+            // Populate imagesData dynamically with precise region and titles
+            imagesData = allFileNames.map(src => {
+                let title = "Exhibit";
+                let info = "Archive";
+                let region = "seoul";
+
                 if (src.startsWith('gunsan_munyeodo')) {
                     title = "군산, 무녀도";
+                    info = "Gunsan Archive";
+                    region = "gunsan";
+                } else if (src === 'seoul_children_grandpark.png' || src.startsWith('seoul_children_grandpark_2')) {
+                    title = "광진구, 어린이대공원";
+                    info = "Seoul Archive";
+                    region = "seoul";
+                } else if (src.startsWith('seoul_sewoon')) {
+                    title = "종로구, 세운상가";
+                    info = "Seoul Archive";
+                    region = "seoul";
+                } else if (src.startsWith('seoul_street')) {
+                    title = "종로구, 창경궁로";
+                    info = "Seoul Archive";
+                    region = "seoul";
+                } else if (src.startsWith('seoul_ seoungsu')) {
+                    title = "성동구, 성수동";
+                    info = "Seoul Archive";
+                    region = "seoul";
                 }
-                return { src, title, info };
+
+                return { src, title, info, region };
             });
 
-            imagesData = [...seoulData, ...gunsanData];
+            // Render single-column gallery container
+            const container = document.getElementById('gallery-container');
+            if (!container) return;
 
-            // 2. Render Seoul container
-            const seoulContainer = document.getElementById('seoul-images-container');
-            let seoulHtml = '';
-            seoulImages.forEach((src) => {
-                const globalIdx = imagesData.findIndex(d => d.src === src);
-                seoulHtml += `
-                    <div class="photo-card w-full h-auto cursor-zoom-in group transition-all duration-300 block mb-0" data-region="seoul" onclick="openLightbox(${globalIdx})">
-                        <img src="${src}" alt="Seoul Photo" class="w-full h-auto object-cover hover:opacity-95 transition-opacity duration-300 block">
+            let html = '';
+            imagesData.forEach((item, idx) => {
+                // Add unique id for section anchors if first of region
+                let anchorAttr = '';
+                if (item.src.startsWith('seoul_sewoon')) {
+                    anchorAttr = 'id="section-seoul"';
+                } else if (item.src.startsWith('gunsan_munyeodo')) {
+                    anchorAttr = 'id="section-gunsan"';
+                }
+
+                html += `
+                    <div ${anchorAttr} class="photo-card w-full h-auto cursor-zoom-in group transition-all duration-300 block mb-0" data-region="${item.region}" onclick="openLightbox(${idx})">
+                        <img src="${item.src}" alt="${item.title}" class="w-full h-auto object-cover hover:opacity-95 transition-opacity duration-300 block">
                     </div>
                 `;
             });
-            seoulContainer.innerHTML = seoulHtml;
-
-            // 3. Render Gunsan container
-            const gunsanContainer = document.getElementById('gunsan-images-container');
-            let gunsanHtml = '';
-            gunsanImages.forEach((src) => {
-                const globalIdx = imagesData.findIndex(d => d.src === src);
-                gunsanHtml += `
-                    <div class="photo-card w-full h-auto cursor-zoom-in group transition-all duration-300 block mb-0" data-region="gunsan" onclick="openLightbox(${globalIdx})">
-                        <img src="${src}" alt="Gunsan Photo" class="w-full h-auto object-cover hover:opacity-95 transition-opacity duration-300 block">
-                    </div>
-                `;
-            });
-            gunsanContainer.innerHTML = gunsanHtml;
+            container.innerHTML = html;
 
             // Update global queried photo-cards reference
             photoCards = document.querySelectorAll('.photo-card');
