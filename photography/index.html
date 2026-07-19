@@ -155,20 +155,20 @@
     </main>
 
     <!-- ================================================================= -->
-    <!-- PREVIOUS MAP & SPLIT PANEL CONTAINER (COMMENTED OUT FOR RESTORATION) -->
-    <!--
-    <!-- Main Container -->
+    <!-- PREVIOUS MAP & SPLIT PANEL CONTAINER (COMMENTED OUT FOR RESTORATION)
+
+    <!- - Main Container - ->
     <div class="flex-1 flex flex-col md:flex-row overflow-hidden w-full">
-        <!-- Left Sticky Panel (Korea Map) -->
+        <!- - Left Sticky Panel (Korea Map) - ->
         <aside
             class="w-full md:w-2/5 h-[35vh] md:h-full flex flex-col justify-center p-6 md:p-12 border-b md:border-b-0 md:border-r border-zinc-200 bg-white z-10">
-            <!-- Centered Interactive Map SVG Wrapper -->
+            <!- - Centered Interactive Map SVG Wrapper - ->
             <div
                 class="relative w-full max-w-[360px] md:max-w-[440px] aspect-[524/631] mx-auto my-auto flex items-center justify-center">
-                <!-- Inline SVG map -->
+                <!- - Inline SVG map - ->
                 <svg id="korea-map" viewBox="0 0 524 631"
                     class="w-full h-full text-zinc-200 stroke-zinc-200 stroke-[0.8] fill-none">
-                    <!-- 151 Municipal & Metropolitan Base Paths (No Holes!) -->
+                    <!- - 151 Municipal & Metropolitan Base Paths (No Holes!) - ->
                     <path id="andong" aria-label="Andong" data-region="andong"
                         d="M293.06,226.22L294.41,224.63L295.97,225.24L301.68,224.73L303.66,225.90L305.98,228.80L308.65,229.53L310.57,228.78L311.98,229.63L312.98,231.82L314.77,231.84L315.59,235.05L314.77,240.18L315.24,242.24L314.85,246.00L315.55,249.42L313.85,252.68L314.91,254.48L313.16,256.56L315.39,258.92L315.18,260.27L313.37,262.49L312.80,264.47L314.23,270.73L312.25,275.37L312.31,278.62L309.92,280.70L309.55,282.37L305.90,283.32L306.22,280.18L304.88,274.34L302.62,273.01L300.67,265.62L295.93,263.70L293.39,261.36L291.70,262.83L290.06,262.83L289.83,266.08L286.00,267.26L283.00,269.16L280.15,270.15L279.94,267.44L278.46,267.00L276.21,261.42L272.33,260.26L270.87,258.08L268.13,261.46L265.81,259.80L265.43,257.61L267.56,255.80L268.38,253.22L271.00,252.14L271.05,248.85L271.82,248.00L274.13,248.57L274.75,247.12L273.77,245.60L276.78,244.57L278.44,242.96L280.85,242.67L281.35,239.01L280.24,236.91L283.01,235.01L286.31,235.75L287.36,237.31L289.04,236.46L291.66,237.73L293.02,230.84L292.42,227.59L293.06,226.22Z"
                         class="path-region" />
@@ -625,8 +625,8 @@
                         class="path-region" />
                 </svg>
 
-                <!-- Absolute Markers (Seoul, Sokcho, Yangyang, Inje, Gyeongju, Jeju) -->
-                <!-- Seoul Marker -->
+                <!- - Absolute Markers (Seoul, Sokcho, Yangyang, Inje, Gyeongju, Jeju) - ->
+                <!- - Seoul Marker - ->
                 <div data-marker="seoul" onclick="scrollToSection('seoul')"
                     class="map-marker absolute top-[21.9%] left-[26.3%] -translate-x-1/2 -translate-y-full flex flex-col items-center cursor-pointer group z-20">
                     <span
@@ -636,7 +636,7 @@
                     <div class="marker-line w-[1px] h-6 bg-zinc-300 group-hover:bg-zinc-950 transition-colors"></div>
                 </div>
 
-                <!-- Sokcho Marker -->
+                <!- - Sokcho Marker - ->
                 <div data-marker="sokcho" onclick="scrollToSection('gangwon')"
                     class="map-marker absolute top-[10.3%] left-[53.3%] -translate-x-1/2 -translate-y-full flex flex-col items-center cursor-pointer group z-20">
                     <span
@@ -646,7 +646,7 @@
                     <div class="marker-line w-[1px] h-6 bg-zinc-300 group-hover:bg-zinc-950 transition-colors"></div>
                 </div>
 
-                <!-- Yangyang Marker -->
+                <!- - Yangyang Marker - ->
                 <div data-marker="yangyang" onclick="scrollToSection('gangwon')"
                     class="map-marker absolute top-[13.8%] left-[53.6%] -translate-x-1/2 -translate-y-full flex flex-col items-center cursor-pointer group z-20">
                     <span
@@ -656,7 +656,7 @@
                     <div class="marker-line w-[1px] h-6 bg-zinc-300 group-hover:bg-zinc-950 transition-colors"></div>
                 </div>
 
-                <!-- Inje Marker -->
+                <!- - Inje Marker - ->
                 <div data-marker="inje" onclick="scrollToSection('gangwon')"
                     class="map-marker absolute top-[13.9%] left-[46.3%] -translate-x-1/2 -translate-y-full flex flex-col items-center cursor-pointer group z-20">
                     <span
@@ -666,7 +666,7 @@
                     <div class="marker-line w-[1px] h-6 bg-zinc-300 group-hover:bg-zinc-950 transition-colors"></div>
                 </div>
 
-                <!-- Gyeongju Marker -->
+                <!- - Gyeongju Marker - ->
                 <div data-marker="gyeongju" onclick="scrollToSection('gyeongju')"
                     class="map-marker absolute top-[53.1%] left-[63.9%] -translate-x-1/2 -translate-y-full flex flex-col items-center cursor-pointer group z-20">
                     <span
@@ -676,7 +676,7 @@
                     <div class="marker-line w-[1px] h-6 bg-zinc-300 group-hover:bg-zinc-950 transition-colors"></div>
                 </div>
 
-                <!-- Jeju Marker -->
+                <!- - Jeju Marker - ->
                 <div data-marker="jeju" onclick="scrollToSection('jeju')"
                     class="map-marker absolute top-[94.3%] left-[22.5%] -translate-x-1/2 -translate-y-full flex flex-col items-center cursor-pointer group z-20">
                     <span
@@ -686,7 +686,7 @@
                     <div class="marker-line w-[1px] h-6 bg-zinc-300 group-hover:bg-zinc-950 transition-colors"></div>
                 </div>
 
-                <!-- Gunsan Marker -->
+                <!- - Gunsan Marker - ->
                 <div data-marker="gunsan" onclick="scrollToSection('gunsan')"
                     class="map-marker absolute top-[50.7%] left-[22.5%] -translate-x-1/2 -translate-y-full flex flex-col items-center cursor-pointer group z-20">
                     <span
@@ -698,22 +698,23 @@
             </div>
         </aside>
 
-        <!-- Right Scrollable Panel (Bar Acacia Project Details) -->
+        <!- - Right Scrollable Panel (Bar Acacia Project Details) - ->
         <main id="right-panel"
             class="w-full md:w-3/5 h-[65vh] md:h-full overflow-y-auto bg-white p-8 md:p-16 lg:p-24 custom-scrollbar scroll-smooth relative selection:bg-zinc-100 selection:text-zinc-950">
-            <!-- Unified Content Wrapper (Aligned to same width) -->
+            <!- - Unified Content Wrapper (Aligned to same width) - ->
             <div class="w-full font-mono text-zinc-800 flex flex-col pt-4 pb-20">
                 <div id="gallery-container" class="relative w-full flex flex-col w-full mb-0">
-                    <!-- Dynamic images scanned from photography folder will be inserted here in exact sequence -->
+                    <!- - Dynamic images scanned from photography folder will be inserted here in exact sequence - ->
                 </div>
             </div>
         </main>
     </div>
 
+
     -->
     <!-- ================================================================= -->
 
-        <!-- Lightbox Modal -->
+    <!-- Lightbox Modal -->
     <div id="lightbox"
         class="fixed inset-0 bg-[#fafafa]/98 backdrop-blur-md z-50 hidden opacity-0 transition-opacity duration-300 flex flex-col justify-center items-center p-4">
         <!-- Close Button -->
@@ -800,6 +801,7 @@
         renderPhoto(0);
 
         /* MAP LOGIC & DYNAMIC SCANNER (COMMENTED OUT FOR RESTORATION)
+
         // Lightbox functions
         function openLightbox(index) {
             currentIndex = index;
@@ -1317,9 +1319,10 @@
             });
         });
 
+
         */
 
-                // Seoul Real-time Clock
+        // Seoul Real-time Clock
         function updateSeoulTime() {
             const clockElement = document.getElementById('seoul-clock');
             if (!clockElement) return;
