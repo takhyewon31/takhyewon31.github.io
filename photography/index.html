@@ -108,6 +108,55 @@
         </div>
     </header>
 
+    <!-- Main Focus Photo Viewer (Header Direct Sub-Layout) -->
+    <main class="flex-1 w-full bg-[#fafafa] flex flex-col justify-between items-center p-4 md:p-8 overflow-hidden relative select-none">
+        <!-- Sub-header Details Bar -->
+        <div class="w-full max-w-4xl flex justify-between items-center font-mono text-xs tracking-widest text-zinc-400 py-2">
+            <span id="photo-counter" class="text-zinc-500 font-medium">01 / 06</span>
+            <span id="photo-title" class="text-zinc-900 font-sans font-medium tracking-normal text-sm md:text-base">종로구, 세운상가</span>
+            <span id="photo-info" class="text-zinc-400 text-[11px] uppercase">Seoul Archive</span>
+        </div>
+
+        <!-- Central Main Photo Display Wrapper -->
+        <div class="relative w-full max-w-5xl flex-1 flex items-center justify-center my-auto px-4 group">
+            <!-- Prev Arrow Button -->
+            <button onclick="showPrevPhoto()" 
+                class="absolute left-0 md:left-4 z-20 font-mono text-xl md:text-2xl text-zinc-300 hover:text-zinc-950 p-3 select-none transition-colors opacity-60 hover:opacity-100 focus:outline-none"
+                aria-label="Previous Photo">
+                ←
+            </button>
+
+            <!-- Photo Display -->
+            <div class="relative max-h-[70vh] md:max-h-[76vh] flex items-center justify-center cursor-pointer transition-transform duration-300 active:scale-[0.99]" onclick="showNextPhoto()">
+                <img id="main-photo" src="seoul_sewoon.png" alt="Photography Exhibit" 
+                    class="max-h-[70vh] md:max-h-[76vh] w-auto max-w-full object-contain mx-auto shadow-sm transition-opacity duration-300 opacity-100">
+            </div>
+
+            <!-- Next Arrow Button -->
+            <button onclick="showNextPhoto()" 
+                class="absolute right-0 md:right-4 z-20 font-mono text-xl md:text-2xl text-zinc-300 hover:text-zinc-950 p-3 select-none transition-colors opacity-60 hover:opacity-100 focus:outline-none"
+                aria-label="Next Photo">
+                →
+            </button>
+        </div>
+
+        <!-- Bottom Navigation Controls & Indicator -->
+        <div class="w-full max-w-4xl flex justify-between items-center font-mono text-[11px] tracking-widest text-zinc-400 pt-2 border-t border-zinc-200/60">
+            <button onclick="showPrevPhoto()" class="hover:text-black transition-colors uppercase py-1 flex items-center gap-1">
+                <span>← Prev</span>
+            </button>
+            <div class="flex items-center gap-2">
+                <span class="text-zinc-400 text-[10px]">Click image or use Arrow keys to navigate</span>
+            </div>
+            <button onclick="showNextPhoto()" class="hover:text-black transition-colors uppercase py-1 flex items-center gap-1">
+                <span>Next →</span>
+            </button>
+        </div>
+    </main>
+
+    <!-- ================================================================= -->
+    <!-- PREVIOUS MAP & SPLIT PANEL CONTAINER (COMMENTED OUT FOR RESTORATION) -->
+    <!--
     <!-- Main Container -->
     <div class="flex-1 flex flex-col md:flex-row overflow-hidden w-full">
         <!-- Left Sticky Panel (Korea Map) -->
@@ -661,7 +710,10 @@
         </main>
     </div>
 
-    <!-- Lightbox Modal -->
+    -->
+    <!-- ================================================================= -->
+
+        <!-- Lightbox Modal -->
     <div id="lightbox"
         class="fixed inset-0 bg-[#fafafa]/98 backdrop-blur-md z-50 hidden opacity-0 transition-opacity duration-300 flex flex-col justify-center items-center p-4">
         <!-- Close Button -->
@@ -698,6 +750,56 @@
         const lightboxTitle = document.getElementById('lightbox-title');
         const lightboxInfo = document.getElementById('lightbox-info');
 
+        // Single Photo Gallery Focus Controller
+        const galleryPhotos = [
+            { src: 'seoul_sewoon.png', title: '종로구, 세운상가', info: 'Seoul Archive', region: 'seoul' },
+            { src: 'gunsan_munyeodo.png', title: '군산, 무녀도', info: 'Gunsan Archive', region: 'gunsan' },
+            { src: 'seoul_street.png', title: '종로구, 창경궁로', info: 'Seoul Archive', region: 'seoul' },
+            { src: 'seoul_ seoungsu.png', title: '성동구, 성수동', info: 'Seoul Archive', region: 'seoul' },
+            { src: 'seoul_children_grandpark.png', title: '광진구, 어린이대공원', info: 'Seoul Archive', region: 'seoul' },
+            { src: 'seoul_children_grandpark_2.png', title: '광진구, 어린이대공원 2', info: 'Seoul Archive', region: 'seoul' }
+        ];
+
+        let currentIdx = 0;
+
+        function renderPhoto(index) {
+            currentIdx = (index + galleryPhotos.length) % galleryPhotos.length;
+            const item = galleryPhotos[currentIdx];
+            const img = document.getElementById('main-photo');
+            const title = document.getElementById('photo-title');
+            const info = document.getElementById('photo-info');
+            const counter = document.getElementById('photo-counter');
+
+            if (img) {
+                img.style.opacity = '0';
+                setTimeout(() => {
+                    img.src = item.src;
+                    img.style.opacity = '1';
+                }, 150);
+            }
+            if (title) title.textContent = item.title;
+            if (info) info.textContent = item.info;
+            if (counter) counter.textContent = `${String(currentIdx + 1).padStart(2, '0')} / ${String(galleryPhotos.length).padStart(2, '0')}`;
+        }
+
+        function showNextPhoto() {
+            renderPhoto(currentIdx + 1);
+        }
+
+        function showPrevPhoto() {
+            renderPhoto(currentIdx - 1);
+        }
+
+        // Keyboard Arrow Left/Right Navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') showNextPhoto();
+            if (e.key === 'ArrowLeft') showPrevPhoto();
+        });
+
+        // Initialize Photo Focus Viewer on load
+        renderPhoto(0);
+
+        /* MAP LOGIC & DYNAMIC SCANNER (COMMENTED OUT FOR RESTORATION)
         // Lightbox functions
         function openLightbox(index) {
             currentIndex = index;
@@ -1215,7 +1317,9 @@
             });
         });
 
-        // Seoul Real-time Clock
+        */
+
+                // Seoul Real-time Clock
         function updateSeoulTime() {
             const clockElement = document.getElementById('seoul-clock');
             if (!clockElement) return;
