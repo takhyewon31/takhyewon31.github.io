@@ -123,7 +123,7 @@
             TAK HYE-WON
         </a>
         <div class="flex items-center">
-            <span id="seoul-clock" class="font-mono text-zinc-400 text-[10px] tracking-wider">SEOUL 00:00:00</span>
+            <span id="seoul-clock" class="font-mono text-zinc-400 text-[10px] tracking-wider">00:00:00</span>
         </div>
     </header>
 
@@ -137,7 +137,7 @@
                     <img src="seoul_sewoon.png" alt="종로구, 세운상가" class="h-[38vh] md:h-[44vh] w-auto object-cover transition-transform duration-300 hover:scale-[1.01] cursor-pointer block">
                     <img src="gunsan_munyeodo.png" alt="군산, 무녀도" class="h-[38vh] md:h-[44vh] w-auto object-cover transition-transform duration-300 hover:scale-[1.01] cursor-pointer block">
                     <img src="seoul_street.png" alt="종로구, 창경궁로" class="h-[38vh] md:h-[44vh] w-auto object-cover transition-transform duration-300 hover:scale-[1.01] cursor-pointer block">
-                    <img src="seoul_ seoungsu.png" alt="성동구, 성수동" class="h-[60vh] md:h-[68vh] w-auto object-cover transition-transform duration-300 hover:scale-[1.01] cursor-pointer block">
+                    <img src="seoul_ seoungsu.png" alt="성동구, 성수동" class="h-[68vh] md:h-[78vh] w-auto object-cover transition-transform duration-300 hover:scale-[1.01] cursor-pointer block">
                     <img src="seoul_children_grandpark.png" alt="광진구, 어린이대공원" class="h-[38vh] md:h-[44vh] w-auto object-cover transition-transform duration-300 hover:scale-[1.01] cursor-pointer block">
                     <img src="seoul_children_grandpark_2.png" alt="광진구, 어린이대공원 2" class="h-[38vh] md:h-[44vh] w-auto object-cover transition-transform duration-300 hover:scale-[1.01] cursor-pointer block">
                 </div>
@@ -147,7 +147,7 @@
                     <img src="seoul_sewoon.png" alt="종로구, 세운상가" class="h-[38vh] md:h-[44vh] w-auto object-cover transition-transform duration-300 hover:scale-[1.01] cursor-pointer block">
                     <img src="gunsan_munyeodo.png" alt="군산, 무녀도" class="h-[38vh] md:h-[44vh] w-auto object-cover transition-transform duration-300 hover:scale-[1.01] cursor-pointer block">
                     <img src="seoul_street.png" alt="종로구, 창경궁로" class="h-[38vh] md:h-[44vh] w-auto object-cover transition-transform duration-300 hover:scale-[1.01] cursor-pointer block">
-                    <img src="seoul_ seoungsu.png" alt="성동구, 성수동" class="h-[60vh] md:h-[68vh] w-auto object-cover transition-transform duration-300 hover:scale-[1.01] cursor-pointer block">
+                    <img src="seoul_ seoungsu.png" alt="성동구, 성수동" class="h-[68vh] md:h-[78vh] w-auto object-cover transition-transform duration-300 hover:scale-[1.01] cursor-pointer block">
                     <img src="seoul_children_grandpark.png" alt="광진구, 어린이대공원" class="h-[38vh] md:h-[44vh] w-auto object-cover transition-transform duration-300 hover:scale-[1.01] cursor-pointer block">
                     <img src="seoul_children_grandpark_2.png" alt="광진구, 어린이대공원 2" class="h-[38vh] md:h-[44vh] w-auto object-cover transition-transform duration-300 hover:scale-[1.01] cursor-pointer block">
                 </div>
@@ -1315,7 +1315,7 @@
         });
 
 
-        * /
+        */
 
         // Seoul Real-time Clock
         function updateSeoulTime() {
@@ -1337,7 +1337,7 @@
             const minute = timeParts.find(p => p.type === 'minute').value;
             const second = timeParts.find(p => p.type === 'second').value;
 
-            clockElement.textContent = `SEOUL ${hour}:${minute}:${second}`;
+            clockElement.textContent = `${hour}:${minute}:${second}`;
         }
         setInterval(updateSeoulTime, 1000);
         updateSeoulTime();
