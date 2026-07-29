@@ -412,8 +412,8 @@
             min-width: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 40px 0;
+            align-items: flex-start;
+            padding: 80px 0 40px;
         }
 
         .image-section img {
@@ -551,8 +551,8 @@
             /* 가로 왼쪽 축 정렬 */
             text-align: left;
             /* 글자 왼쪽 정렬 */
-            padding: 100px 0;
-            /* 위쪽 여백을 넉넉히 주어 포스터와 균형 유지 */
+            padding: 80px 0 40px;
+            /* 이미지 상단과 맞추기 위해 패딩 통일 */
             position: sticky;
             top: 0;
             align-self: flex-start;
@@ -565,6 +565,7 @@
             font-weight: 300;
             line-height: 1.35;
             letter-spacing: -0.5px;
+            margin-top: 0;
             margin-bottom: 12px;
             word-break: keep-all;
             text-align: left;
