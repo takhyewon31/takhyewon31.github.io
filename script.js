@@ -334,3 +334,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// 8. 프로젝트 창 닫기/돌아가기 기능
+function closeProjectWindow() {
+    if (window.opener) {
+        window.close();
+    } else {
+        window.location.href = 'index.html';
+    }
+}
+
