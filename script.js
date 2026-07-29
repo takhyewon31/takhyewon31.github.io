@@ -4,7 +4,7 @@ function openProjectPopup(project = 'literature-style-sns') {
     const overlay = document.getElementById('projectModalOverlay');
     
     if (iframe && overlay) {
-        iframe.src = `project.html?project=${encodeURIComponent(project)}`;
+        iframe.src = `project.html?project=${encodeURIComponent(project)}&t=${Date.now()}`;
         overlay.style.display = 'flex';
         // 강제 reflow 유도하여 transition 애니메이션 적용
         overlay.offsetHeight; 
