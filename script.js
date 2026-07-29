@@ -344,3 +344,26 @@ function closeProjectWindow() {
     }
 }
 
+// 9. 사이드바 프로젝트/인디펜던트 스터디 탭 전환 기능
+function switchSidebarTab(tabName) {
+    const projectList = document.getElementById('list-project');
+    const studyList = document.getElementById('list-independent-study');
+    const tabs = document.querySelectorAll('.sidebar-tab');
+    
+    if (tabName === 'PROJECT') {
+        if (projectList) projectList.style.display = 'flex';
+        if (studyList) studyList.style.display = 'none';
+        tabs.forEach(tab => {
+            if (tab.innerText === 'PROJECT') tab.classList.add('active');
+            else tab.classList.remove('active');
+        });
+    } else if (tabName === 'INDEPENDENT_STUDY') {
+        if (projectList) projectList.style.display = 'none';
+        if (studyList) studyList.style.display = 'flex';
+        tabs.forEach(tab => {
+            if (tab.innerText === 'INDEPENDENT STUDY') tab.classList.add('active');
+            else tab.classList.remove('active');
+        });
+    }
+}
+
