@@ -256,23 +256,25 @@
             flex-direction: column;
             align-items: flex-start;
             gap: 12px;
-            padding: 12px;
+            padding: 0;
             cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: opacity 0.25s ease;
+            background: none !important;
+            border: none !important;
+            opacity: 0.45;
         }
 
         .work-item:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
+            opacity: 0.85;
+            background: none !important;
+            border-color: transparent !important;
+            transform: none !important;
         }
 
         .work-item.active {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.25);
+            opacity: 1;
+            background: none !important;
+            border-color: transparent !important;
         }
 
         .work-thumb {
@@ -798,7 +800,7 @@
             }
 
             .work-item {
-                padding: 8px;
+                padding: 0;
                 gap: 8px;
             }
 
