@@ -310,15 +310,35 @@
             word-break: keep-all;
         }
 
-        .work-cat {
-            font-size: 0.7rem;
+        .work-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 4px;
+        }
+
+        .work-tag {
+            font-size: 0.65rem;
             display: inline-block;
-            align-self: flex-start;
-            padding: 3px 6px;
-            background-color: rgba(255, 255, 255, 0.08);
+            padding: 2px 6px;
             border-radius: 4px;
-            color: rgba(255, 255, 255, 0.6);
-            font-weight: 500;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+
+        .tag-year {
+            background-color: rgba(163, 217, 255, 0.12);
+            color: #a3d9ff;
+        }
+
+        .tag-type {
+            background-color: rgba(224, 187, 246, 0.12);
+            color: #e0bbf6;
+        }
+
+        .tag-cat {
+            background-color: rgba(244, 233, 156, 0.12);
+            color: #f4e99c;
         }
 
         /* 우측 메인 뷰어 (프로젝트 상세) */
@@ -1104,7 +1124,11 @@
                         </div>
                         <div class="work-info">
                             <div class="work-title">서사파 vs 문장파 SNS 콘텐츠</div>
-                            <div class="work-cat">Digital Content Design</div>
+                            <div class="work-tags">
+                                <span class="work-tag tag-year">2026</span>
+                                <span class="work-tag tag-type">Personal</span>
+                                <span class="work-tag tag-cat">Digital Content Design</span>
+                            </div>
                         </div>
                     </div>
 
@@ -1114,7 +1138,11 @@
                         </div>
                         <div class="work-info">
                             <div class="work-title">Say Touche</div>
-                            <div class="work-cat">Editorial Design</div>
+                            <div class="work-tags">
+                                <span class="work-tag tag-year">2026</span>
+                                <span class="work-tag tag-type">Personal</span>
+                                <span class="work-tag tag-cat">Editorial Design</span>
+                            </div>
                         </div>
                     </div>
 
@@ -1124,7 +1152,11 @@
                         </div>
                         <div class="work-info">
                             <div class="work-title">매일, 내 일 검정고무신</div>
-                            <div class="work-cat">Exhibit Graphic Design</div>
+                            <div class="work-tags">
+                                <span class="work-tag tag-year">2023</span>
+                                <span class="work-tag tag-type">Project</span>
+                                <span class="work-tag tag-cat">Exhibit Graphic Design</span>
+                            </div>
                         </div>
                     </div>
 
@@ -1134,7 +1166,11 @@
                         </div>
                         <div class="work-info">
                             <div class="work-title">청년예술인 역량강화 아카데미</div>
-                            <div class="work-cat">Marketing Design</div>
+                            <div class="work-tags">
+                                <span class="work-tag tag-year">2023</span>
+                                <span class="work-tag tag-type">Project</span>
+                                <span class="work-tag tag-cat">Marketing Design</span>
+                            </div>
                         </div>
                     </div>
 
@@ -1144,7 +1180,11 @@
                         </div>
                         <div class="work-info">
                             <div class="work-title">홍우주 SNS 콘텐츠</div>
-                            <div class="work-cat">Digital Content Design</div>
+                            <div class="work-tags">
+                                <span class="work-tag tag-year">2023</span>
+                                <span class="work-tag tag-type">Project</span>
+                                <span class="work-tag tag-cat">Digital Content Design</span>
+                            </div>
                         </div>
                     </div>
                 </div>
