@@ -238,9 +238,11 @@
         .work-list {
             flex: 1;
             overflow-y: auto;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
+            padding: 24px 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            align-content: start;
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
@@ -251,27 +253,34 @@
 
         .work-item {
             display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 20px 30px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .work-item:hover {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
         }
 
         .work-item.active {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.25);
         }
 
         .work-thumb {
-            width: 65px;
-            height: 85px;
-            background: transparent;
-            border-radius: 0;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3 / 4;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 6px;
             overflow: hidden;
             display: flex;
             justify-content: center;
@@ -282,23 +291,33 @@
         .work-thumb img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
         }
 
         .work-info {
-            flex: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
 
         .work-title {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 6px;
+            color: var(--text-primary);
             line-height: 1.3;
+            word-break: keep-all;
         }
 
         .work-cat {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
+            font-size: 0.7rem;
+            display: inline-block;
+            align-self: flex-start;
+            padding: 3px 6px;
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
         }
 
         /* 우측 메인 뷰어 (프로젝트 상세) */
@@ -772,6 +791,16 @@
 
             .sidebar-trigger-bar {
                 display: flex;
+            }
+
+            .work-list {
+                padding: 16px 12px;
+                gap: 12px;
+            }
+
+            .work-item {
+                padding: 8px;
+                gap: 8px;
             }
 
             .main-viewer {
