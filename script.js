@@ -391,7 +391,7 @@ function switchSidebarTab(tabName) {
     const tabs = document.querySelectorAll('.sidebar-tab');
     
     if (tabName === 'PROJECT') {
-        if (projectList) projectList.style.display = 'flex';
+        if (projectList) projectList.style.display = 'grid';
         if (studyList) studyList.style.display = 'none';
         tabs.forEach(tab => {
             if (tab.innerText === 'PROJECT') tab.classList.add('active');
@@ -399,7 +399,7 @@ function switchSidebarTab(tabName) {
         });
     } else if (tabName === 'INDEPENDENT_STUDY') {
         if (projectList) projectList.style.display = 'none';
-        if (studyList) studyList.style.display = 'flex';
+        if (studyList) studyList.style.display = 'grid';
         tabs.forEach(tab => {
             if (tab.innerText === 'INDEPENDENT STUDY') tab.classList.add('active');
             else tab.classList.remove('active');
