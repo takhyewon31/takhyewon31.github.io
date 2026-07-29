@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>이우영 1972-2023 내일 매일 검정고무신</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
     <style>
         @font-face {
             font-family: 'MapoGoldenPier';
@@ -24,6 +26,16 @@
             --text-primary: #ffffff;
             --text-secondary: #aaaaaa;
             --font-main: 'Noto Sans CJK KR', 'Noto Sans KR', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        /* Custom Selection Colors */
+        ::selection {
+            background-color: #B5B17B;
+            color: #1F2347;
+        }
+        ::-moz-selection {
+            background-color: #B5B17B;
+            color: #1F2347;
         }
 
         * {
@@ -1117,8 +1129,7 @@
                 </div>
 
                 <div class="work-list" id="list-project">
-                    <div class="work-item active" data-project="playhouse"
-                        id="project-item-playhouse">
+                    <div class="work-item active" data-project="playhouse" id="project-item-playhouse">
                         <div class="work-thumb">
                             <img src="project/Playhouse_poster.png" alt="Play House M.A.P the 30th">
                         </div>
@@ -1132,8 +1143,7 @@
                         </div>
                     </div>
 
-                    <div class="work-item" data-project="literature-style-sns"
-                        id="project-item-literature-style-sns">
+                    <div class="work-item" data-project="literature-style-sns" id="project-item-literature-style-sns">
                         <div class="work-thumb">
                             <img src="project/Hy_Sns_1.png" alt="서사파 vs 문장파 SNS 콘텐츠">
                         </div>
@@ -1219,29 +1229,25 @@
         </aside>
 
         <main class="main-viewer">
-            <div class="project-content" data-project-content="playhouse"
-                id="project-content-playhouse">
+            <div class="project-content" data-project-content="playhouse" id="project-content-playhouse">
                 <div class="project-top">
                     <div class="image-section">
-                        <div class="photo-slider-container scroll-anim">
-                            <div class="photo-slider">
-                                <img src="project/Playhouse_poster.png" alt="Play House Poster"
-                                    class="slider-image active">
-                                <img src="project/Playhouse_ticket.png" alt="Play House Ticket" class="slider-image">
-                                <img src="project/Playhouse_Cast.png" alt="Play House Cast" class="slider-image">
-                                <img src="project/Playhouse_Schedule.png" alt="Play House Schedule" class="slider-image">
-                            </div>
-                            <div class="slider-controls"></div>
-                        </div>
+                        <img src="project/Playhouse_poster.png" alt="Play House Poster" class="scroll-anim visible" style="width: 100%; height: auto; max-height: 85vh; object-fit: contain;">
                     </div>
 
                     <div class="info-section">
                         <h2>Play House M.A.P<br>the 30th</h2>
-                        <p class="category">극단 맵플레이하우스 • 2026</p>
+                        <p class="category">극단 플레이맵하우스 • 2026</p>
 
                         <div class="description">
+                            <div class="poster-text-box">
+                                <p><strong>일시:</strong> 2026. 08. 15 — 16</p>
+                                <p><strong>장소:</strong> 광운대 동해예술관 소극장</p>
+                            </div>
                             <div class="description-copy">
-                                <p>극단 맵플레이하우스의 30회 정기 공연을 위한 연극 포스터, 티켓, 캐스트 맵, 그리고 공연 정보 일정 등 연출에 필요한 전체 홍보 그래픽 디자인을 진행하였습니다.</p>
+                                <p>
+                                    플레이맵하우스의 정기 공연을 위한 뮤지컬 홍보용 포스터, 캐스팅 보드 등 공연에 필요한 전체적인 홍보 그래픽의 디자인을 전개하였습니다.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -1250,7 +1256,7 @@
                 <div class="project-bottom sns-two-column-layout">
                     <div class="section-header" style="grid-column: 1 / -1; margin-bottom: 40px;">
                         <div class="header-col">
-                            <div class="col-val title">Play House M.A.P the 30th Graphic</div>
+                            <div class="col-val title">Poster</div>
                         </div>
                         <div class="header-col">
                             <div class="col-val spec-list">
@@ -1269,7 +1275,8 @@
                             style="width: 100%; height: auto; margin-top: 0 !important; display: block;">
                     </div>
 
-                    <div class="project-section" style="margin-top: 0; display: flex; flex-direction: column; gap: 24px;">
+                    <div class="project-section"
+                        style="margin-top: 0; display: flex; flex-direction: column; gap: 24px;">
                         <img src="project/Playhouse_ticket.png" alt="Play House Ticket Detail" class="scroll-anim"
                             style="width: 100%; height: auto; margin-top: 0 !important; display: block;">
                         <img src="project/Playhouse_Cast.png" alt="Play House Cast Detail" class="scroll-anim"
