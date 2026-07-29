@@ -1,10 +1,39 @@
-// 1. 클릭 시 새로운 브라우저 팝업 창으로 project.html 열기
+// 1. 클릭 시 새로운 브라우저 팝업 창 대신, iframe 모달로 project.html 열기 (전체 화면 전환 방지)
 function openProjectPopup(project = 'literature-style-sns') {
-    // 팝업 창의 크기 및 옵션 설정 (가로 1100px, 세로 750px 권장) - 가로로 긴 비율
-    const popupOptions = "width=1100,height=750,scrollbars=yes,resizable=yes";
-    window.open(`project.html?project=${encodeURIComponent(project)}`, "projectPopup", popupOptions);
+    const iframe = document.getElementById('projectModalIframe');
+    const overlay = document.getElementById('projectModalOverlay');
+    
+    if (iframe && overlay) {
+        iframe.src = `project.html?project=${encodeURIComponent(project)}`;
+        overlay.style.display = 'flex';
+        // 강제 reflow 유도하여 transition 애니메이션 적용
+        overlay.offsetHeight; 
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; // 부모 스크롤 방지
+    } else {
+        // Fallback: 엘리먼트가 없으면 기존처럼 window.open으로 열기
+        const popupOptions = "width=1100,height=750,scrollbars=yes,resizable=yes";
+        window.open(`project.html?project=${encodeURIComponent(project)}`, "projectPopup", popupOptions);
+    }
 }
-// 1. 팝업 모달 오픈 펑션
+
+function closeProjectModal() {
+    const overlay = document.getElementById('projectModalOverlay');
+    const iframe = document.getElementById('projectModalIframe');
+    
+    if (overlay) {
+        overlay.classList.remove('active');
+        setTimeout(() => {
+            if (!overlay.classList.contains('active')) {
+                overlay.style.display = 'none';
+                if (iframe) iframe.src = ''; // 리소스 정리
+            }
+        }, 300);
+        document.body.style.overflow = ''; // 부모 스크롤 복원
+    }
+}
+
+// 2. 팝업 이미지 줌 모달 오픈 펑션
 function openModal(el) {
     const imgPath = el.getAttribute('data-img');
     const title = el.innerText;
@@ -18,13 +47,18 @@ function openModal(el) {
     document.getElementById('projectModal').style.display = 'flex';
 }
 
-// 2. 팝업 모달 닫기 펑션
+// 3. 팝업 이미지 줌 모달 닫기 펑션
 function closeModal() {
     document.getElementById('projectModal').style.display = 'none';
 }
 
 // 3. ✨ 마우스 오버 및 무브 실시간 미리보기 로직 ✨
 document.addEventListener('DOMContentLoaded', () => {
+    // iframe 내부 렌더링 감지하여 클래스 추가
+    if (window.self !== window.top) {
+        document.body.classList.add('in-iframe');
+    }
+
     const hoverPreview = document.getElementById('hover-preview');
     
     // 만약 HTML에 hover-preview 엘리먼트가 없다면 동적으로 생성
@@ -337,7 +371,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 8. 프로젝트 창 닫기/돌아가기 기능
 function closeProjectWindow() {
-    if (window.opener) {
+    if (window.parent && window.parent !== window) {
+        if (typeof window.parent.closeProjectModal === 'function') {
+            window.parent.closeProjectModal();
+        } else {
+            window.parent.location.reload();
+        }
+    } else if (window.opener) {
         window.close();
     } else {
         window.location.href = 'index.html';

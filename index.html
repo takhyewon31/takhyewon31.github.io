@@ -257,6 +257,64 @@
         .close-modal:hover {
             color: var(--text-primary);
         }
+
+        /* Project Iframe Modal Overlay */
+        .project-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-modal-overlay.active {
+            opacity: 1;
+        }
+
+        .project-modal-window {
+            width: 90vw;
+            height: 85vh;
+            max-width: 1200px;
+            max-height: 850px;
+            background-color: #000000;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-modal-overlay.active .project-modal-window {
+            transform: scale(1);
+        }
+
+        .project-modal-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        @media (max-width: 1000px) {
+            .project-modal-window {
+                width: 100%;
+                height: 100%;
+                max-width: 100%;
+                max-height: 100%;
+                border-radius: 0;
+                border: none;
+            }
+        }
     </style>
 </head>
 
@@ -408,6 +466,13 @@
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <img id="modal-img" src="" alt="Project Poster">
             <div class="modal-title" id="modal-title"></div>
+        </div>
+    </div>
+
+    <!-- Project Iframe Modal -->
+    <div id="projectModalOverlay" class="project-modal-overlay" onclick="closeProjectModal()">
+        <div class="project-modal-window" onclick="event.stopPropagation()">
+            <iframe id="projectModalIframe" class="project-modal-iframe" src="" title="Project Detail View"></iframe>
         </div>
     </div>
 
