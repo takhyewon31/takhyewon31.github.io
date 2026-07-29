@@ -1,5 +1,5 @@
 // 1. 클릭 시 새로운 브라우저 팝업 창 대신, iframe 모달로 project.html 열기 (전체 화면 전환 방지)
-function openProjectPopup(project = 'literature-style-sns') {
+function openProjectPopup(project = 'playhouse') {
     const iframe = document.getElementById('projectModalIframe');
     const overlay = document.getElementById('projectModalOverlay');
     
@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 7. URL의 project 값에 맞춰 사이드바 프로젝트 선택
 document.addEventListener('DOMContentLoaded', () => {
-    const projectKey = new URLSearchParams(window.location.search).get('project') || 'literature-style-sns';
+    const projectKey = new URLSearchParams(window.location.search).get('project') || 'playhouse';
     const mainViewer = document.querySelector('.main-viewer');
     const resetProjectScroll = () => {
         if (mainViewer) mainViewer.scrollTo({ top: 0, left: 0, behavior: 'auto' });
@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 브라우저 뒤로/앞으로 버튼으로 이동할 때도 URL의 project 파라미터에 맞춰 뷰를 업데이트
     window.addEventListener('popstate', () => {
-        const projectKey = new URLSearchParams(window.location.search).get('project') || 'literature-style-sns';
+        const projectKey = new URLSearchParams(window.location.search).get('project') || 'playhouse';
         const requestedItem = Array.from(document.querySelectorAll('.work-item[data-project]'))
             .find(item => item.dataset.project === projectKey);
         const requestedContent = Array.from(document.querySelectorAll('[data-project-content]'))
