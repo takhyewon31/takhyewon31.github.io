@@ -325,32 +325,31 @@
         .work-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 4px;
+            gap: 12px;
+            margin-top: 6px;
         }
 
         .work-tag {
-            font-size: 0.65rem;
+            font-size: 0.75rem;
             display: inline-block;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 600;
-            letter-spacing: 0.2px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            background: transparent;
+            padding: 0;
+            paint-order: stroke fill;
         }
 
         .tag-year {
-            background-color: rgba(163, 217, 255, 0.12);
-            color: #a3d9ff;
+            -webkit-text-stroke: 1.8px #a3d9ff;
         }
 
         .tag-type {
-            background-color: rgba(224, 187, 246, 0.12);
-            color: #e0bbf6;
+            -webkit-text-stroke: 1.8px #e0bbf6;
         }
 
         .tag-cat {
-            background-color: rgba(244, 233, 156, 0.12);
-            color: #f4e99c;
+            -webkit-text-stroke: 1.8px #f4e99c;
         }
 
         /* 우측 메인 뷰어 (프로젝트 상세) */
@@ -500,6 +499,7 @@
 
         .header-col.col-desc {
             grid-column: span 2;
+            max-width: 350px;
         }
 
         .col-label {
