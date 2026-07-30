@@ -363,7 +363,7 @@
             display: flex;
             flex-direction: column;
             background-color: var(--bg-color);
-            padding-left: 20px;
+            padding-left: 0;
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
@@ -484,7 +484,7 @@
         .section-header {
             width: 100%;
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-columns: repeat(4, 1fr);
             gap: 16px 40px;
             padding-top: 24px;
             border-top: 1px solid rgba(255, 255, 255, 0.15);
@@ -499,7 +499,7 @@
         }
 
         .header-col.col-desc {
-            /* 2fr column naturally covers the description area */
+            grid-column: span 2;
         }
 
         .col-label {
@@ -783,7 +783,7 @@
         .project-bottom.sns-two-column-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            gap: clamp(24px, 4vw, 60px);
             align-items: center;
             max-width: 100%;
             box-sizing: border-box;
@@ -842,7 +842,7 @@
             }
 
             .main-viewer {
-                padding-left: 20px;
+                padding-left: 0;
             }
 
             .project-content {
