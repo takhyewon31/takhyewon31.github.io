@@ -266,6 +266,7 @@
         .work-item {
             display: flex;
             flex-direction: column;
+            justify-content: flex-end;
             align-items: flex-start;
             gap: 12px;
             padding: 0;
@@ -274,6 +275,7 @@
             background: none !important;
             border: none !important;
             opacity: 0.45;
+            height: 100%;
         }
 
         .work-item:hover {
@@ -311,7 +313,7 @@
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 4px;
         }
 
         .work-title {
@@ -325,8 +327,8 @@
         .work-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 2px;
-            margin-top: 0;
+            gap: 3px;
+            margin-top: 2px;
         }
 
         .work-tag {
@@ -343,17 +345,17 @@
         }
 
         .tag-year {
-            -webkit-text-stroke: 4px #00f0ff;
+            -webkit-text-stroke: 5.5px #00f0ff;
             /* Pantone Electric Cyan */
         }
 
         .tag-type {
-            -webkit-text-stroke: 4px #ff007f;
+            -webkit-text-stroke: 5.5px #ff007f;
             /* Pantone Neon Rose */
         }
 
         .tag-cat {
-            -webkit-text-stroke: 4px #d4ff00;
+            -webkit-text-stroke: 5.5px #d4ff00;
             /* Pantone Acid Lime */
         }
 
@@ -1316,18 +1318,30 @@
                         </div>
                     </div>
 
+                    <!-- Left: Poster -->
                     <div class="project-section" style="margin-top: 0;">
                         <img src="project/Playhouse_poster.png" alt="Play House Poster Detail" class="scroll-anim"
                             style="width: 100%; height: auto; margin-top: 0 !important; display: block;">
                     </div>
 
-                    <div class="project-section"
-                        style="margin-top: 0; display: flex; flex-direction: column; gap: 24px;">
-                        <img src="project/Playhouse_ticket.png" alt="Play House Ticket Detail" class="scroll-anim"
-                            style="width: 100%; height: auto; margin-top: 0 !important; display: block;">
+                    <!-- Right: Cast -->
+                    <div class="project-section" style="margin-top: 0;">
                         <img src="project/Playhouse_Cast.png" alt="Play House Cast Detail" class="scroll-anim"
                             style="width: 100%; height: auto; margin-top: 0 !important; display: block;">
+                    </div>
+
+                    <!-- Divider -->
+                    <div style="grid-column: 1 / -1; height: 1px; background-color: rgba(255, 255, 255, 0.15); margin: 40px 0;"></div>
+
+                    <!-- Left below divider: Schedule -->
+                    <div class="project-section" style="margin-top: 0;">
                         <img src="project/Playhouse_Schedule.png" alt="Play House Schedule Detail" class="scroll-anim"
+                            style="width: 100%; height: auto; margin-top: 0 !important; display: block;">
+                    </div>
+
+                    <!-- Right below divider: Ticket -->
+                    <div class="project-section" style="margin-top: 0;">
+                        <img src="project/Playhouse_ticket.png" alt="Play House Ticket Detail" class="scroll-anim"
                             style="width: 100%; height: auto; margin-top: 0 !important; display: block;">
                     </div>
                 </div>
