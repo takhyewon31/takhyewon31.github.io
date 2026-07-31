@@ -656,7 +656,7 @@
         .leaflet-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
+            gap: 40px;
             width: 100%;
             margin-top: 16px;
         }
@@ -676,7 +676,7 @@
         #project-content-youth-artist-academy .leaflet-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 24px;
+            gap: 40px;
             width: 100%;
         }
 
@@ -698,12 +698,13 @@
 
         .web-banner-container {
             display: grid;
-            grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
-            gap: clamp(24px, 4vw, 60px);
+            grid-template-columns: 3fr 1fr;
+            column-gap: 40px;
+            row-gap: 16px;
             width: 100%;
             margin-top: 16px;
             height: clamp(520px, 70vw, 760px);
-            align-items: center;
+            align-items: flex-start;
         }
 
         .web-banner-left {
@@ -770,7 +771,7 @@
         .newsletter-detail-gallery {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 24px;
+            gap: 40px;
             width: 100%;
             margin-top: 16px;
         }
@@ -791,7 +792,7 @@
         .project-bottom.sns-two-column-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            column-gap: clamp(24px, 4vw, 60px);
+            column-gap: 40px;
             row-gap: 16px;
             align-items: flex-start;
             max-width: 100%;
