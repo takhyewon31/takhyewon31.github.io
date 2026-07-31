@@ -474,7 +474,7 @@
         }
 
         .project-section img:first-of-type {
-            margin-top: 40px;
+            margin-top: 16px;
             /* 첫 이미지와 헤더 사이 간격 */
         }
 
@@ -791,10 +791,15 @@
         .project-bottom.sns-two-column-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: clamp(24px, 4vw, 60px);
-            align-items: center;
+            column-gap: clamp(24px, 4vw, 60px);
+            row-gap: 16px;
+            align-items: flex-start;
             max-width: 100%;
             box-sizing: border-box;
+        }
+
+        .project-bottom.sns-two-column-layout .section-header {
+            margin-bottom: 0 !important;
         }
 
         @media (max-width: 768px) {
@@ -1296,7 +1301,7 @@
                 </div>
 
                 <div class="project-bottom sns-two-column-layout">
-                    <div class="section-header" style="grid-column: 1 / -1; margin-bottom: 40px;">
+                    <div class="section-header" style="grid-column: 1 / -1; margin-bottom: 0;">
                         <div class="col-val title" style="grid-column: 1 / -1; margin-bottom: 12px;">Leaflet</div>
                         <div class="header-col col-desc">
                             <div class="col-val spec-list" style="color: #aaaaaa;">
@@ -1332,7 +1337,7 @@
                     </div>
 
                     <!-- Divider -->
-                    <div style="grid-column: 1 / -1; height: 1px; background-color: rgba(255, 255, 255, 0.15); margin: 40px 0;"></div>
+                    <div style="grid-column: 1 / -1; height: 1px; background-color: rgba(255, 255, 255, 0.15); margin: 0;"></div>
 
                     <!-- Left below divider: Schedule -->
                     <div class="project-section" style="margin-top: 0;">
@@ -1664,7 +1669,7 @@
                 </div>
 
                 <div class="project-bottom sns-two-column-layout">
-                    <div class="section-header" style="grid-column: 1 / -1; margin-bottom: 40px;">
+                    <div class="section-header" style="grid-column: 1 / -1; margin-bottom: 0;">
                         <div class="col-val title" style="grid-column: 1 / -1; margin-bottom: 12px;">Newsletter Detail
                         </div>
                         <div class="header-col col-desc"></div>
@@ -1735,7 +1740,7 @@
                 </div>
 
                 <div class="project-bottom sns-two-column-layout">
-                    <div class="section-header" style="grid-column: 1 / -1; margin-bottom: 40px;">
+                    <div class="section-header" style="grid-column: 1 / -1; margin-bottom: 0;">
                         <div class="col-val title" style="grid-column: 1 / -1; margin-bottom: 12px;">catalog</div>
                         <div class="header-col col-desc"></div>
                         <div class="header-col">
