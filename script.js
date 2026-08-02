@@ -114,19 +114,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let rafId = null;
         let start = null;
-        let paused = false;
-        let pauseUntil = 0;
         let fromY = 0;
         let toY = 0;
-        const cycleMs = 14000;
-        const holdMs = 450;
+        const cycleMs = 18000;
 
         const setTransform = (value) => {
             img.style.transform = `translateY(${value}px)`;
         };
 
         const recalcRange = () => {
-            const maxOffset = Math.max(0, img.scrollHeight - column.clientHeight);
+            const renderedHeight = img.getBoundingClientRect().height;
+            const maxOffset = Math.max(0, renderedHeight - column.clientHeight);
             fromY = 0;
             toY = -maxOffset;
             if (maxOffset === 0) {
@@ -138,33 +136,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const tick = (ts) => {
             if (!start) start = ts;
-            if (!recalcRange()) {
-                rafId = requestAnimationFrame(tick);
-                return;
-            }
+            recalcRange();
 
-            if (paused) {
-                if (ts < pauseUntil) {
-                    rafId = requestAnimationFrame(tick);
-                    return;
-                }
-                paused = false;
-                start = ts;
-            }
-
-            const elapsed = (ts - start) % (cycleMs + holdMs);
-            if (elapsed <= cycleMs) {
-                const progress = elapsed / cycleMs;
-                const eased = progress < 0.5
-                    ? 4 * progress * progress * progress
-                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-                const currentY = fromY + (toY - fromY) * eased;
-                setTransform(currentY);
-            } else {
-                setTransform(toY);
-                paused = true;
-                pauseUntil = ts + holdMs;
-            }
+            const elapsed = (ts - start) % (cycleMs * 2);
+            const progress = elapsed / cycleMs;
+            const direction = progress <= 1 ? progress : 2 - progress;
+            const eased = direction < 0.5
+                ? 4 * direction * direction * direction
+                : 1 - Math.pow(-2 * direction + 2, 3) / 2;
+            const currentY = fromY + (toY - fromY) * eased;
+            setTransform(currentY);
 
             rafId = requestAnimationFrame(tick);
         };
@@ -172,16 +153,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const startAnimation = () => {
             if (rafId) cancelAnimationFrame(rafId);
             start = null;
-            paused = false;
-            pauseUntil = 0;
-            rafId = requestAnimationFrame(tick);
+            rafId = requestAnimationFrame(() => {
+                if (!recalcRange()) return;
+                rafId = requestAnimationFrame(tick);
+            });
         };
 
-        if (img.complete) {
-            startAnimation();
-        } else {
-            img.addEventListener('load', startAnimation, { once: true });
-        }
+        img.addEventListener('load', startAnimation, { once: true });
+        if (img.complete) startAnimation();
 
         window.addEventListener('resize', startAnimation);
     });
