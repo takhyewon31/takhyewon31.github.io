@@ -698,18 +698,18 @@
 
         .web-banner-container {
             display: grid;
-            grid-template-columns: 1.3fr 1.7fr;
+            grid-template-columns: 2.5fr 1fr;
             column-gap: 40px;
             row-gap: 16px;
             width: 100%;
             margin-top: 16px;
-            height: auto;
+            height: clamp(520px, 70vw, 760px);
             align-items: flex-start;
         }
 
         .web-banner-left {
             width: 100%;
-            height: auto;
+            height: 100%;
         }
 
         .web-banner-left img {
@@ -721,19 +721,18 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .web-banner-right.detail-page-columns {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            column-gap: 20px;
+        .web-banner-right {
             width: 100%;
-            height: auto;
+            height: 100%;
+            overflow: hidden;
+            align-self: start;
         }
 
         .detail-column {
             position: relative;
             width: 100%;
-            height: auto;
-            overflow: visible;
+            height: 100%;
+            overflow: hidden;
             border-radius: 0;
             background-color: transparent;
         }
@@ -748,9 +747,20 @@
             opacity: 1 !important;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border-radius: 0 !important;
+            animation: autoScrollDetail 16s ease-in-out infinite;
         }
 
-        /* Sliced detail page displays natively without translate shifts */
+        @keyframes autoScrollDetail {
+            0%, 8% {
+                transform: translateY(0);
+            }
+            45%, 53% {
+                transform: translateY(calc(-100% + clamp(520px, 70vw, 760px)));
+            }
+            92%, 100% {
+                transform: translateY(0);
+            }
+        }
 
         .sns-detail-grid {
             display: grid;
@@ -979,18 +989,31 @@
                 height: auto;
             }
 
-            .web-banner-right.detail-page-columns {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                height: auto;
+            .web-banner-right {
+                height: min(120vw, 680px);
+                overflow: hidden;
             }
 
             .detail-column {
-                height: auto;
+                height: 100%;
                 border-radius: 0;
             }
 
-            /* Sliced detail page displays natively without translate shifts on mobile */
+            .detail-column img {
+                animation: autoScrollDetailMobile 16s ease-in-out infinite;
+            }
+
+            @keyframes autoScrollDetailMobile {
+                0%, 8% {
+                    transform: translateY(0);
+                }
+                45%, 53% {
+                    transform: translateY(calc(-100% + min(120vw, 680px)));
+                }
+                92%, 100% {
+                    transform: translateY(0);
+                }
+            }
 
             .sns-detail-grid {
                 grid-template-columns: 1fr;
@@ -1643,12 +1666,9 @@
                                 <img src="project/Gcf_Web_1.png?v=2" alt="Web banner & Detail page mockup"
                                     class="scroll-anim">
                             </div>
-                            <div class="web-banner-right detail-page-columns">
-                                <div class="detail-column part-1 scroll-anim">
-                                    <img src="project/Gcf_Web_2_part1.jpg" alt="Detail page part 1">
-                                </div>
-                                <div class="detail-column part-2 scroll-anim">
-                                    <img src="project/Gcf_Web_2_part2.jpg" alt="Detail page part 2">
+                            <div class="web-banner-right">
+                                <div class="detail-column scroll-anim">
+                                    <img src="project/Gcf_Web_2.jpg" alt="Web banner & Detail page detail">
                                 </div>
                             </div>
                         </div>
