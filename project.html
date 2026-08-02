@@ -702,8 +702,8 @@
 
         .web-banner-container {
             display: grid;
-            grid-template-columns: minmax(0, 2.05fr) minmax(220px, 0.98fr);
-            column-gap: 24px;
+            grid-template-columns: minmax(0, 2.1fr) minmax(220px, 0.9fr);
+            column-gap: 28px;
             row-gap: 16px;
             width: 100%;
             margin-top: 16px;
@@ -729,7 +729,7 @@
         .web-banner-right {
             width: 100%;
             margin-top: 0;
-            aspect-ratio: 1 / 1.45;
+            aspect-ratio: 1 / 1.12;
             overflow: hidden;
             align-self: start;
         }
@@ -755,6 +755,7 @@
             border-radius: 0 !important;
             transform: translateY(0);
             will-change: transform;
+            min-height: 100%;
         }
 
         .sns-detail-grid {
