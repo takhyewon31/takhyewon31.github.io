@@ -756,13 +756,13 @@
 
         @keyframes waterfallScroll {
             0%, 5% {
-                transform: translateY(0);
-            }
-            85%, 90% {
                 transform: translateY(calc(-100% + (45.67cqi - 6.0px)));
             }
-            100% {
+            85%, 90% {
                 transform: translateY(0);
+            }
+            100% {
+                transform: translateY(calc(-100% + (45.67cqi - 6.0px)));
             }
         }
 
@@ -1015,13 +1015,13 @@
 
             @keyframes waterfallScrollMobile {
                 0%, 5% {
-                    transform: translateY(0);
-                }
-                85%, 90% {
                     transform: translateY(calc(-100% + 60.9cqi));
                 }
-                100% {
+                85%, 90% {
                     transform: translateY(0);
+                }
+                100% {
+                    transform: translateY(calc(-100% + 60.9cqi));
                 }
             }
 
