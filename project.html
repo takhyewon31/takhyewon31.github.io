@@ -732,9 +732,15 @@
             position: relative;
             width: 100%;
             height: 100%;
-            overflow: hidden;
+            overflow-y: auto;
             border-radius: 0;
             background-color: transparent;
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        .detail-column::-webkit-scrollbar {
+            display: none; /* Chrome, Safari and Opera */
         }
 
         .detail-column img {
@@ -747,19 +753,6 @@
             opacity: 1 !important;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border-radius: 0 !important;
-            animation: autoScrollDetail 16s ease-in-out infinite;
-        }
-
-        @keyframes autoScrollDetail {
-            0%, 8% {
-                transform: translateY(0);
-            }
-            45%, 53% {
-                transform: translateY(calc(-100% + clamp(520px, 70vw, 760px)));
-            }
-            92%, 100% {
-                transform: translateY(0);
-            }
         }
 
         .sns-detail-grid {
@@ -997,22 +990,17 @@
             .detail-column {
                 height: 100%;
                 border-radius: 0;
+                overflow-y: auto;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+
+            .detail-column::-webkit-scrollbar {
+                display: none;
             }
 
             .detail-column img {
-                animation: autoScrollDetailMobile 16s ease-in-out infinite;
-            }
-
-            @keyframes autoScrollDetailMobile {
-                0%, 8% {
-                    transform: translateY(0);
-                }
-                45%, 53% {
-                    transform: translateY(calc(-100% + min(120vw, 680px)));
-                }
-                92%, 100% {
-                    transform: translateY(0);
-                }
+                /* Static image scrollable inside container on mobile */
             }
 
             .sns-detail-grid {
