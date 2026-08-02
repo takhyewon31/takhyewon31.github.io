@@ -698,16 +698,18 @@
 
         .web-banner-container {
             display: grid;
-            grid-template-columns: 3fr 1fr;
+            grid-template-columns: repeat(4, 1fr);
             column-gap: 40px;
             row-gap: 16px;
             width: 100%;
             margin-top: 16px;
             height: auto;
             align-items: flex-start;
+            container-type: inline-size;
         }
 
         .web-banner-left {
+            grid-column: span 3;
             width: 100%;
             height: auto;
         }
@@ -722,12 +724,12 @@
         }
 
         .web-banner-right {
+            grid-column: span 1;
             width: 100%;
-            margin-top: 10.1%;
-            aspect-ratio: 1 / 1.827;
+            margin-top: calc(2.53cqi - 0.3px);
+            height: calc(45.67cqi - 6.0px);
             overflow: hidden;
             align-self: start;
-            container-type: size;
         }
 
         .detail-column {
@@ -757,7 +759,7 @@
                 transform: translateY(0);
             }
             85%, 90% {
-                transform: translateY(calc(-100% + 100cqh));
+                transform: translateY(calc(-100% + (45.67cqi - 6.0px)));
             }
             100% {
                 transform: translateY(0);
@@ -988,16 +990,17 @@
             }
 
             .web-banner-left {
+                grid-column: span 1;
                 height: auto;
             }
 
             .web-banner-right {
+                grid-column: span 1;
                 width: 100%;
-                margin-top: 3.37%;
+                margin-top: 3.37cqi;
                 aspect-ratio: 1 / 0.609;
                 height: auto;
                 overflow: hidden;
-                container-type: size;
             }
 
             .detail-column {
@@ -1015,7 +1018,7 @@
                     transform: translateY(0);
                 }
                 85%, 90% {
-                    transform: translateY(calc(-100% + 100cqh));
+                    transform: translateY(calc(-100% + 60.9cqi));
                 }
                 100% {
                     transform: translateY(0);
