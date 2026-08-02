@@ -698,7 +698,7 @@
 
         .web-banner-container {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: 1.6fr 1fr;
             column-gap: 40px;
             row-gap: 16px;
             width: 100%;
@@ -709,7 +709,6 @@
         }
 
         .web-banner-left {
-            grid-column: span 3;
             width: 100%;
             height: auto;
         }
@@ -724,10 +723,9 @@
         }
 
         .web-banner-right {
-            grid-column: span 1;
             width: 100%;
             margin-top: 0;
-            height: calc(48.2cqi - 6.42px);
+            aspect-ratio: 1 / 1.028;
             overflow: hidden;
             align-self: start;
         }
@@ -756,13 +754,13 @@
 
         @keyframes waterfallScroll {
             0%, 5% {
-                transform: translateY(calc(-100% + (48.2cqi - 6.42px)));
+                transform: translateY(calc(-100% + 102.8cqi));
             }
             85%, 90% {
                 transform: translateY(0);
             }
             100% {
-                transform: translateY(calc(-100% + (48.2cqi - 6.42px)));
+                transform: translateY(calc(-100% + 102.8cqi));
             }
         }
 
@@ -990,12 +988,10 @@
             }
 
             .web-banner-left {
-                grid-column: span 1;
                 height: auto;
             }
 
             .web-banner-right {
-                grid-column: span 1;
                 width: 100%;
                 margin-top: 0;
                 aspect-ratio: 1 / 0.643;
