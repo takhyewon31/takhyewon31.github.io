@@ -399,9 +399,6 @@
             grid-template-columns: repeat(4, 1fr);
             padding: 0 80px;
             gap: 40px;
-        }
-
-        #project-content-playhouse .project-top {
             align-items: flex-start;
         }
 
@@ -422,18 +419,13 @@
             grid-column: span 2;
             min-width: 0;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: flex-start;
+            align-items: flex-start;
             padding: clamp(72px, 8vw, 120px) 0;
             position: sticky;
             top: 0;
             align-self: flex-start;
             height: auto;
-        }
-
-        #project-content-playhouse .image-section {
-            padding-top: clamp(72px, 8vw, 120px);
-            padding-bottom: clamp(72px, 8vw, 120px);
         }
 
         .image-section img {
@@ -576,12 +568,8 @@
             /* 가로 왼쪽 축 정렬 */
             text-align: left;
             /* 글자 왼쪽 정렬 */
-            padding: 80px 0 80px;
+            padding: clamp(72px, 8vw, 120px) 0 80px;
             /* 이미지 상단과 맞추기 위해 패딩 통일 */
-        }
-
-        #project-content-playhouse .info-section {
-            padding-top: clamp(72px, 8vw, 120px);
         }
 
         .info-section h2 {
