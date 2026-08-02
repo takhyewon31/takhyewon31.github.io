@@ -753,18 +753,17 @@
             opacity: 1 !important;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border-radius: 0 !important;
-            animation: waterfallScroll 24s ease-in-out infinite;
+            animation: waterfallScroll 24s linear infinite;
         }
 
         @keyframes waterfallScroll {
 
             0%,
-            8% {
+            78% {
                 transform: translateY(0);
             }
 
-            80%,
-            88% {
+            79% {
                 transform: translateY(-58%);
             }
 
@@ -1016,18 +1015,17 @@
             }
 
             .detail-column img {
-                animation: waterfallScrollMobile 24s ease-in-out infinite;
+                animation: waterfallScrollMobile 24s linear infinite;
             }
 
             @keyframes waterfallScrollMobile {
 
                 0%,
-                8% {
+                78% {
                     transform: translateY(0);
                 }
 
-                80%,
-                88% {
+                79% {
                     transform: translateY(-70%);
                 }
 
