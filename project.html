@@ -753,17 +753,8 @@
             opacity: 1 !important;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border-radius: 0 !important;
-            animation: waterfallScroll 60s ease-in-out infinite alternate;
-        }
-
-        @keyframes waterfallScroll {
-            from {
-                transform: translateY(0);
-            }
-
-            to {
-                transform: translateY(-58%);
-            }
+            transform: translateY(0);
+            will-change: transform;
         }
 
         .sns-detail-grid {
@@ -1009,17 +1000,7 @@
             }
 
             .detail-column img {
-                animation: waterfallScrollMobile 60s ease-in-out infinite alternate;
-            }
-
-            @keyframes waterfallScrollMobile {
-                from {
-                    transform: translateY(0);
-                }
-
-                to {
-                    transform: translateY(-70%);
-                }
+                transform: translateY(0);
             }
 
             .sns-detail-grid {

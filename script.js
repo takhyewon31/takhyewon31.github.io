@@ -104,6 +104,89 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// 4. 웹 배너 detail 이미지 자동 이동
+document.addEventListener('DOMContentLoaded', () => {
+    const detailColumns = document.querySelectorAll('.detail-column');
+
+    detailColumns.forEach((column) => {
+        const img = column.querySelector('img');
+        if (!img) return;
+
+        let rafId = null;
+        let start = null;
+        let paused = false;
+        let pauseUntil = 0;
+        let fromY = 0;
+        let toY = 0;
+        const cycleMs = 14000;
+        const holdMs = 450;
+
+        const setTransform = (value) => {
+            img.style.transform = `translateY(${value}px)`;
+        };
+
+        const recalcRange = () => {
+            const maxOffset = Math.max(0, img.scrollHeight - column.clientHeight);
+            fromY = 0;
+            toY = -maxOffset;
+            if (maxOffset === 0) {
+                setTransform(0);
+                return false;
+            }
+            return true;
+        };
+
+        const tick = (ts) => {
+            if (!start) start = ts;
+            if (!recalcRange()) {
+                rafId = requestAnimationFrame(tick);
+                return;
+            }
+
+            if (paused) {
+                if (ts < pauseUntil) {
+                    rafId = requestAnimationFrame(tick);
+                    return;
+                }
+                paused = false;
+                start = ts;
+            }
+
+            const elapsed = (ts - start) % (cycleMs + holdMs);
+            if (elapsed <= cycleMs) {
+                const progress = elapsed / cycleMs;
+                const eased = progress < 0.5
+                    ? 4 * progress * progress * progress
+                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+                const currentY = fromY + (toY - fromY) * eased;
+                setTransform(currentY);
+            } else {
+                setTransform(toY);
+                paused = true;
+                pauseUntil = ts + holdMs;
+            }
+
+            rafId = requestAnimationFrame(tick);
+        };
+
+        const startAnimation = () => {
+            if (rafId) cancelAnimationFrame(rafId);
+            start = null;
+            paused = false;
+            pauseUntil = 0;
+            rafId = requestAnimationFrame(tick);
+        };
+
+        if (img.complete) {
+            startAnimation();
+        } else {
+            img.addEventListener('load', startAnimation, { once: true });
+        }
+
+        window.addEventListener('resize', startAnimation);
+    });
+});
+
 // 4. 스크롤 애니메이션 옵저버 (이미지가 화면에 나타날 때 부드럽게 표시)
 document.addEventListener('DOMContentLoaded', () => {
     const observerOptions = {
@@ -406,4 +489,3 @@ function switchSidebarTab(tabName) {
         });
     }
 }
-
