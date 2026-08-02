@@ -116,7 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let start = null;
         let fromY = 0;
         let toY = 0;
-        const cycleMs = 18000;
+        const downMs = 14000;
+        const upMs = 6500;
+        const totalMs = downMs + upMs;
 
         const setTransform = (value) => {
             img.style.transform = `translateY(${value}px)`;
@@ -138,13 +140,23 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!start) start = ts;
             recalcRange();
 
-            const elapsed = (ts - start) % (cycleMs * 2);
-            const progress = elapsed / cycleMs;
-            const direction = progress <= 1 ? progress : 2 - progress;
-            const eased = direction < 0.5
-                ? 4 * direction * direction * direction
-                : 1 - Math.pow(-2 * direction + 2, 3) / 2;
-            const currentY = fromY + (toY - fromY) * eased;
+            const elapsed = (ts - start) % totalMs;
+            let currentY = fromY;
+
+            if (elapsed <= downMs) {
+                const progress = elapsed / downMs;
+                const eased = progress < 0.5
+                    ? 4 * progress * progress * progress
+                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+                currentY = fromY + (toY - fromY) * eased;
+            } else {
+                const returnProgress = (elapsed - downMs) / upMs;
+                const eased = returnProgress < 0.5
+                    ? 4 * returnProgress * returnProgress * returnProgress
+                    : 1 - Math.pow(-2 * returnProgress + 2, 3) / 2;
+                currentY = toY + (fromY - toY) * eased;
+            }
+
             setTransform(currentY);
 
             rafId = requestAnimationFrame(tick);
