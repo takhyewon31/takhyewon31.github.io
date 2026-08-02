@@ -725,6 +725,8 @@
             height: 100%;
             overflow: hidden;
             align-self: start;
+            position: relative;
+            cursor: pointer;
         }
 
         .web-banner-right img {
@@ -734,6 +736,13 @@
             height: auto;
             object-fit: initial;
             object-position: top center;
+            transform: translateY(0);
+            transition: transform 1.5s ease-in-out !important;
+        }
+
+        .web-banner-right:hover img {
+            transform: translateY(calc(-100% + clamp(520px, 70vw, 760px)));
+            transition: transform 8s linear !important;
         }
 
         .sns-detail-grid {
@@ -965,6 +974,10 @@
 
             .web-banner-right {
                 height: min(120vw, 680px);
+            }
+
+            .web-banner-right:hover img {
+                transform: translateY(calc(-100% + min(120vw, 680px)));
             }
 
             .sns-detail-grid {
