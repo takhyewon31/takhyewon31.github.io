@@ -229,10 +229,10 @@
             padding: 0;
             margin: 0;
             color: rgba(255, 255, 255, 0.35);
-            font-family: var(--font-main);
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
+            font-family: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
             cursor: pointer;
             text-align: left;
             transition: color 0.2s ease;
@@ -336,29 +336,32 @@
         .work-tag {
             font-size: 0.72rem;
             display: inline-block;
-            padding: 2px 3px;
-            border-radius: 4px;
+            padding: 2px 6px;
+            border-radius: 999px;
             font-weight: 900;
-            color: #121212;
+            color: #f6f6f6;
             letter-spacing: 0px;
-            background-color: #121212;
-            /* subtle dark pill background similar to var(--bg-color) */
+            background-color: rgba(255, 255, 255, 0.09);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             paint-order: stroke fill;
         }
 
         .tag-year {
             -webkit-text-stroke: 5.5px #00f0ff;
             /* Pantone Electric Cyan */
+            background-color: rgba(0, 240, 255, 0.12);
         }
 
         .tag-type {
             -webkit-text-stroke: 5.5px #ff007f;
             /* Pantone Neon Rose */
+            background-color: rgba(255, 0, 127, 0.12);
         }
 
         .tag-cat {
             -webkit-text-stroke: 5.5px #d4ff00;
             /* Pantone Acid Lime */
+            background-color: rgba(212, 255, 0, 0.12);
         }
 
         /* 우측 메인 뷰어 (프로젝트 상세) */
@@ -466,6 +469,30 @@
 
         #project-content-say-touche .image-section img {
             max-height: 72vh;
+        }
+
+        #project-content-say-touche .project-bottom.sns-two-column-layout > .project-section {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #project-content-say-touche .project-bottom.sns-two-column-layout > .project-section > img,
+        #project-content-say-touche .project-bottom.sns-two-column-layout > .project-section .photo-slider-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        #project-content-say-touche .project-bottom.sns-two-column-layout .photo-slider {
+            width: 100%;
+            height: 100%;
+        }
+
+        #project-content-say-touche .project-bottom.sns-two-column-layout .photo-slider img.slider-image {
+            width: 100%;
+            height: 100%;
         }
 
         /* 하단: 풀사이즈 이미지 영역 (리플렛 등) */
