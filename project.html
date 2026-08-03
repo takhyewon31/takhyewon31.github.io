@@ -294,6 +294,8 @@
         .work-thumb {
             width: 100%;
             height: auto;
+            max-width: 92%;
+            margin: 0 auto;
             background: transparent;
             border-radius: 0;
             overflow: hidden;
@@ -304,6 +306,7 @@
         .work-thumb img {
             width: 100%;
             height: auto;
+            max-height: 180px;
             display: block;
             object-fit: contain;
             border-radius: 0;
@@ -453,6 +456,16 @@
         .image-section img.visible:hover,
         .project-bottom img.visible:hover {
             transform: translateY(0) scale(1.01);
+        }
+
+        #project-content-say-touche .photo-slider-container {
+            width: min(72%, 520px);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #project-content-say-touche .image-section img {
+            max-height: 72vh;
         }
 
         /* 하단: 풀사이즈 이미지 영역 (리플렛 등) */
@@ -831,13 +844,17 @@
             grid-template-columns: 1fr 1fr;
             column-gap: 40px;
             row-gap: 16px;
-            align-items: flex-start;
+            align-items: center;
             max-width: 100%;
             box-sizing: border-box;
         }
 
         .project-bottom.sns-two-column-layout .section-header {
             margin-bottom: 16px !important;
+        }
+
+        .project-bottom.sns-two-column-layout > .project-section {
+            align-self: center;
         }
 
         @media (max-width: 768px) {
@@ -1431,7 +1448,8 @@
 
                         <div class="description">
                             <div class="description-copy">
-                                <p>해외에서 국내 문학이 주목되는 가운데 해외에서 판매량이 좋은 한강 작가와 정유정의 문체를 알아보는 콘텐츠입니다.</p>
+                                <p>'한국의 빛나는 ○○'을 주제로 한국 문학의 매력을 알리기 위한 SNS 콘텐츠 프로젝트입니다. 해외에서 주목받고 있는 한국 문학을 쉽고 친근하게 소개하기 위해 서로 다른 문체를 가진 두 작가를 선정했습니다.</p>
+                                <p>한국 문학의 다양한 매력을 전달하기 위해 섬세한 문장과 시적인 정서를 대표하는 한강, 탄탄한 플롯과 몰입감 있는 서사를 대표하는 정유정을 선정했습니다. 카드뉴스 형식으로 대표작과 문체를 비교하는 콘텐츠를 기획했으며, 사용자가 직접 문체를 추측하는 참여형 구성을 통해 흥미와 몰입도를 높였습니다.</p>
                             </div>
                         </div>
                     </div>
@@ -1442,7 +1460,10 @@
                         <div class="section-header">
                             <div class="col-val title" style="grid-column: 1 / -1; margin-bottom: 12px;">SNS Contents
                             </div>
-                            <div class="header-col col-desc"></div>
+                            <div class="header-col col-desc">
+                                <div class="col-val spec-list" style="color: #aaaaaa;">
+                                    <span>인스타그램 소비 환경에 맞춰 밈적인 요소를 활용해 콘텐츠의 진입장벽을 낮췄습니다. 대표작 소개와 첫 문장을 단계적으로 배치해 두 작가의 문체를 자연스럽게 이해할 수 있도록 전개하였습니다.</span>
+                            </div>
                             <div class="header-col">
                                 <div class="col-val spec-list">
                                     <span>기획 및 디자인 | 탁혜원</span>
@@ -1488,7 +1509,7 @@
                                     &lt;이우영 1972-2023 매일, 내 일 검정고무신&gt;은 만화 '검정 고무신' 그림 작가인 이우영의 삶을 다양한 시각적 매체를 통해 새롭게
                                     조명하고 추억하는 특별 기획전입니다.
                                 </p>
-                                <p>전시를 위한 포스터, 리플렛 및 연표 등의 편집물을 디자인하였습니다. 전체적으로 무채색을 사용하여 정적인 분위기를 나타내었으며, 하늘색을 메인 색상으로
+                                <p>전시를 위한 포스터, 리플렛 및 연표 등의 편집물을 디자인했습니다. 전체적으로 무채색을 사용하여 정적인 분위기를 나타내었으며, 하늘색을 메인 색상으로
                                     설정해 자유로운 느낌을 전달하였습니다.</p>
                                 <p>A2(420mm x 594mm) 스노우지 180g</p>
                             </div>
@@ -1811,8 +1832,8 @@
 
                         <div class="description">
                             <div class="description-copy">
-                                <p>Say Touche의 제품을 효과적으로 보여주는 카탈로그로 인스타그래머블한 브랜드 이미지를 강조하기 위해 세로형(4:5)과 정방형(1:1) 비율의 사진
-                                    구성을 활용하였다.</p>
+                                <p>Say Touché는 제품을 하나의 오브제로 재해석해 공간에 새로운 감각을 제안하는 라이프스타일 브랜드입니다. 브랜드가 추구하는 오브제의 가치와 감성을 효과적으로 전달하기 위해 카탈로그를 제작하였습니다.</p>
+                                <p>브랜드의 인스타그램 피드가 하나의 작은 전시처럼 보여지는 느낌을 받아 이러한 경험을 오프라인에서도 이어질 수 있도록 카탈로그의 형식으로 풀어내보았습니다.</p>
                             </div>
                         </div>
                     </div>
@@ -1821,7 +1842,9 @@
                 <div class="project-bottom sns-two-column-layout">
                     <div class="section-header" style="grid-column: 1 / -1; margin-bottom: 16px;">
                         <div class="col-val title" style="grid-column: 1 / -1; margin-bottom: 12px;">catalog</div>
-                        <div class="header-col col-desc"></div>
+                         <div class="col-val spec-list" style="color: #aaaaaa;">
+                                <span>디자인 키워드인 '오브제', '인스타그래머블', '디지털 감성'을 중심으로 전시 리플렛 형식의 세로형 판형을 적용했습니다. 픽셀 그래픽을 활용해 온라인의 분위기를 표현하고, 이미지 중심의 레이아웃으로 제품을 하나의 작품처럼 감상할 수 있도록 구성하였고, 콘텐츠 이미지는 인스타그램에 최적화된 1:1과 4:5 비율을 적용해 브랜드의 디지털 무드를 일관되게 담아냈습니다.</span>
+                            </div>
                         <div class="header-col">
                             <div class="col-val spec-list">
                                 <span>기획 및 디자인 | 탁혜원</span>
