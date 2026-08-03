@@ -230,9 +230,9 @@
             margin: 0;
             color: rgba(255, 255, 255, 0.35);
             font-family: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 600;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.08em;
             cursor: pointer;
             text-align: left;
             transition: color 0.2s ease;
@@ -336,32 +336,26 @@
         .work-tag {
             font-size: 0.72rem;
             display: inline-block;
-            padding: 2px 6px;
-            border-radius: 999px;
-            font-weight: 900;
-            color: #f6f6f6;
+            padding: 1px 5px 2px;
+            border-radius: 0;
+            font-weight: 700;
+            color: #000000;
             letter-spacing: 0px;
-            background-color: rgba(255, 255, 255, 0.09);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background-color: rgba(255, 255, 255, 0.86);
+            box-shadow: inset 0 -0.75em 0 rgba(181, 177, 125, 0.92);
             paint-order: stroke fill;
         }
 
         .tag-year {
-            -webkit-text-stroke: 5.5px #00f0ff;
-            /* Pantone Electric Cyan */
-            background-color: rgba(0, 240, 255, 0.12);
+            box-shadow: inset 0 -0.75em 0 rgba(0, 240, 255, 0.75);
         }
 
         .tag-type {
-            -webkit-text-stroke: 5.5px #ff007f;
-            /* Pantone Neon Rose */
-            background-color: rgba(255, 0, 127, 0.12);
+            box-shadow: inset 0 -0.75em 0 rgba(255, 0, 127, 0.7);
         }
 
         .tag-cat {
-            -webkit-text-stroke: 5.5px #d4ff00;
-            /* Pantone Acid Lime */
-            background-color: rgba(212, 255, 0, 0.12);
+            box-shadow: inset 0 -0.75em 0 rgba(212, 255, 0, 0.78);
         }
 
         /* 우측 메인 뷰어 (프로젝트 상세) */
@@ -493,6 +487,58 @@
         #project-content-say-touche .project-bottom.sns-two-column-layout .photo-slider img.slider-image {
             width: 100%;
             height: 100%;
+        }
+
+        .project-bottom.playhouse-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.9fr);
+            gap: 28px 28px;
+            align-items: start;
+        }
+
+        .project-bottom.playhouse-layout .section-header {
+            grid-column: 1 / -1;
+        }
+
+        .project-bottom.playhouse-layout .project-section {
+            margin-top: 0;
+        }
+
+        .playhouse-poster-stack {
+            position: relative;
+            width: 100%;
+        }
+
+        .playhouse-poster-stack .project-section:first-child {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .playhouse-poster-stack .project-section.overlay-cast {
+            position: absolute;
+            left: 34%;
+            top: 16%;
+            width: 58%;
+            z-index: 2;
+        }
+
+        .playhouse-ticket {
+            grid-column: 2;
+            grid-row: 1;
+            align-self: start;
+        }
+
+        .playhouse-schedule {
+            grid-column: 2;
+            grid-row: 2;
+            align-self: start;
+        }
+
+        #project-content-playhouse .project-bottom.playhouse-layout .project-section img {
+            margin-top: 0 !important;
+            display: block;
+            width: 100%;
+            height: auto;
         }
 
         /* 하단: 풀사이즈 이미지 영역 (리플렛 등) */
@@ -1263,9 +1309,9 @@
         <aside class="sidebar" id="projectSidebar">
             <div class="sidebar-content">
                 <div class="sidebar-tabs">
-                    <button class="sidebar-tab active" onclick="switchSidebarTab('PROJECT')">PROJECT</button>
-                    <button class="sidebar-tab" onclick="switchSidebarTab('INDEPENDENT_STUDY')">INDEPENDENT
-                        STUDY</button>
+                    <button class="sidebar-tab active" onclick="switchSidebarTab('PROJECT')">Project</button>
+                    <button class="sidebar-tab" onclick="switchSidebarTab('INDEPENDENT_STUDY')">Independent
+                        Study</button>
                 </div>
 
                 <div class="work-list" id="list-project">
@@ -1422,32 +1468,24 @@
                         </div>
                     </div>
 
-                    <!-- Left: Poster -->
-                    <div class="project-section" style="margin-top: 0;">
-                        <img src="project/Playhouse_poster.png" alt="Play House Poster Detail" class="scroll-anim"
-                            style="width: 100%; height: auto; margin-top: 0 !important; display: block;">
+                    <div class="playhouse-poster-stack">
+                        <div class="project-section" style="margin-top: 0;">
+                            <img src="project/Playhouse_poster.png" alt="Play House Poster Detail" class="scroll-anim"
+                                style="width: 100%; height: auto; margin-top: 0 !important; display: block;">
+                        </div>
+                        <div class="project-section overlay-cast" style="margin-top: 0;">
+                            <img src="project/Playhouse_Cast.png" alt="Play House Cast Detail" class="scroll-anim"
+                                style="width: 100%; height: auto; margin-top: 0 !important; display: block;">
+                        </div>
                     </div>
 
-                    <!-- Right: Cast -->
-                    <div class="project-section" style="margin-top: 0;">
-                        <img src="project/Playhouse_Cast.png" alt="Play House Cast Detail" class="scroll-anim"
-                            style="width: 100%; height: auto; margin-top: 0 !important; display: block;">
-                    </div>
-
-                    <!-- Divider -->
-                    <div
-                        style="grid-column: 1 / -1; height: 1px; background-color: rgba(255, 255, 255, 0.15); margin: 0;">
-                    </div>
-
-                    <!-- Left below divider: Schedule -->
-                    <div class="project-section" style="margin-top: 0;">
-                        <img src="project/Playhouse_Schedule.png" alt="Play House Schedule Detail" class="scroll-anim"
-                            style="width: 100%; height: auto; margin-top: 0 !important; display: block;">
-                    </div>
-
-                    <!-- Right below divider: Ticket -->
-                    <div class="project-section" style="margin-top: 0;">
+                    <div class="project-section playhouse-ticket" style="margin-top: 0;">
                         <img src="project/Playhouse_ticket.png" alt="Play House Ticket Detail" class="scroll-anim"
+                            style="width: 100%; height: auto; margin-top: 0 !important; display: block; transform: rotate(-90deg); transform-origin: center center;">
+                    </div>
+
+                    <div class="project-section playhouse-schedule" style="margin-top: 0;">
+                        <img src="project/Playhouse_Schedule.png" alt="Play House Schedule Detail" class="scroll-anim"
                             style="width: 100%; height: auto; margin-top: 0 !important; display: block;">
                     </div>
                 </div>
