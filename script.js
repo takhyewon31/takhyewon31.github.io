@@ -107,75 +107,117 @@ document.addEventListener('DOMContentLoaded', () => {
 // 4. 웹 배너 detail 이미지 자동 이동
 document.addEventListener('DOMContentLoaded', () => {
     const detailColumns = document.querySelectorAll('.detail-column');
+    const detailAnimations = [];
 
     detailColumns.forEach((column) => {
         const img = column.querySelector('img');
         if (!img) return;
 
-        let rafId = null;
-        let start = null;
-        let fromY = 0;
-        let toY = 0;
-        const downMs = 14000;
-        const upMs = 6500;
-        const totalMs = downMs + upMs;
-
-        const setTransform = (value) => {
-            img.style.transform = `translateY(${value}px)`;
-        };
-
-        const recalcRange = () => {
-            const renderedHeight = img.getBoundingClientRect().height;
-            const maxOffset = Math.max(0, renderedHeight - column.clientHeight);
-            fromY = 0;
-            toY = -maxOffset;
-            if (maxOffset === 0) {
-                setTransform(0);
-                return false;
-            }
-            return true;
-        };
-
-        const tick = (ts) => {
-            if (!start) start = ts;
-            recalcRange();
-
-            const elapsed = (ts - start) % totalMs;
-            let currentY = fromY;
-
-            if (elapsed <= downMs) {
-                const progress = elapsed / downMs;
-                const eased = progress < 0.5
-                    ? 4 * progress * progress * progress
-                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-                currentY = fromY + (toY - fromY) * eased;
-            } else {
-                const returnProgress = (elapsed - downMs) / upMs;
-                const eased = returnProgress < 0.5
-                    ? 4 * returnProgress * returnProgress * returnProgress
-                    : 1 - Math.pow(-2 * returnProgress + 2, 3) / 2;
-                currentY = toY + (fromY - toY) * eased;
-            }
-
-            setTransform(currentY);
-
-            rafId = requestAnimationFrame(tick);
-        };
-
-        const startAnimation = () => {
-            if (rafId) cancelAnimationFrame(rafId);
-            start = null;
-            rafId = requestAnimationFrame(() => {
-                if (!recalcRange()) return;
-                rafId = requestAnimationFrame(tick);
-            });
-        };
-
-        img.addEventListener('load', startAnimation, { once: true });
-        if (img.complete) startAnimation();
-
-        window.addEventListener('resize', startAnimation);
+        detailAnimations.push({
+            column,
+            img,
+            rafId: null,
+            layoutRafId: null,
+            start: null,
+            maxOffset: 0
+        });
     });
+
+    const isProjectVisible = (state) => !state.column.closest('[data-project-content][hidden]');
+    const downMs = 14000;
+    const upMs = 6500;
+    const totalMs = downMs + upMs;
+
+    const setTransform = (state, value) => {
+        // Align each frame to physical pixels so fine text in the source image stays crisp while moving.
+        const pixelRatio = window.devicePixelRatio || 1;
+        const snappedValue = Math.round(value * pixelRatio) / pixelRatio;
+        state.img.style.transform = `translate3d(0, ${snappedValue}px, 0)`;
+    };
+
+    const stopAnimation = (state) => {
+        if (state.rafId) cancelAnimationFrame(state.rafId);
+        if (state.layoutRafId) cancelAnimationFrame(state.layoutRafId);
+        state.rafId = null;
+        state.layoutRafId = null;
+        state.start = null;
+    };
+
+    const recalcRange = (state) => {
+        const renderedHeight = state.img.offsetHeight;
+        state.maxOffset = Math.max(0, renderedHeight - state.column.clientHeight);
+        if (state.maxOffset === 0) {
+            setTransform(state, 0);
+            return false;
+        }
+        return true;
+    };
+
+    const tick = (state, ts) => {
+        state.rafId = null;
+        if (!isProjectVisible(state) || document.hidden || !recalcRange(state)) return;
+        if (state.start === null) state.start = ts;
+
+        const elapsed = (ts - state.start) % totalMs;
+        let currentY = 0;
+
+        if (elapsed <= downMs) {
+            const progress = elapsed / downMs;
+            const eased = progress < 0.5
+                ? 4 * progress * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+            currentY = -state.maxOffset * eased;
+        } else {
+            const returnProgress = (elapsed - downMs) / upMs;
+            const eased = returnProgress < 0.5
+                ? 4 * returnProgress * returnProgress * returnProgress
+                : 1 - Math.pow(-2 * returnProgress + 2, 3) / 2;
+            currentY = -state.maxOffset + state.maxOffset * eased;
+        }
+
+        setTransform(state, currentY);
+        state.rafId = requestAnimationFrame((nextTs) => tick(state, nextTs));
+    };
+
+    const startAnimation = (state) => {
+        stopAnimation(state);
+        setTransform(state, 0);
+        if (!isProjectVisible(state) || document.hidden) return;
+
+        // The project becomes visible immediately before this event; wait for layout to settle first.
+        state.layoutRafId = requestAnimationFrame(() => {
+            state.layoutRafId = requestAnimationFrame(() => {
+                state.layoutRafId = null;
+                if (!isProjectVisible(state) || !recalcRange(state)) return;
+                state.rafId = requestAnimationFrame((ts) => tick(state, ts));
+            });
+        });
+    };
+
+    const syncDetailAnimations = () => {
+        detailAnimations.forEach((state) => {
+            stopAnimation(state);
+            setTransform(state, 0);
+        });
+        detailAnimations.forEach(startAnimation);
+    };
+
+    detailAnimations.forEach((state) => {
+        state.img.addEventListener('load', () => {
+            if (isProjectVisible(state)) startAnimation(state);
+        });
+    });
+
+    window.addEventListener('resize', syncDetailAnimations);
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            detailAnimations.forEach(stopAnimation);
+        } else {
+            syncDetailAnimations();
+        }
+    });
+    document.addEventListener('projectcontentchange', syncDetailAnimations);
+    syncDetailAnimations();
 });
 
 // 4. 스크롤 애니메이션 옵저버 (이미지가 화면에 나타날 때 부드럽게 표시)
