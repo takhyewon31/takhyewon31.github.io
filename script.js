@@ -231,6 +231,59 @@ document.addEventListener('DOMContentLoaded', () => {
 // 6. 포토 슬라이더 제어 로직
 document.addEventListener('DOMContentLoaded', () => {
     const sliderContainers = document.querySelectorAll('.photo-slider-container');
+    const sliderState = new WeakMap();
+
+    function updateSlider(container, index) {
+        const state = sliderState.get(container);
+        if (!state) return;
+
+        const { images, currentIdxEl } = state;
+        const normalizedIndex = (index + images.length) % images.length;
+
+        images.forEach((img, i) => {
+            if (i === normalizedIndex) {
+                img.classList.add('active');
+            } else {
+                img.classList.remove('active');
+            }
+        });
+
+        state.currentIndex = normalizedIndex;
+        if (currentIdxEl) {
+            currentIdxEl.textContent = normalizedIndex + 1;
+        }
+    }
+
+    function resetSlider(container) {
+        const state = sliderState.get(container);
+        if (!state) return;
+        updateSlider(container, 0);
+    }
+
+    function startAutoplay(container) {
+        const state = sliderState.get(container);
+        if (!state) return;
+
+        const { images } = state;
+        if (container.dataset.autoplay === 'false' || images.length <= 1) return;
+
+        const interval = parseInt(container.dataset.autoplayInterval, 10) || 1000;
+        if (state.autoplayId) {
+            clearInterval(state.autoplayId);
+        }
+        state.autoplayId = setInterval(() => {
+            const nextIdx = (state.currentIndex + 1) % images.length;
+            updateSlider(container, nextIdx);
+        }, interval);
+    }
+
+    function stopAutoplay(container) {
+        const state = sliderState.get(container);
+        if (state && state.autoplayId) {
+            clearInterval(state.autoplayId);
+            state.autoplayId = null;
+        }
+    }
     
     sliderContainers.forEach(container => {
         const images = container.querySelectorAll('.slider-image');
@@ -241,60 +294,48 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (images.length === 0) return;
         
-        let currentIndex = 0;
-        
+        sliderState.set(container, {
+            images,
+            currentIdxEl,
+            currentIndex: 0,
+            autoplayId: null
+        });
+
         // 총 슬라이드 수 설정
         if (totalIdxEl) {
             totalIdxEl.textContent = images.length;
         }
-        
-        function updateSlider(index) {
-            images.forEach((img, i) => {
-                if (i === index) {
-                    img.classList.add('active');
-                } else {
-                    img.classList.remove('active');
-                }
-            });
-            
-            currentIndex = index;
-            
-            if (currentIdxEl) {
-                currentIdxEl.textContent = currentIndex + 1;
-            }
-        }
-        
+
         if (prevBtn) {
             prevBtn.addEventListener('click', () => {
-                let nextIdx = currentIndex - 1;
-                if (nextIdx < 0) {
-                    nextIdx = images.length - 1;
-                }
-                updateSlider(nextIdx);
+                const state = sliderState.get(container);
+                if (!state) return;
+                updateSlider(container, state.currentIndex - 1);
             });
         }
         
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {
-                let nextIdx = currentIndex + 1;
-                if (nextIdx >= images.length) {
-                    nextIdx = 0;
-                }
-                updateSlider(nextIdx);
+                const state = sliderState.get(container);
+                if (!state) return;
+                updateSlider(container, state.currentIndex + 1);
             });
         }
         
-        // 초기화
-        updateSlider(0);
-        if (container.dataset.autoplay !== 'false') {
-            const interval = parseInt(container.dataset.autoplayInterval, 10) || 1000;
-            setInterval(() => {
-                let nextIdx = currentIndex + 1;
-                if (nextIdx >= images.length) nextIdx = 0;
-                updateSlider(nextIdx);
-            }, interval);
-        }
+        resetSlider(container);
     });
+
+    function syncVisibleProjectSliders() {
+        const visibleContent = document.querySelector('[data-project-content]:not([hidden])');
+        if (!visibleContent) return;
+
+        sliderContainers.forEach(stopAutoplay);
+        const containers = visibleContent.querySelectorAll('.photo-slider-container');
+        containers.forEach(container => {
+            resetSlider(container);
+            startAutoplay(container);
+        });
+    }
 
     // 메인(왼쪽) 이미지 섹션 자동 전환 (보이는 프로젝트 하나에 대해서만 동작)
     (function setupMainImageAutoRotate() {
@@ -350,6 +391,9 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(startForVisibleProject, 60);
         });
     })();
+
+    syncVisibleProjectSliders();
+    document.addEventListener('projectcontentchange', syncVisibleProjectSliders);
 });
 
 // 7. URL의 project 값에 맞춰 사이드바 프로젝트 선택
@@ -371,6 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
             content.hidden = content !== requestedContent;
         });
         resetProjectScroll();
+        document.dispatchEvent(new Event('projectcontentchange'));
     }
 
     const activeTitleEl = document.querySelector('.work-item.active .work-title');
@@ -405,6 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 content.hidden = (content.dataset.projectContent !== projectKey);
             });
             resetProjectScroll();
+            document.dispatchEvent(new Event('projectcontentchange'));
 
             const activeTitleEl = item.querySelector('.work-title');
             if (activeTitleEl) {
@@ -432,6 +478,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 content.hidden = (content !== requestedContent);
             });
             resetProjectScroll();
+            document.dispatchEvent(new Event('projectcontentchange'));
 
             const activeTitleEl = requestedItem.querySelector('.work-title');
             if (activeTitleEl) {
