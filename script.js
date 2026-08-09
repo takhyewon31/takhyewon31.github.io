@@ -453,6 +453,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (requestedItem && requestedContent) {
         document.querySelectorAll('.work-item').forEach(item => item.classList.remove('active'));
         requestedItem.classList.add('active');
+        const parentList = requestedItem.closest('.work-list');
+        if (parentList && parentList.id === 'list-independent-study') {
+            switchSidebarTab('INDEPENDENT_STUDY');
+        } else if (parentList && parentList.id === 'list-project') {
+            switchSidebarTab('PROJECT');
+        }
         document.querySelectorAll('[data-project-content]').forEach(content => {
             content.hidden = content !== requestedContent;
         });
@@ -557,14 +563,16 @@ function switchSidebarTab(tabName) {
         if (projectList) projectList.style.display = 'grid';
         if (studyList) studyList.style.display = 'none';
         tabs.forEach(tab => {
-            if (tab.innerText === 'PROJECT') tab.classList.add('active');
+            const txt = tab.innerText.trim().toUpperCase();
+            if (txt.includes('WORK') || txt.includes('PROJECT')) tab.classList.add('active');
             else tab.classList.remove('active');
         });
     } else if (tabName === 'INDEPENDENT_STUDY') {
         if (projectList) projectList.style.display = 'none';
         if (studyList) studyList.style.display = 'grid';
         tabs.forEach(tab => {
-            if (tab.innerText === 'INDEPENDENT STUDY') tab.classList.add('active');
+            const txt = tab.innerText.trim().toUpperCase();
+            if (txt.includes('STUDY')) tab.classList.add('active');
             else tab.classList.remove('active');
         });
     }
