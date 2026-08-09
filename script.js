@@ -569,7 +569,7 @@ function switchSidebarTab(tabName) {
         });
     } else if (tabName === 'INDEPENDENT_STUDY') {
         if (projectList) projectList.style.display = 'none';
-        if (studyList) studyList.style.display = 'grid';
+        if (studyList) studyList.style.display = 'flex';
         tabs.forEach(tab => {
             const txt = tab.innerText.trim().toUpperCase();
             if (txt.includes('STUDY')) tab.classList.add('active');

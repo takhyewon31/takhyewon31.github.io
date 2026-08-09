@@ -264,6 +264,44 @@
             display: none;
         }
 
+        #list-independent-study {
+            display: flex !important;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        #list-independent-study .work-item {
+            width: 100%;
+            max-width: 220px;
+            align-items: center;
+            text-align: center;
+        }
+
+        #list-independent-study .work-info {
+            align-items: center;
+            text-align: center;
+        }
+
+        #list-independent-study .work-tags {
+            justify-content: center;
+        }
+
+        .workshop-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .workshop-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
         .work-item {
             display: flex;
             flex-direction: column;
@@ -2034,7 +2072,7 @@
                 id="project-content-sangjun-workshop" hidden>
                 <div class="project-top">
                     <div class="image-section">
-                        <img src="project/sangjun_workshop_1.webp" alt="푸르른 새싹과 거인의 어깨" class="scroll-anim"
+                        <img src="project/sangjun_workshop_1.webp" alt="푸르른 새싹과 거인의 어깨" class="scroll-anim visible"
                             style="width: 100%; height: auto; max-height: 85vh; object-fit: contain;">
                     </div>
 
@@ -2043,8 +2081,18 @@
                         <p class="category">INDEPENDENT STUDY • 2025</p>
 
                         <div class="description">
-                            <div class="description-copy">
-                                <p>워크숍 스터디 프로젝트 '푸르른 새싹과 거인의 어깨'입니다.</p>
+                            <div class="description-copy" style="line-height: 1.85;">
+                                <p style="margin-bottom: 12px; font-size: 0.95rem;">
+                                    <strong>1차시 : 2025.03.22 오후 7시 - 9시</strong><br>
+                                    내용 : 역사 속에 있는 그래픽 디자이너들을 선정해 마음에 드는 작업물 찾기
+                                </p>
+                                <p style="margin-bottom: 16px; font-size: 0.95rem;">
+                                    <strong>2차시 : 2025.04.05 오후 7시 - 9시</strong><br>
+                                    내용 : 선정한 포스터를 최대한 따라 만들기
+                                </p>
+                                <p style="color: #aaaaaa; font-size: 0.85rem; margin-top: 20px; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                                    포스터 디자인 : 성냥그래픽스
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -2052,12 +2100,26 @@
 
                 <div class="project-bottom">
                     <div class="project-section" style="margin-top: 0;">
-                        <img src="project/sangjun_workshop_2.webp" alt="푸르른 새싹과 거인의 어깨 2" class="scroll-anim"
-                            style="width: 100%; height: auto; display: block;">
-                        <img src="project/sangjun_workshop_3.webp" alt="푸르른 새싹과 거인의 어깨 3" class="scroll-anim"
-                            style="width: 100%; height: auto; margin-top: 40px !important; display: block;">
-                        <img src="project/sangjun_workshop_4.webp" alt="푸르른 새싹과 거인의 어깨 4" class="scroll-anim"
-                            style="width: 100%; height: auto; margin-top: 40px !important; display: block;">
+                        <div class="workshop-grid">
+                            <img src="project/sangjun_workshop_2.webp" alt="푸르른 새싹과 거인의 어깨 2" class="scroll-anim"
+                                style="width: 100%; height: auto; display: block;">
+                            <img src="project/sangjun_workshop_3.webp" alt="푸르른 새싹과 거인의 어깨 3" class="scroll-anim"
+                                style="width: 100%; height: auto; display: block;">
+                        </div>
+
+                        <div class="workshop-grid" style="margin-top: 40px;">
+                            <img src="project/sangjun_workshop_4.webp" alt="푸르른 새싹과 거인의 어깨 4" class="scroll-anim"
+                                style="width: 100%; height: auto; display: block;">
+                            <img src="project/sangjun_workshop_5.webp" alt="푸르른 새싹과 거인의 어깨 5" class="scroll-anim"
+                                style="width: 100%; height: auto; display: block;">
+                        </div>
+
+                        <div class="workshop-grid" style="margin-top: 40px;">
+                            <img src="project/sangjun_workshop_6.webp" alt="푸르른 새싹과 거인의 어깨 6" class="scroll-anim"
+                                style="width: 100%; height: auto; display: block;">
+                            <img src="project/sangjun_workshop_7.webp" alt="푸르른 새싹과 거인의 어깨 7" class="scroll-anim"
+                                style="width: 100%; height: auto; display: block;">
+                        </div>
                     </div>
                 </div>
             </div>
