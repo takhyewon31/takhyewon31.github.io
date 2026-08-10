@@ -524,22 +524,23 @@
         }
 
         .playhouse-poster-stack {
-            --playhouse-card-width: 62%;
+            --playhouse-card-width: 61%;
             position: relative;
             width: 100%;
             /* Includes the cast board's lower overlap in the grid height. */
-            padding-bottom: 17.13%;
+            padding-bottom: 16.85%;
         }
 
-        .playhouse-poster-stack>.project-section:first-child {
+        .playhouse-poster-stack > .project-section:first-child {
             width: var(--playhouse-card-width);
+            position: relative;
         }
 
         .playhouse-poster-stack .project-section.overlay-cast {
             position: absolute;
-            left: 38%;
+            left: 60.5%;
             top: 19.5%;
-            width: var(--playhouse-card-width);
+            width: 100%;
             z-index: 2;
         }
 
@@ -1532,13 +1533,13 @@
                     </div>
 
                     <div class="playhouse-poster-stack">
-                        <div class="project-section" style="margin-top: 0;">
+                        <div class="project-section" style="margin-top: 0; position: relative;">
                             <img src="project/Playhouse_poster.png" alt="Play House Poster Detail" class="scroll-anim"
                                 style="width: 100%; height: auto; margin-top: 0 !important; display: block;">
-                        </div>
-                        <div class="project-section overlay-cast" style="margin-top: 0;">
-                            <img src="project/Playhouse_Cast.png" alt="Play House Cast Detail" class="scroll-anim"
-                                style="width: 100%; height: auto; margin-top: 0 !important; display: block;">
+                            <div class="project-section overlay-cast" style="margin-top: 0;">
+                                <img src="project/Playhouse_Cast.png" alt="Play House Cast Detail" class="scroll-anim"
+                                    style="width: 100%; height: auto; margin-top: 0 !important; display: block;">
+                            </div>
                         </div>
                     </div>
 
