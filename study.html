@@ -250,6 +250,25 @@
             margin-top: 8px;
         }
 
+        /* Section Header Layout */
+        .section-header {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px 40px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .section-header .col-val {
+            font-size: 0.82rem !important;
+            color: #bbbbbb;
+            font-weight: 300;
+            word-break: keep-all;
+        }
+
         /* Workshop Grid Layout */
         .workshop-grid {
             display: grid;
@@ -500,7 +519,7 @@
 
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <script src="script.js?v=20260811-4"></script>
+    <script src="script.js?v=20260811-5"></script>
 </body>
 
 </html>
