@@ -2089,35 +2089,62 @@
 
                 <div class="project-bottom">
                     <div class="project-section" style="margin-top: 0;">
-                        <!-- Row 1: sangjun_workshop_2 & sangjun_workshop_3 (2열 수평 정렬, 서로 높이 맞게) -->
-                        <div class="workshop-grid">
+                        <!-- Row 1: sangjun_workshop_2 & sangjun_workshop_3 (2열 수평 정렬, 상단선 100% 일치) -->
+                        <div class="workshop-grid" style="align-items: start;">
                             <img src="project/sangjun_workshop_2.webp" alt="sangjun workshop 2" class="scroll-anim"
                                 style="width: 100%; height: auto; display: block;">
                             <img src="project/sangjun_workshop_3.webp" alt="sangjun workshop 3" class="scroll-anim"
                                 style="width: 100%; height: auto; display: block;">
                         </div>
 
-                        <!-- Row 2: 류이치 야마시로, 가메쿠라 유사쿠 1, 가메쿠라 유사쿠 2, 칼 오스카 블라제 (4열 정렬) -->
-                        <div class="panel-grid" style="margin-top: 40px; align-items: start;">
-                            <img src="project/sangjun_workshop_attached_1.webp" alt="류이치 야마시로" class="scroll-anim">
-                            <img src="project/sangjun_workshop_attached_2.webp" alt="가메쿠라 유사쿠 1" class="scroll-anim">
-                            <img src="project/sangjun_workshop_attached_3.webp" alt="가메쿠라 유사쿠 2" class="scroll-anim">
-                            <img src="project/sangjun_workshop_attached_4.webp" alt="칼 오스카 블라제" class="scroll-anim">
+                        <!-- Row 2A: 류이치 야마시로 & 가메쿠라 유사쿠 1 (2열 수평 정렬, 가독성/포스터 크기 균일화) -->
+                        <div class="workshop-grid" style="margin-top: 40px; align-items: start;">
+                            <img src="project/sangjun_workshop_attached_1.webp" alt="류이치 야마시로" class="scroll-anim"
+                                style="width: 100%; height: auto; display: block;">
+                            <img src="project/sangjun_workshop_attached_2.webp" alt="가메쿠라 유사쿠 1" class="scroll-anim"
+                                style="width: 100%; height: auto; display: block;">
                         </div>
 
-                        <!-- Row 3: sangjun_workshop_4 & sangjun_workshop_5 (2열 정렬, 서로 높이 맞게) -->
-                        <div class="workshop-grid" style="margin-top: 40px;">
+                        <!-- Row 2B: 가메쿠라 유사쿠 2 & 칼 오스카 블라제 (2열 수평 정렬, 가독성/포스터 크기 균일화) -->
+                        <div class="workshop-grid" style="margin-top: 40px; align-items: start;">
+                            <img src="project/sangjun_workshop_attached_3.webp" alt="가메쿠라 유사쿠 2" class="scroll-anim"
+                                style="width: 100%; height: auto; display: block;">
+                            <img src="project/sangjun_workshop_attached_4.webp" alt="칼 오스카 블라제" class="scroll-anim"
+                                style="width: 100%; height: auto; display: block;">
+                        </div>
+
+                        <!-- Row 3: sangjun_workshop_4 & sangjun_workshop_5 (2열 수평 정렬, 상단선 100% 일치) -->
+                        <div class="workshop-grid" style="margin-top: 40px; align-items: start;">
                             <img src="project/sangjun_workshop_4.webp" alt="sangjun workshop 4" class="scroll-anim"
                                 style="width: 100%; height: auto; display: block;">
                             <img src="project/sangjun_workshop_5.webp" alt="sangjun workshop 5" class="scroll-anim"
                                 style="width: 100%; height: auto; display: block;">
                         </div>
 
-                        <!-- Row 4~6: sangjun_workshop_6, Attached 5 (EXPO '70 Osaka 원본 vs 따라하기), sangjun_workshop_7 (p7) -->
+                        <!-- Row 4~5: sangjun_workshop_6, Attached 5 (EXPO '70 Osaka 원본 vs 따라하기) -->
                         <img src="project/sangjun_workshop_6.webp" alt="sangjun workshop 6" class="scroll-anim"
                             style="width: 100%; height: auto; margin-top: 40px !important; display: block;">
                         <img src="project/sangjun_workshop_attached_5.webp" alt="EXPO '70 Osaka 원본 vs 따라하기" class="scroll-anim"
                             style="width: 100%; height: auto; margin-top: 40px !important; display: block;">
+
+                        <!-- Row 6: 첨부 이미지 #3 (2열 레이아웃 정리: 좌측 포스터 이미지, 우측 불렛 텍스트) -->
+                        <div class="workshop-grid" style="margin-top: 40px; align-items: center;">
+                            <img src="project/sangjun_workshop_expo_detail.webp" alt="EXPO '70 Osaka 디테일" class="scroll-anim"
+                                style="width: 100%; height: auto; display: block;">
+                            <div class="expo-notes"
+                                style="line-height: 1.9; font-size: 0.92rem; color: #e0e0e0; display: flex; flex-direction: column; justify-content: center;">
+                                <ul style="padding-left: 20px; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                                    <li>높은 해상도의 이미지를 찾다가 원본 포스터가 거래되는 걸 봤는데 실크스크린 제작이었다.....</li>
+                                    <li>채도/색상을 구현하기 힘들어서 비슷한 색 찾느라 오래 걸렸다.</li>
+                                    <li>블렌드로 만드는 건 알겠는데 그 이후는 감이 안왔음</li>
+                                    <li>(신영오 도움으로 앎) 알고보니 도형 제작 → 클리핑 마스크의 연속</li>
+                                    <li>중간에 붉은 빛이 도는 원도 따라하려해봤는데 툴 미숙이슈인지 부자연스러워서 뺌</li>
+                                    <li>방사형 도형 끝에 음영 / 중앙에 갈색 음영 얹으니까 대략적인 느낌이 나왔음</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Row 7: sangjun_workshop_7 (p7) -->
                         <img src="project/sangjun_workshop_7.webp" alt="sangjun workshop 7" class="scroll-anim"
                             style="width: 100%; height: auto; margin-top: 40px !important; display: block;">
                     </div>
