@@ -509,7 +509,7 @@
 
         .project-bottom.playhouse-layout {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(240px, 0.7fr);
+            grid-template-columns: minmax(0, 1fr) minmax(240px, 0.6fr);
             column-gap: clamp(16px, 2vw, 24px);
             row-gap: 26px;
             align-items: stretch;
@@ -525,11 +525,11 @@
         }
 
         .playhouse-poster-stack {
-            --playhouse-card-width: 75%;
+            --playhouse-card-width: 75.7%;
             position: relative;
             width: 100%;
             /* Includes the cast board's lower overlap in the grid height. */
-            padding-bottom: 20.72%;
+            padding-bottom: 20.91%;
         }
 
         .playhouse-poster-stack>.project-section:first-child {
@@ -549,9 +549,14 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            align-items: flex-start;
             height: 100%;
             width: 100%;
             min-width: 0;
+        }
+
+        .playhouse-side-stack .project-section {
+            width: 58%;
         }
 
         .playhouse-ticket {
@@ -1718,7 +1723,8 @@
                             <img src="project/Black Rubber Shoes_Panel_4.png" alt="이우영 회고전 연표 패널 4 - 강화도에서의 삶과 작업"
                                 class="scroll-anim">
                         </div>
-                        <img src="project/Black Rubber Shoes_Chronology_1.webp" alt="이우영 회고전 자료 액자" class="scroll-anim">
+                        <img src="project/Black Rubber Shoes_Chronology_1.webp" alt="이우영 회고전 자료 액자" class="scroll-anim"
+                            style="width: 100%; height: auto; margin-top: 40px !important; display: block;">
                     </div>
 
                     <div class="project-section">
