@@ -1,10 +1,14 @@
-// 1. 클릭 시 새로운 브라우저 팝업 창 대신, iframe 모달로 project.html 열기 (전체 화면 전환 방지)
+// 1. 클릭 시 새로운 브라우저 팝업 창 대신, iframe 모달로 project.html 또는 study.html 열기
 function openProjectPopup(project = 'playhouse') {
     const iframe = document.getElementById('projectModalIframe');
     const overlay = document.getElementById('projectModalOverlay');
     
+    // 스터디 항목인 경우 study.html, 일반 프로젝트는 project.html로 라우팅
+    const isStudy = (project === 'sangjun-workshop');
+    const targetPage = isStudy ? 'study.html' : 'project.html';
+
     if (iframe && overlay) {
-        iframe.src = `project.html?project=${encodeURIComponent(project)}&t=${Date.now()}`;
+        iframe.src = `${targetPage}?project=${encodeURIComponent(project)}&t=${Date.now()}`;
         overlay.style.display = 'flex';
         // 강제 reflow 유도하여 transition 애니메이션 적용
         overlay.offsetHeight; 
@@ -13,7 +17,7 @@ function openProjectPopup(project = 'playhouse') {
     } else {
         // Fallback: 엘리먼트가 없으면 기존처럼 window.open으로 열기
         const popupOptions = "width=1100,height=750,scrollbars=yes,resizable=yes";
-        window.open(`project.html?project=${encodeURIComponent(project)}`, "projectPopup", popupOptions);
+        window.open(`${targetPage}?project=${encodeURIComponent(project)}`, "projectPopup", popupOptions);
     }
 }
 
