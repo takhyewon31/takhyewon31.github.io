@@ -267,12 +267,36 @@
             display: none;
         }
 
+        /* Workshop Grid Layout */
         .workshop-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
             align-items: start;
             width: 100%;
+        }
+
+        /* Row 2A 2-column grid: attached_1 (4 posters) & attached_4 (1 poster) with 2fr:1fr scale balance */
+        .workshop-grid-2a {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            align-items: start;
+            width: 100%;
+        }
+
+        .workshop-grid-2a img {
+            margin-top: 0 !important;
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 768px) {
+            .workshop-grid-2a {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
         }
 
         /* 4-column workshop grid for attached_1~4 with visual poster equivalence */
@@ -2141,24 +2165,28 @@
                                 style="width: 100%; height: auto; display: block; margin-top: 0 !important; transform: none !important;">
                         </div>
 
-                        <!-- Row 2: 류이치 야마시로, 가메쿠라 유사쿠 1, 가메쿠라 유사쿠 2, 칼 오스카 블라제 (4열 수평 정렬, 상단 여백 추가 및 포스터 크기 균일화) -->
-                        <div class="workshop-grid-4col" style="margin-top: 40px; align-items: start;">
-                            <img src="study/sangjun_workshop_attached_1.webp" alt="류이치 야마시로" class="scroll-anim"
-                                style="width: 100%; height: auto; display: block;">
-                            <img src="study/sangjun_workshop_attached_2.webp" alt="가메쿠라 유사쿠 1" class="scroll-anim"
-                                style="width: 100%; height: auto; display: block;">
-                            <img src="study/sangjun_workshop_attached_3.webp" alt="가메쿠라 유사쿠 2" class="scroll-anim"
-                                style="width: 100%; height: auto; display: block;">
-                            <img src="study/sangjun_workshop_attached_4.webp" alt="칼 오스카 블라제" class="scroll-anim"
-                                style="width: 100%; height: auto; display: block;">
+                        <!-- Row 2A: 류이치 야마시로 & 칼 오스카 블라제 (2열 수평 정렬, 상단선 일치 및 포스터 1:1 비율 매칭) -->
+                        <div class="workshop-grid-2a" style="margin-top: 40px; align-items: start;">
+                            <img src="study/sangjun_workshop_attached_1.webp" alt="류이치 야마시로" class="scroll-anim visible"
+                                style="width: 100%; height: auto; display: block; margin-top: 0 !important; transform: none !important;">
+                            <img src="study/sangjun_workshop_attached_4.webp" alt="칼 오스카 블라제" class="scroll-anim visible"
+                                style="width: 100%; height: auto; display: block; margin-top: 0 !important; transform: none !important;">
                         </div>
 
-                        <!-- Row 3: sangjun_workshop_4 & sangjun_workshop_5 (2열 수평 정렬, 상단선 100% 일치) -->
+                        <!-- Row 2B: 가메쿠라 유사쿠 1 & 가메쿠라 유사쿠 2 (2열 수평 정렬, 상단선 100% 일치) -->
                         <div class="workshop-grid" style="margin-top: 40px; align-items: start;">
-                            <img src="study/sangjun_workshop_4.webp" alt="sangjun workshop 4" class="scroll-anim"
-                                style="width: 100%; height: auto; display: block;">
-                            <img src="study/sangjun_workshop_5.webp" alt="sangjun workshop 5" class="scroll-anim"
-                                style="width: 100%; height: auto; display: block;">
+                            <img src="study/sangjun_workshop_attached_2.webp" alt="가메쿠라 유사쿠 1" class="scroll-anim visible"
+                                style="width: 100%; height: auto; display: block; margin-top: 0 !important; transform: none !important;">
+                            <img src="study/sangjun_workshop_attached_3.webp" alt="가메쿠라 유사쿠 2" class="scroll-anim visible"
+                                style="width: 100%; height: auto; display: block; margin-top: 0 !important; transform: none !important;">
+                        </div>
+
+                        <!-- Row 3: sangjun_workshop_4 & sangjun_workshop_5 (2열 수평 정렬, 상단 텍스트 원본 복원 & 100% 수평 정렬) -->
+                        <div class="workshop-grid" style="margin-top: 40px; align-items: start;">
+                            <img src="study/sangjun_workshop_4.webp" alt="sangjun workshop 4" class="scroll-anim visible"
+                                style="width: 100%; height: auto; display: block; margin-top: 0 !important; transform: none !important;">
+                            <img src="study/sangjun_workshop_5.webp" alt="sangjun workshop 5" class="scroll-anim visible"
+                                style="width: 100%; height: auto; display: block; margin-top: 0 !important; transform: none !important;">
                         </div>
 
                         <!-- Row 4~5: sangjun_workshop_6, Attached 5 (EXPO '70 Osaka 원본 vs 따라하기) -->
@@ -2197,7 +2225,7 @@
 
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <script src="script.js?v=20260810-13"></script>
+    <script src="script.js?v=20260811-1"></script>
 </body>
 
 </html>
