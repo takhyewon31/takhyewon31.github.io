@@ -571,6 +571,11 @@ function switchSidebarTab(tabName) {
             if (txt.includes('WORK') || txt.includes('PROJECT')) tab.classList.add('active');
             else tab.classList.remove('active');
         });
+        const activeProject = projectList ? projectList.querySelector('.work-item.active') : null;
+        const firstProject = projectList ? projectList.querySelector('.work-item') : null;
+        if (!activeProject && firstProject) {
+            firstProject.click();
+        }
     } else if (tabName === 'INDEPENDENT_STUDY') {
         if (projectList) projectList.style.display = 'none';
         if (studyList) studyList.style.display = 'grid';
@@ -579,5 +584,10 @@ function switchSidebarTab(tabName) {
             if (txt.includes('STUDY')) tab.classList.add('active');
             else tab.classList.remove('active');
         });
+        const activeStudy = studyList ? studyList.querySelector('.work-item.active') : null;
+        const firstStudy = studyList ? studyList.querySelector('.work-item') : null;
+        if (!activeStudy && firstStudy) {
+            firstStudy.click();
+        }
     }
 }
