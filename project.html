@@ -279,10 +279,11 @@
         /* Row 2A 2-column grid: attached_1 (4 posters) & attached_4 (1 poster) with 2fr:1fr scale balance */
         .workshop-grid-2a {
             display: grid;
-            grid-template-columns: 2fr 1fr;
+            grid-template-columns: 1.9fr 1fr;
             gap: 30px;
             align-items: start;
             width: 100%;
+            max-width: 76%;
         }
 
         .workshop-grid-2a img {
@@ -292,10 +293,25 @@
             height: auto;
         }
 
+        /* Final outcome poster centered & scaled */
+        .workshop-final-outcome {
+            width: 100%;
+            max-width: 55%;
+            height: auto;
+            display: block;
+            margin: 60px auto 0 auto !important;
+        }
+
         @media (max-width: 768px) {
             .workshop-grid-2a {
+                max-width: 100%;
                 grid-template-columns: 1fr;
                 gap: 20px;
+            }
+
+            .workshop-final-outcome {
+                max-width: 85%;
+                margin: 40px auto 0 auto !important;
             }
         }
 
@@ -2214,9 +2230,8 @@
                             </div>
                         </div>
 
-                        <!-- Row 7: sangjun_workshop_7 (p7) -->
-                        <img src="study/sangjun_workshop_7.webp" alt="sangjun workshop 7" class="scroll-anim"
-                            style="width: 100%; height: auto; margin-top: 40px !important; display: block;">
+                        <!-- Row 7: sangjun_workshop_7 (최종 결과물 포스터: 축소 및 중앙 정렬) -->
+                        <img src="study/sangjun_workshop_7.webp" alt="sangjun workshop 7" class="scroll-anim workshop-final-outcome">
                     </div>
                 </div>
             </div>
@@ -2225,7 +2240,7 @@
 
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <script src="script.js?v=20260811-1"></script>
+    <script src="script.js?v=20260811-2"></script>
 </body>
 
 </html>
