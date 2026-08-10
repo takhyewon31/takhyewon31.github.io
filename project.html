@@ -510,14 +510,14 @@
         .project-bottom.playhouse-layout {
             display: grid;
             grid-template-columns: minmax(0, 1.25fr) minmax(240px, 0.67fr);
-            column-gap: clamp(16px, 2vw, 32px);
-            row-gap: 12px;
+            column-gap: 20px;
+            row-gap: 24px;
             align-items: stretch;
         }
 
         .project-bottom.playhouse-layout .section-header {
             grid-column: 1 / -1;
-            margin-bottom: 0 !important;
+            margin-bottom: 24px !important;
         }
 
         .project-bottom.playhouse-layout .project-section {
@@ -525,11 +525,11 @@
         }
 
         .playhouse-poster-stack {
-            --playhouse-card-width: 62%;
+            --playhouse-card-width: 73.5%;
             position: relative;
             width: 100%;
             /* Includes the cast board's lower overlap in the grid height. */
-            padding-bottom: 17.13%;
+            padding-bottom: 20.31%;
         }
 
         .playhouse-poster-stack > .project-section:first-child {
@@ -539,7 +539,7 @@
 
         .playhouse-poster-stack .project-section.overlay-cast {
             position: absolute;
-            left: 38%;
+            left: 36%;
             top: 19.5%;
             width: 100%;
             z-index: 2;
@@ -1519,7 +1519,7 @@
                 </div>
 
                 <div class="project-bottom playhouse-layout">
-                    <div class="section-header" style="grid-column: 1 / -1; margin-bottom: 0;">
+                    <div class="section-header" style="grid-column: 1 / -1; margin-bottom: 24px;">
                         <div class="col-val title" style="grid-column: 1 / -1; margin-bottom: 12px;">Variation</div>
                         <div class="header-col col-desc">
                             <div class="col-val spec-list" style="color: #aaaaaa;">
