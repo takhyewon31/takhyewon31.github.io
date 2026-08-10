@@ -509,15 +509,15 @@
 
         .project-bottom.playhouse-layout {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(240px, 0.6fr);
-            column-gap: clamp(16px, 2vw, 24px);
-            row-gap: 26px;
+            grid-template-columns: minmax(0, 1.25fr) minmax(240px, 0.67fr);
+            column-gap: clamp(16px, 2vw, 32px);
+            row-gap: 12px;
             align-items: stretch;
         }
 
         .project-bottom.playhouse-layout .section-header {
             grid-column: 1 / -1;
-            margin-bottom: 24px;
+            margin-bottom: 0 !important;
         }
 
         .project-bottom.playhouse-layout .project-section {
@@ -525,21 +525,21 @@
         }
 
         .playhouse-poster-stack {
-            --playhouse-card-width: 75.7%;
+            --playhouse-card-width: 62%;
             position: relative;
             width: 100%;
             /* Includes the cast board's lower overlap in the grid height. */
-            padding-bottom: 20.91%;
+            padding-bottom: 17.13%;
         }
 
-        .playhouse-poster-stack>.project-section:first-child {
+        .playhouse-poster-stack > .project-section:first-child {
             width: var(--playhouse-card-width);
             position: relative;
         }
 
         .playhouse-poster-stack .project-section.overlay-cast {
             position: absolute;
-            left: 32%;
+            left: 38%;
             top: 19.5%;
             width: 100%;
             z-index: 2;
@@ -556,7 +556,7 @@
         }
 
         .playhouse-side-stack .project-section {
-            width: 58%;
+            width: 100%;
         }
 
         .playhouse-ticket {
@@ -1519,7 +1519,7 @@
                 </div>
 
                 <div class="project-bottom playhouse-layout">
-                    <div class="section-header" style="grid-column: 1 / -1; margin-bottom: 24px;">
+                    <div class="section-header" style="grid-column: 1 / -1; margin-bottom: 0;">
                         <div class="col-val title" style="grid-column: 1 / -1; margin-bottom: 12px;">Variation</div>
                         <div class="header-col col-desc">
                             <div class="col-val spec-list" style="color: #aaaaaa;">
