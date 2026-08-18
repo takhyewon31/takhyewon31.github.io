@@ -1,11 +1,10 @@
-// 1. 클릭 시 새로운 브라우저 팝업 창 대신, iframe 모달로 project.html 또는 study.html 열기
+// 1. 클릭 시 새로운 브라우저 팝업 창 대신, iframe 모달로 project.html 열기
 function openProjectPopup(project = 'playhouse') {
     const iframe = document.getElementById('projectModalIframe');
     const overlay = document.getElementById('projectModalOverlay');
     
-    // 스터디 항목인 경우 study.html, 일반 프로젝트는 project.html로 라우팅
-    const isStudy = (project === 'sangjun-workshop');
-    const targetPage = isStudy ? 'study.html' : 'project.html';
+    // 통합 팝업 창을 사용하기 위해 모든 프로젝트/스터디 항목은 project.html로 라우팅
+    const targetPage = 'project.html';
 
     if (iframe && overlay) {
         iframe.src = `${targetPage}?project=${encodeURIComponent(project)}&t=${Date.now()}`;
@@ -244,6 +243,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const animImages = document.querySelectorAll('.scroll-anim');
     animImages.forEach(img => {
         imageObserver.observe(img);
+    });
+
+    // 프로젝트 탭 변경 시 새로 노출된 콘텐츠의 scroll-anim 요소들을 다시 옵저브
+    document.addEventListener('projectcontentchange', () => {
+        setTimeout(() => {
+            const currentAnimImages = document.querySelectorAll('.project-content:not([hidden]) .scroll-anim');
+            currentAnimImages.forEach(img => {
+                imageObserver.observe(img);
+                // 이미 화면 영역 근처에 있다면 바로 visible 추가
+                img.classList.add('visible');
+            });
+        }, 50);
     });
 });
 
