@@ -632,7 +632,7 @@
             padding-bottom: 20.31%;
         }
 
-        .playhouse-poster-stack > .project-section:first-child {
+        .playhouse-poster-stack>.project-section:first-child {
             width: var(--playhouse-card-width);
             position: relative;
         }
@@ -1360,14 +1360,17 @@
             object-fit: contain;
             object-position: top center;
             opacity: 0 !important;
+            visibility: hidden !important;
             transform: translateY(0) !important;
             transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
             pointer-events: none;
             margin-top: 0 !important;
+            background-color: #0d0d0d;
         }
 
         .photo-slider img.slider-image.active {
             opacity: 1 !important;
+            visibility: visible !important;
             pointer-events: auto;
         }
 
@@ -2179,7 +2182,8 @@
                 <div class="project-bottom">
                     <div class="project-section">
                         <div class="section-header">
-                            <div class="col-val title" style="grid-column: 1 / -1; margin-bottom: 12px;">Magazine Spreads</div>
+                            <div class="col-val title" style="grid-column: 1 / -1; margin-bottom: 12px;">Magazine
+                                Spreads</div>
                             <div class="header-col col-desc">
                                 <div class="col-val spec-list" style="color: #aaaaaa;">
                                     <span>비주얼 컷과 텍스트의 조화를 고려하여 구성한 에디토리얼 잡지 내지 레이아웃 모크업 연출입니다.</span>
@@ -2198,9 +2202,12 @@
                         </div>
 
                         <!-- 1열로 크게 중앙에 나열된 매거진 내지 모크업 이미지 -->
-                        <img src="project/Happycore_mag_2.png" alt="Happy Core 내지 1" class="scroll-anim visible" style="width: 100%; max-width: 960px; height: auto; display: block; margin: 40px auto 0 auto; opacity: 1 !important;">
-                        <img src="project/Happycore_mag_3.png" alt="Happy Core 내지 2" class="scroll-anim visible" style="width: 100%; max-width: 960px; height: auto; display: block; margin: 40px auto 0 auto; opacity: 1 !important;">
-                        <img src="project/Happycore_mag_4.png" alt="Happy Core 내지 3" class="scroll-anim visible" style="width: 100%; max-width: 960px; height: auto; display: block; margin: 40px auto 0 auto; opacity: 1 !important;">
+                        <img src="project/Happycore_mag_2.png" alt="Happy Core 내지 1" class="scroll-anim visible"
+                            style="width: 100%; max-width: 960px; height: auto; display: block; margin: 40px auto 0 auto; opacity: 1 !important;">
+                        <img src="project/Happycore_mag_3.png" alt="Happy Core 내지 2" class="scroll-anim visible"
+                            style="width: 100%; max-width: 960px; height: auto; display: block; margin: 40px auto 0 auto; opacity: 1 !important;">
+                        <img src="project/Happycore_mag_4.png" alt="Happy Core 내지 3" class="scroll-anim visible"
+                            style="width: 100%; max-width: 960px; height: auto; display: block; margin: 40px auto 0 auto; opacity: 1 !important;">
                     </div>
                 </div>
             </div>
@@ -2239,9 +2246,11 @@
                     <div class="project-section" style="margin-top: 0;">
                         <!-- Row 1: sangjun_workshop_2 & sangjun_workshop_3 (2열 수평 정렬, 상단선 100% 일치) -->
                         <div class="workshop-grid" style="align-items: start;">
-                            <img src="study/sangjun_workshop_2.webp" alt="sangjun workshop 2" class="scroll-anim visible"
+                            <img src="study/sangjun_workshop_2.webp" alt="sangjun workshop 2"
+                                class="scroll-anim visible"
                                 style="width: 100%; height: auto; display: block; margin-top: 0 !important; transform: none !important;">
-                            <img src="study/sangjun_workshop_3.webp" alt="sangjun workshop 3" class="scroll-anim visible"
+                            <img src="study/sangjun_workshop_3.webp" alt="sangjun workshop 3"
+                                class="scroll-anim visible"
                                 style="width: 100%; height: auto; display: block; margin-top: 0 !important; transform: none !important;">
                         </div>
 
@@ -2249,23 +2258,28 @@
                         <div class="workshop-grid-2a" style="margin-top: 40px; align-items: start;">
                             <img src="study/sangjun_workshop_attached_1.webp" alt="류이치 야마시로" class="scroll-anim visible"
                                 style="width: 100%; height: auto; display: block; margin-top: 0 !important; transform: none !important;">
-                            <img src="study/sangjun_workshop_attached_4.webp" alt="칼 오스카 블라제" class="scroll-anim visible"
+                            <img src="study/sangjun_workshop_attached_4.webp" alt="칼 오스카 블라제"
+                                class="scroll-anim visible"
                                 style="width: 100%; height: auto; display: block; margin-top: 0 !important; transform: none !important;">
                         </div>
 
                         <!-- Row 2B: 가메쿠라 유사쿠 1 & 가메쿠라 유사쿠 2 (2열 수평 정렬, 상단선 100% 일치) -->
                         <div class="workshop-grid" style="margin-top: 40px; align-items: start;">
-                            <img src="study/sangjun_workshop_attached_2.webp" alt="가메쿠라 유사쿠 1" class="scroll-anim visible"
+                            <img src="study/sangjun_workshop_attached_2.webp" alt="가메쿠라 유사쿠 1"
+                                class="scroll-anim visible"
                                 style="width: 100%; height: auto; display: block; margin-top: 0 !important; transform: none !important;">
-                            <img src="study/sangjun_workshop_attached_3.webp" alt="가메쿠라 유사쿠 2" class="scroll-anim visible"
+                            <img src="study/sangjun_workshop_attached_3.webp" alt="가메쿠라 유사쿠 2"
+                                class="scroll-anim visible"
                                 style="width: 100%; height: auto; display: block; margin-top: 0 !important; transform: none !important;">
                         </div>
 
                         <!-- Row 3: sangjun_workshop_4 & sangjun_workshop_5 (2열 수평 정렬, 상단 텍스트 원본 복원 & 100% 수평 정렬) -->
                         <div class="workshop-grid" style="margin-top: 40px; align-items: start;">
-                            <img src="study/sangjun_workshop_4.webp" alt="sangjun workshop 4" class="scroll-anim visible"
+                            <img src="study/sangjun_workshop_4.webp" alt="sangjun workshop 4"
+                                class="scroll-anim visible"
                                 style="width: 100%; height: auto; display: block; margin-top: 0 !important; transform: none !important;">
-                            <img src="study/sangjun_workshop_5.webp" alt="sangjun workshop 5" class="scroll-anim visible"
+                            <img src="study/sangjun_workshop_5.webp" alt="sangjun workshop 5"
+                                class="scroll-anim visible"
                                 style="width: 100%; height: auto; display: block; margin-top: 0 !important; transform: none !important;">
                         </div>
 
@@ -2297,7 +2311,8 @@
                         <!-- Final Outcome Section -->
                         <div class="project-section" style="margin-top: 60px;">
                             <div class="section-header">
-                                <div class="col-val title" style="grid-column: 1 / -1; margin-bottom: 12px;">Final Outcome</div>
+                                <div class="col-val title" style="grid-column: 1 / -1; margin-bottom: 12px;">Final
+                                    Outcome</div>
                                 <div class="header-col col-desc">
                                     <div class="col-val spec-list" style="color: #aaaaaa;">
                                         <span>최종 워크숍 포스터 결과물입니다.</span>
@@ -2316,7 +2331,8 @@
                             </div>
 
                             <div style="display: flex; justify-content: center; width: 100%;">
-                                <img src="study/sangjun_workshop_7.webp" alt="푸르른 새싹과 거인의 어깨 최종 결과물 포스터" class="scroll-anim visible"
+                                <img src="study/sangjun_workshop_7.webp" alt="푸르른 새싹과 거인의 어깨 최종 결과물 포스터"
+                                    class="scroll-anim visible"
                                     style="width: 100%; max-width: 60%; height: auto; display: block; margin-top: 20px;">
                             </div>
                         </div>
