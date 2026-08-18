@@ -564,6 +564,31 @@
             justify-content: center;
         }
 
+        /* 잡지 내지 모크업 합성 연출 (참고 이미지 기반) */
+        .magazine-spread-mockup {
+            width: 100%;
+            max-width: 960px;
+            margin: 40px auto 0 auto;
+            padding: 32px;
+            background-color: #0d0d0d;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .magazine-spread-mockup img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85);
+            margin-top: 0 !important;
+        }
+
         #project-content-say-touche .project-bottom.sns-two-column-layout>.project-section>img,
         #project-content-say-touche .project-bottom.sns-two-column-layout>.project-section .photo-slider-container {
             width: 100%;
@@ -1485,7 +1510,7 @@
 
                     <div class="work-item" data-project="say-touche" id="project-item-say-touche">
                         <div class="work-thumb">
-                            <img src="project/Hy_saytoche_1.webp" alt="Say Touche">
+                            <img src="project/Hy_saytoche_1.png" alt="Say Touche">
                         </div>
                         <div class="work-info">
                             <div class="work-title">Say Touche</div>
@@ -1493,34 +1518,6 @@
                                 <span class="work-tag tag-year">2025</span>
                                 <span class="work-tag tag-type">Personal</span>
                                 <span class="work-tag tag-cat">Editorial Design</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="work-item" data-project="black-rubber-shoes" id="project-item-black-rubber-shoes">
-                        <div class="work-thumb">
-                            <img src="project/Black Rubber Shoes_poster.png" alt="이우영 회고전">
-                        </div>
-                        <div class="work-info">
-                            <div class="work-title">매일, 내 일 검정고무신</div>
-                            <div class="work-tags">
-                                <span class="work-tag tag-year">2023</span>
-                                <span class="work-tag tag-type">Commercial</span>
-                                <span class="work-tag tag-cat">Exhibit Graphic Design</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="work-item" data-project="youth-artist-academy" id="project-item-youth-artist-academy">
-                        <div class="work-thumb">
-                            <img src="project/Gcf_Cardnews_1.jpg" alt="2023 청년예술인 역량강화 아카데미">
-                        </div>
-                        <div class="work-info">
-                            <div class="work-title">청년예술인 역량강화 아카데미</div>
-                            <div class="work-tags">
-                                <span class="work-tag tag-year">2023</span>
-                                <span class="work-tag tag-type">Commercial</span>
-                                <span class="work-tag tag-cat">Marketing Design</span>
                             </div>
                         </div>
                     </div>
@@ -1535,6 +1532,20 @@
                                 <span class="work-tag tag-year">2023</span>
                                 <span class="work-tag tag-type">Commercial</span>
                                 <span class="work-tag tag-cat">Digital Content Design</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="work-item" data-project="happycore" id="project-item-happycore">
+                        <div class="work-thumb">
+                            <img src="project/Happycore_mag_1.png" alt="Happy Core">
+                        </div>
+                        <div class="work-info">
+                            <div class="work-title">Happy Core</div>
+                            <div class="work-tags">
+                                <span class="work-tag tag-year">2022</span>
+                                <span class="work-tag tag-type">Personal</span>
+                                <span class="work-tag tag-cat">Editorial Design</span>
                             </div>
                         </div>
                     </div>
@@ -2067,9 +2078,9 @@
                     <div class="image-section">
                         <div class="photo-slider-container scroll-anim">
                             <div class="photo-slider" style="--slider-aspect: 851 / 1654;">
-                                <img src="project/Hy_saytoche_1.webp" alt="Say Touche Main 1"
+                                <img src="project/Hy_saytoche_1.png" alt="Say Touche Main 1"
                                     class="slider-image active">
-                                <img src="project/Hy_saytoche_10.webp" alt="Say Touche Main 2" class="slider-image">
+                                <img src="project/Hy_saytoche_10.png" alt="Say Touche Main 2" class="slider-image">
                             </div>
                             <div class="slider-controls"></div>
                         </div>
@@ -2140,6 +2151,56 @@
                                     class="slider-image">
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Happy Core Project Content -->
+            <div class="project-content" data-project-content="happycore" id="project-content-happycore" hidden>
+                <div class="project-top">
+                    <div class="image-section">
+                        <img src="project/Happycore_mag_1.png" alt="Happy Core Cover" class="scroll-anim visible"
+                            style="width: 100%; height: auto; max-height: 85vh; object-fit: contain;">
+                    </div>
+
+                    <div class="info-section">
+                        <h2>Happy Core</h2>
+                        <p class="category">Personal Work • 2022</p>
+
+                        <div class="description">
+                            <div class="description-copy" style="line-height: 1.85;">
+                                <p>Y2K 비주얼 그래픽과 해피코어(Happy Core) 무드를 메인 컨셉으로 제작한 에디토리얼 매거진 프로젝트입니다.</p>
+                                <p>컬러풀한 레이아웃과 감각적인 타이포그래피 구성을 통해 활기차고 감각적인 에너지를 전달하도록 디자인했습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-bottom">
+                    <div class="project-section">
+                        <div class="section-header">
+                            <div class="col-val title" style="grid-column: 1 / -1; margin-bottom: 12px;">Magazine Spreads</div>
+                            <div class="header-col col-desc">
+                                <div class="col-val spec-list" style="color: #aaaaaa;">
+                                    <span>비주얼 컷과 텍스트의 조화를 고려하여 구성한 에디토리얼 잡지 내지 레이아웃 모크업 연출입니다.</span>
+                                </div>
+                            </div>
+                            <div class="header-col">
+                                <div class="col-val spec-list">
+                                    <span>기획 및 디자인 | 탁혜원</span>
+                                </div>
+                            </div>
+                            <div class="header-col">
+                                <div class="col-val spec-list">
+                                    <span>210mm x 297mm (A4)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 1열로 크게 중앙에 나열된 매거진 내지 모크업 이미지 -->
+                        <img src="project/Happycore_mag_2.png" alt="Happy Core 내지 1" class="scroll-anim visible" style="width: 100%; max-width: 960px; height: auto; display: block; margin: 40px auto 0 auto; opacity: 1 !important;">
+                        <img src="project/Happycore_mag_3.png" alt="Happy Core 내지 2" class="scroll-anim visible" style="width: 100%; max-width: 960px; height: auto; display: block; margin: 40px auto 0 auto; opacity: 1 !important;">
+                        <img src="project/Happycore_mag_4.png" alt="Happy Core 내지 3" class="scroll-anim visible" style="width: 100%; max-width: 960px; height: auto; display: block; margin: 40px auto 0 auto; opacity: 1 !important;">
                     </div>
                 </div>
             </div>
