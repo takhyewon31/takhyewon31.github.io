@@ -2,7 +2,7 @@
 function openProjectPopup(project = 'playhouse') {
     const iframe = document.getElementById('projectModalIframe');
     const overlay = document.getElementById('projectModalOverlay');
-    
+
     // 통합 팝업 창을 사용하기 위해 모든 프로젝트/스터디 항목은 project.html로 라우팅
     const targetPage = 'project.html';
 
@@ -10,7 +10,7 @@ function openProjectPopup(project = 'playhouse') {
         iframe.src = `${targetPage}?project=${encodeURIComponent(project)}&t=${Date.now()}`;
         overlay.style.display = 'flex';
         // 강제 reflow 유도하여 transition 애니메이션 적용
-        overlay.offsetHeight; 
+        overlay.offsetHeight;
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden'; // 부모 스크롤 방지
     } else {
@@ -23,7 +23,7 @@ function openProjectPopup(project = 'playhouse') {
 function closeProjectModal() {
     const overlay = document.getElementById('projectModalOverlay');
     const iframe = document.getElementById('projectModalIframe');
-    
+
     if (overlay) {
         overlay.classList.remove('active');
         setTimeout(() => {
@@ -40,13 +40,13 @@ function closeProjectModal() {
 function openModal(el) {
     const imgPath = el.getAttribute('data-img');
     const title = el.innerText;
-    
+
     document.getElementById('modal-img').src = imgPath;
-    
+
     // 이력서 내에 modal-title 엘리먼트가 있다면 제목도 매핑
     const modalTitle = document.getElementById('modal-title');
     if (modalTitle) modalTitle.innerText = title;
-    
+
     document.getElementById('projectModal').style.display = 'flex';
 }
 
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const hoverPreview = document.getElementById('hover-preview');
-    
+
     // 만약 HTML에 hover-preview 엘리먼트가 없다면 동적으로 생성
     if (!hoverPreview) {
         const previewDiv = document.createElement('div');
@@ -75,12 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // .sub-project 클래스를 가진 모든 요소에 이벤트 바인딩
     document.querySelectorAll('.sub-project').forEach(el => {
-        
+
         // 마우스가 텍스트 위에서 움직일 때
         el.addEventListener('mousemove', (e) => {
             const imgPath = el.getAttribute('data-img');
             const targetPreview = document.getElementById('hover-preview');
-            
+
             if (targetPreview && imgPath) {
                 targetPreview.style.display = 'block';
                 const img = targetPreview.querySelector('img');
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         img.setAttribute('src', imgPath);
                     }
                 }
-                
+
                 // 마우스 커서 옆에 살짝 여백(15px)을 두고 따라다니도록 좌표 설정
                 targetPreview.style.left = (e.clientX + 15) + 'px';
                 targetPreview.style.top = (e.clientY + 15) + 'px';
@@ -122,19 +122,27 @@ document.addEventListener('DOMContentLoaded', () => {
             rafId: null,
             layoutRafId: null,
             start: null,
-            maxOffset: 0
+            maxOffset: 0,
+            holdTopMs: Number(column.dataset.holdTopMs || 0),
+            downMs: Number(column.dataset.downMs || 14000),
+            holdBottomMs: Number(column.dataset.holdBottomMs || 0),
+            upMs: Number(column.dataset.upMs || 6500)
         });
     });
 
     const isProjectVisible = (state) => !state.column.closest('[data-project-content][hidden]');
-    const downMs = 14000;
-    const upMs = 6500;
-    const totalMs = downMs + upMs;
+
+    const easeInOutCubic = (p) => (
+        p < 0.5
+            ? 4 * p * p * p
+            : 1 - Math.pow(-2 * p + 2, 3) / 2
+    );
 
     const setTransform = (state, value) => {
-        // Align each frame to physical pixels so fine text in the source image stays crisp while moving.
+        // Align each frame to physical pixels without ever overshooting -maxOffset at the bottom.
         const pixelRatio = window.devicePixelRatio || 1;
-        const snappedValue = Math.round(value * pixelRatio) / pixelRatio;
+        const clamped = Math.max(-state.maxOffset, Math.min(0, value));
+        const snappedValue = Math.ceil(clamped * pixelRatio) / pixelRatio;
         state.img.style.transform = `translate3d(0, ${snappedValue}px, 0)`;
     };
 
@@ -147,8 +155,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const recalcRange = (state) => {
-        const renderedHeight = state.img.offsetHeight;
-        state.maxOffset = Math.max(0, renderedHeight - state.column.clientHeight);
+        const pixelRatio = window.devicePixelRatio || 1;
+        const imgH = state.img.getBoundingClientRect().height;
+        const colH = state.column.getBoundingClientRect().height;
+        state.maxOffset = Math.max(0, Math.floor((imgH - colH) * pixelRatio) / pixelRatio);
         if (state.maxOffset === 0) {
             setTransform(state, 0);
             return false;
@@ -161,21 +171,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isProjectVisible(state) || document.hidden || !recalcRange(state)) return;
         if (state.start === null) state.start = ts;
 
+        const { holdTopMs, downMs, holdBottomMs, upMs } = state;
+        const totalMs = holdTopMs + downMs + holdBottomMs + upMs;
         const elapsed = (ts - state.start) % totalMs;
         let currentY = 0;
 
-        if (elapsed <= downMs) {
-            const progress = elapsed / downMs;
-            const eased = progress < 0.5
-                ? 4 * progress * progress * progress
-                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-            currentY = -state.maxOffset * eased;
+        if (elapsed < holdTopMs) {
+            currentY = 0;
+        } else if (elapsed <= holdTopMs + downMs) {
+            const progress = (elapsed - holdTopMs) / downMs;
+            currentY = -state.maxOffset * easeInOutCubic(progress);
+        } else if (elapsed <= holdTopMs + downMs + holdBottomMs) {
+            currentY = -state.maxOffset;
         } else {
-            const returnProgress = (elapsed - downMs) / upMs;
-            const eased = returnProgress < 0.5
-                ? 4 * returnProgress * returnProgress * returnProgress
-                : 1 - Math.pow(-2 * returnProgress + 2, 3) / 2;
-            currentY = -state.maxOffset + state.maxOffset * eased;
+            const returnProgress = (elapsed - holdTopMs - downMs - holdBottomMs) / upMs;
+            currentY = -state.maxOffset + state.maxOffset * easeInOutCubic(returnProgress);
         }
 
         setTransform(state, currentY);
@@ -341,16 +351,16 @@ document.addEventListener('DOMContentLoaded', () => {
             state.autoplayId = null;
         }
     }
-    
+
     sliderContainers.forEach(container => {
         const images = container.querySelectorAll('.slider-image');
         const prevBtn = container.querySelector('.prev-btn');
         const nextBtn = container.querySelector('.next-btn');
         const currentIdxEl = container.querySelector('.current-index');
         const totalIdxEl = container.querySelector('.total-slides');
-        
+
         if (images.length === 0) return;
-        
+
         sliderState.set(container, {
             images,
             currentIdxEl,
@@ -370,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateSlider(container, state.currentIndex - 1);
             });
         }
-        
+
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {
                 const state = sliderState.get(container);
@@ -378,7 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateSlider(container, state.currentIndex + 1);
             });
         }
-        
+
         resetSlider(container);
     });
 
@@ -455,7 +465,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 7. URL의 project 값에 맞춰 사이드바 프로젝트 선택
 document.addEventListener('DOMContentLoaded', () => {
-    const projectKey = new URLSearchParams(window.location.search).get('project') || 'playhouse';
+    const defaultProject = document.querySelector('.work-list#list-project .work-item')?.dataset.project || 'metal-earth';
+    const projectKey = new URLSearchParams(window.location.search).get('project') || defaultProject;
     const mainViewer = document.querySelector('.main-viewer');
     const resetProjectScroll = () => {
         if (mainViewer) mainViewer.scrollTo({ top: 0, left: 0, behavior: 'auto' });
@@ -573,7 +584,7 @@ function switchSidebarTab(tabName) {
     const projectList = document.getElementById('list-project');
     const studyList = document.getElementById('list-independent-study');
     const tabs = document.querySelectorAll('.sidebar-tab');
-    
+
     if (tabName === 'PROJECT') {
         if (projectList) projectList.style.display = 'grid';
         if (studyList) studyList.style.display = 'none';
@@ -602,3 +613,18 @@ function switchSidebarTab(tabName) {
         }
     }
 }
+
+// 8. 사이드바 다중 이미지 섬네일 자동 전환 (Metal Earth 등)
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.work-thumb.thumb-slideshow').forEach(thumb => {
+        const slides = thumb.querySelectorAll('.thumb-slide');
+        if (slides.length <= 1) return;
+        let cur = 0;
+        setInterval(() => {
+            slides[cur].classList.remove('active');
+            cur = (cur + 1) % slides.length;
+            slides[cur].classList.add('active');
+        }, 1800);
+    });
+});
+

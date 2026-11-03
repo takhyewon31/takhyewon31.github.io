@@ -219,6 +219,7 @@
             display: block;
             border: 2px solid #ffffff;
             object-fit: contain;
+            background-color: #0b0b0b;
         }
 
         .modal {
@@ -369,7 +370,17 @@
             <div class="item-left">
                 <span class="item-date">2026. 08 - 10</span>
             </div>
-            <div class="item-middle">모어사이언스</div>
+            <div class="item-middle">
+                <div style="margin-bottom: 4px;">모어사이언스</div>
+                <div class="sub-projects-list"
+                    style="display: flex; flex-direction: column; gap: 6px; align-items: flex-start;">
+                    <span class="sub-project" data-img="project/Metal_Earth_Logo.png"
+                        onclick="openProjectPopup('metal-earth')"
+                        style="font-size: 0.8rem; color: #B5B17B; cursor: pointer;">
+                        Metal Earth Korea 브랜드 비주얼 디자인
+                    </span>
+                </div>
+            </div>
             <div class="item-right">인턴</div>
         </div>
 

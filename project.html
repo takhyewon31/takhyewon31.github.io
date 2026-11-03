@@ -60,6 +60,8 @@
             justify-content: center;
             align-items: center;
             padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* iframe 내부 렌더링용 스타일 우회 */
@@ -401,6 +403,34 @@
             border-radius: 0;
         }
 
+        .work-thumb.thumb-slideshow {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1080 / 1440;
+            max-height: 180px;
+            isolation: isolate;
+            contain: paint;
+            transform: translateZ(0);
+        }
+
+        .work-thumb.thumb-slideshow .thumb-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            will-change: opacity;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+        }
+
+        .work-thumb.thumb-slideshow .thumb-slide.active {
+            opacity: 1;
+        }
+
         .work-info {
             width: 100%;
             display: flex;
@@ -471,8 +501,8 @@
         .project-content {
             width: 100%;
             min-width: 0;
-            min-height: 100vh;
-            /* full viewport height */
+            min-height: 100%;
+            /* fill main-viewer height without forcing phantom scroll */
             display: flex;
             flex-direction: column;
             box-sizing: border-box;
@@ -513,10 +543,11 @@
             justify-content: flex-start;
             align-items: flex-start;
             padding: clamp(72px, 8vw, 120px) 0;
-            position: sticky;
-            top: 0;
+            position: static;
             align-self: flex-start;
             height: auto;
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
 
         #project-content-playhouse .image-section,
@@ -829,6 +860,193 @@
             /* 글자 왼쪽 정렬 */
             padding: clamp(72px, 8vw, 120px) 0;
             /* 이미지 영역과 상하 패딩을 완전히 통일 */
+            position: static;
+            align-self: flex-start;
+            height: auto;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        .metal-insta-container {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 40px;
+            width: 100%;
+            margin-top: 24px;
+            align-items: center;
+        }
+
+        .metal-insta-left {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .metal-insta-left img {
+            margin-top: 0 !important;
+            display: block;
+            width: min(76%, 320px);
+            height: auto;
+            filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.45));
+        }
+
+        .metal-insta-right {
+            position: relative;
+            width: min(92%, 400px);
+            margin: 0 auto;
+            aspect-ratio: 731 / 1020;
+            overflow: hidden;
+            background-color: var(--bg-color);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+            align-self: center;
+        }
+
+        .metal-insta-right .detail-column {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+        }
+
+        .metal-insta-right .detail-column img {
+            width: 100.5%;
+            max-width: none;
+            background-color: #ffffff;
+            padding-top: 12px;
+            padding-bottom: 0;
+            box-sizing: border-box;
+            box-shadow: none;
+            transition: none !important;
+        }
+
+        .metal-feed-grid {
+            display: grid;
+            grid-template-columns: repeat(8, minmax(0, 1fr));
+            gap: 18px;
+            width: 100%;
+            margin-top: 80px;
+        }
+
+        .metal-feed-card {
+            grid-column: span 2;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            background-color: #0b0b0b;
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.42);
+        }
+
+        .metal-feed-card:nth-child(9) {
+            grid-column: 3 / span 2;
+        }
+
+        .metal-feed-card img {
+            margin-top: 0 !important;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+
+        .metal-feed-card.is-blurred img {
+            filter: blur(16px);
+            transform: scale(1.12) !important;
+        }
+
+        #project-content-metal-earth .project-section+.project-section {
+            margin-top: 40px;
+        }
+
+        .metal-ecom-grid {
+            --ecom-gap: clamp(20px, 3vw, 36px);
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--ecom-gap);
+            width: 100%;
+            margin-top: 24px;
+            align-items: center;
+        }
+
+        .metal-ecom-pair-grid {
+            --ecom-gap: clamp(20px, 3vw, 36px);
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: var(--ecom-gap);
+            width: calc((100% * 2 - var(--ecom-gap)) / 3);
+            margin: 72px auto 0;
+            align-items: start;
+        }
+
+        .metal-ecom-col {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            width: 100%;
+            min-width: 0;
+            background-color: #000000;
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .metal-ecom-col img,
+        .metal-ecom-col img.visible,
+        .metal-ecom-col img.visible:hover {
+            margin: 0 !important;
+            padding: 0 !important;
+            display: block;
+            width: 100%;
+            height: auto;
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .metal-insta-container {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .metal-insta-left img {
+                width: min(78%, 300px);
+            }
+
+            .metal-insta-right {
+                width: 100%;
+                max-width: 380px;
+            }
+
+            .metal-feed-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px;
+                margin-top: 56px;
+            }
+
+            .metal-feed-card,
+            .metal-feed-card:nth-child(9) {
+                grid-column: span 1;
+            }
+
+            .metal-ecom-grid,
+            .metal-ecom-pair-grid {
+                grid-template-columns: 1fr;
+                width: 100%;
+                gap: 36px;
+            }
+
+            .metal-ecom-pair-grid {
+                margin-top: 48px;
+            }
+
+            .metal-ecom-col {
+                max-width: 420px;
+                margin: 0 auto;
+            }
         }
 
         .info-section h2 {
@@ -1155,7 +1373,7 @@
 
             .project-content {
                 flex-direction: column;
-                min-height: 100vh;
+                min-height: 100%;
                 /* ensure full height on smaller screens */
                 box-sizing: border-box;
             }
@@ -1349,6 +1567,9 @@
             justify-content: center;
             align-items: center;
             border: none;
+            isolation: isolate;
+            contain: paint;
+            transform: translateZ(0);
         }
 
         .photo-slider img.slider-image {
@@ -1360,8 +1581,10 @@
             object-fit: contain;
             object-position: top center;
             opacity: 0 !important;
-            visibility: hidden !important;
-            transform: translateY(0) !important;
+            z-index: 1;
+            transform: translate3d(0, 0, 0) !important;
+            will-change: opacity;
+            backface-visibility: hidden;
             transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
             pointer-events: none;
             margin-top: 0 !important;
@@ -1370,7 +1593,7 @@
 
         .photo-slider img.slider-image.active {
             opacity: 1 !important;
-            visibility: visible !important;
+            z-index: 2;
             pointer-events: auto;
         }
 
@@ -1483,7 +1706,23 @@
                 </div>
 
                 <div class="work-list" id="list-project">
-                    <div class="work-item active" data-project="playhouse" id="project-item-playhouse">
+                    <div class="work-item active" data-project="metal-earth" id="project-item-metal-earth">
+                        <div class="work-thumb thumb-slideshow">
+                            <img src="project/Metal_Earth_pinpost_1.png" alt="Metal Earth 1" class="thumb-slide active">
+                            <img src="project/Metal_Earth_pinpost_2.png" alt="Metal Earth 2" class="thumb-slide">
+                            <img src="project/Metal_Earth_pinpost_3.png" alt="Metal Earth 3" class="thumb-slide">
+                        </div>
+                        <div class="work-info">
+                            <div class="work-title">Metal Earth</div>
+                            <div class="work-tags">
+                                <span class="work-tag tag-year">2026</span>
+                                <span class="work-tag tag-type">Commercial</span>
+                                <span class="work-tag tag-cat">Brand Visual Design</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="work-item" data-project="playhouse" id="project-item-playhouse">
                         <div class="work-thumb">
                             <img src="project/Playhouse_poster.png" alt="Play House M.A.P the 30th">
                         </div>
@@ -1493,20 +1732,6 @@
                                 <span class="work-tag tag-year">2026</span>
                                 <span class="work-tag tag-type">Commercial</span>
                                 <span class="work-tag tag-cat">Graphic Design</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="work-item" data-project="black-rubber-shoes" id="project-item-black-rubber-shoes">
-                        <div class="work-thumb">
-                            <img src="project/Black Rubber Shoes_poster.png" alt="이우영 1972 - 2023 : 매일, 내 일 검정고무신">
-                        </div>
-                        <div class="work-info">
-                            <div class="work-title">이우영 : 매일, 내 일 검정고무신</div>
-                            <div class="work-tags">
-                                <span class="work-tag tag-year">2023</span>
-                                <span class="work-tag tag-type">Commercial</span>
-                                <span class="work-tag tag-cat">Exhibition Design</span>
                             </div>
                         </div>
                     </div>
@@ -1539,20 +1764,6 @@
                         </div>
                     </div>
 
-                    <div class="work-item" data-project="hong-woo-joo-sns" id="project-item-hong-woo-joo-sns">
-                        <div class="work-thumb">
-                            <img src="project/Huj_Newsletter_1.png" alt="홍우주사회적협동조합 뉴스레터">
-                        </div>
-                        <div class="work-info">
-                            <div class="work-title">홍우주 SNS 콘텐츠</div>
-                            <div class="work-tags">
-                                <span class="work-tag tag-year">2023</span>
-                                <span class="work-tag tag-type">Commercial</span>
-                                <span class="work-tag tag-cat">Digital Content Design</span>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="work-item" data-project="youth-artist-academy" id="project-item-youth-artist-academy">
                         <div class="work-thumb">
                             <img src="project/Gcf_Cardnews_1.jpg" alt="2023 청년예술인 역량강화 아카데미">
@@ -1563,6 +1774,34 @@
                                 <span class="work-tag tag-year">2023</span>
                                 <span class="work-tag tag-type">Commercial</span>
                                 <span class="work-tag tag-cat">Graphic Design</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="work-item" data-project="black-rubber-shoes" id="project-item-black-rubber-shoes">
+                        <div class="work-thumb">
+                            <img src="project/Black Rubber Shoes_poster.png" alt="이우영 1972 - 2023 : 매일, 내 일 검정고무신">
+                        </div>
+                        <div class="work-info">
+                            <div class="work-title">이우영 : 매일, 내 일 검정고무신</div>
+                            <div class="work-tags">
+                                <span class="work-tag tag-year">2023</span>
+                                <span class="work-tag tag-type">Commercial</span>
+                                <span class="work-tag tag-cat">Exhibition Design</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="work-item" data-project="hong-woo-joo-sns" id="project-item-hong-woo-joo-sns">
+                        <div class="work-thumb">
+                            <img src="project/Huj_Newsletter_1.png" alt="홍우주사회적협동조합 뉴스레터">
+                        </div>
+                        <div class="work-info">
+                            <div class="work-title">홍우주 SNS 콘텐츠</div>
+                            <div class="work-tags">
+                                <span class="work-tag tag-year">2023</span>
+                                <span class="work-tag tag-type">Commercial</span>
+                                <span class="work-tag tag-cat">Digital Content Design</span>
                             </div>
                         </div>
                     </div>
@@ -1605,7 +1844,7 @@
         </aside>
 
         <main class="main-viewer">
-            <div class="project-content" data-project-content="playhouse" id="project-content-playhouse">
+            <div class="project-content" data-project-content="playhouse" id="project-content-playhouse" hidden>
                 <div class="project-top">
                     <div class="image-section">
                         <img src="project/Playhouse_poster.png" alt="Play House Poster" class="scroll-anim visible"
@@ -2186,6 +2425,173 @@
                 </div>
             </div>
 
+            <div class="project-content" data-project-content="metal-earth" id="project-content-metal-earth">
+                <div class="project-top">
+                    <div class="image-section">
+                        <div class="photo-slider-container scroll-anim" data-autoplay-interval="2200"
+                            style="width: min(75%, 480px); margin: 0 auto;">
+                            <div class="photo-slider" style="--slider-aspect: 1080 / 1440;">
+                                <img src="project/Metal_Earth_pinpost_1.png" alt="Metal Earth 1"
+                                    class="slider-image active">
+                                <img src="project/Metal_Earth_pinpost_2.png" alt="Metal Earth 2" class="slider-image">
+                                <img src="project/Metal_Earth_pinpost_3.png" alt="Metal Earth 3" class="slider-image">
+                            </div>
+                            <div class="slider-controls"></div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h2>METAL EARTH KOREA<br>브랜드 비주얼 디자인</h2>
+                        <p class="category">모어사이언스 • 2026</p>
+
+                        <div class="description">
+                            <div class="poster-text-box">
+                                <p><strong>기간:</strong> 2026. 09 — 10</p>
+                            </div>
+                            <div class="description-copy" style="line-height: 1.85;">
+                                <p>3D 메탈 퍼즐 브랜드 메탈어스의 기존 브랜드 아이덴티티를 참고해 국내 SNS 공식 채널의 비주얼 방향을 구체화했습니다.</p>
+                                <p>브랜드 홍보를 위한 비주얼 콘텐츠를 직접 기획·디자인하여 제품 상세 페이지와 오프라인 홍보물을 통일감 있게 전개하였으며 제품별 특징과 난이도, 조립 방식
+                                    등의 정보를 시각적으로 구성해 브랜드의 이해도를 높이고자 했습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-bottom">
+                    <div class="project-section">
+                        <div class="section-header">
+                            <div class="col-val title" style="grid-column: 1 / -1; margin-bottom: 12px;">Instagram Feed
+                            </div>
+                            <div class="header-col col-desc">
+                                <div class="col-val spec-list" style="color: #aaaaaa;">
+                                    <span>메탈어스 코리아 공식 인스타그램 계정의 프로필 및 피드 그리드 무드를 구축하고, 우주·공룡 등 시리즈별 제품 비주얼을 일관된 톤으로
+                                        전개했습니다.</span>
+                                </div>
+                            </div>
+                            <div class="header-col">
+                                <div class="col-val spec-list">
+                                    <span>기획 및 디자인 | 탁혜원</span>
+                                </div>
+                            </div>
+                            <div class="header-col">
+                                <div class="col-val spec-list">
+                                    <span>1080 x 1350 px</span>
+                                    <span>1080 x 1920 px</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="metal-insta-container">
+                            <div class="metal-insta-left">
+                                <img src="project/Metal_Earth_instagram_1.png?v=3" alt="Metal Earth Instagram Profile"
+                                    class="scroll-anim">
+                            </div>
+                            <div class="metal-insta-right">
+                                <div class="detail-column scroll-anim" data-hold-top-ms="1000" data-down-ms="4500"
+                                    data-hold-bottom-ms="1800" data-up-ms="3000">
+                                    <img src="project/Metal_Earth_instagram_2.png?v=2" alt="Metal Earth Instagram Feed">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="metal-feed-grid">
+                            <div class="metal-feed-card">
+                                <img src="project/Metal_Earth_space_spaceshuttlelaunchkit_1.gif"
+                                    alt="Metal Earth Space Shuttle Launch Kit Motion">
+                            </div>
+                            <div class="metal-feed-card">
+                                <img src="project/Metal_Earth_space_spaceshuttlelaunchkit_2.png"
+                                    alt="Metal Earth Space Shuttle Launch Kit Detail">
+                            </div>
+                            <div class="metal-feed-card">
+                                <img src="project/Metal_Earth_space_apollo11astronaut_1.gif"
+                                    alt="Metal Earth Apollo 11 Astronaut Motion">
+                            </div>
+                            <div class="metal-feed-card">
+                                <img src="project/Metal_Earth_space_apollo11astronaut_2.png"
+                                    alt="Metal Earth Apollo 11 Astronaut Detail">
+                            </div>
+                            <div class="metal-feed-card">
+                                <img src="project/Metal_Earth_space_mars%20rover_1.gif"
+                                    alt="Metal Earth Mars Rover Motion">
+                            </div>
+                            <div class="metal-feed-card">
+                                <img src="project/Metal_Earth_space_mars%20rover_2.png"
+                                    alt="Metal Earth Mars Rover Detail">
+                            </div>
+                            <div class="metal-feed-card is-blurred">
+                                <img src="project/Metal_Earth_dino_brachiosaurus_1.gif"
+                                    alt="Metal Earth Brachiosaurus Motion">
+                            </div>
+                            <div class="metal-feed-card is-blurred">
+                                <img src="project/Metal_Earth_dino_brachiosaurus_2.png"
+                                    alt="Metal Earth Brachiosaurus Detail">
+                            </div>
+                            <div class="metal-feed-card is-blurred">
+                                <img src="project/Metal_Earth_skeleton_pteranodon_1.gif"
+                                    alt="Metal Earth Pteranodon Motion">
+                            </div>
+                            <div class="metal-feed-card is-blurred">
+                                <img src="project/Metal_Earth_skeleton_Pteranodon_2.png"
+                                    alt="Metal Earth Pteranodon Detail">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-section">
+                        <div class="section-header">
+                            <div class="col-val title" style="grid-column: 1 / -1; margin-bottom: 12px;">Detail page
+                            </div>
+                            <div class="header-col col-desc">
+                                <div class="col-val spec-list" style="color: #aaaaaa;">
+                                    <span>브랜드 소개부터 제품별 특징·난이도·조립 방법 및 완성 모델의 입체감을 직관적으로 파악할 수 있도록 구성한 온라인 스토어 상세페이지
+                                        디자인입니다.(총 25개 상품)</span>
+                                </div>
+                            </div>
+                            <div class="header-col">
+                                <div class="col-val spec-list">
+                                    <span>기획 및 디자인 | 탁혜원</span>
+                                </div>
+                            </div>
+                            <div class="header-col">
+                                <div class="col-val spec-list">
+                                    <span>Width 860 px</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="metal-ecom-grid">
+                            <div class="metal-ecom-col">
+                                <img src="project/Metal_Earth_detail_1.png" alt="Metal Earth E-Commerce Intro">
+                            </div>
+                            <div class="metal-ecom-col">
+                                <img src="project/Metal_Earth_detail_2.png?v=2"
+                                    alt="Metal Earth E-Commerce Brand Guide">
+                            </div>
+                            <div class="metal-ecom-col">
+                                <img src="project/Metal_Earth_detail_3.png"
+                                    alt="Metal Earth E-Commerce Saturn V Overview">
+                                <img src="project/Metal_Earth_detail_4.png"
+                                    alt="Metal Earth E-Commerce Saturn V Description">
+                                <img src="project/Metal_Earth_detail_5.png" alt="Metal Earth E-Commerce Assembly Guide">
+                                <img src="project/Metal_Earth_detail_6.gif" alt="Metal Earth E-Commerce Product Info">
+                            </div>
+                        </div>
+
+                        <div class="metal-ecom-pair-grid">
+                            <div class="metal-ecom-col">
+                                <img src="project/Metal_Earth_detail_7.png?v=2" alt="Metal Earth Tool Kit Detail 1"
+                                    fetchpriority="high">
+                            </div>
+                            <div class="metal-ecom-col">
+                                <img src="project/Metal_Earth_detail_8.png?v=5" alt="Metal Earth Tool Kit Detail 2"
+                                    fetchpriority="high">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Happy Core Project Content (Hidden / In Progress)
             <div class="project-content" data-project-content="happycore" id="project-content-happycore" hidden>
                 <div class="project-top">
@@ -2371,7 +2777,7 @@
 
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <script src="script.js?v=20260811-7"></script>
+    <script src="script.js?v=20261103-2"></script>
 </body>
 
 </html>
