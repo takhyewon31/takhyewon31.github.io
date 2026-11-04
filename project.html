@@ -574,7 +574,32 @@
 
         .image-section img.visible:hover,
         .project-bottom img.visible:hover {
-            transform: translateY(0) scale(1.01);
+            transform: translateY(0);
+        }
+
+        /* Image protection: prevent drag, selection, and callout */
+        img {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            -webkit-touch-callout: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        @media print {
+            body {
+                display: none !important;
+            }
+        }
+
+        #project-content-say-touche img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: high-quality;
         }
 
         #project-content-say-touche .photo-slider-container {
@@ -2347,10 +2372,10 @@
                 <div class="project-top">
                     <div class="image-section">
                         <div class="photo-slider-container scroll-anim">
-                            <div class="photo-slider" style="--slider-aspect: 851 / 1654;">
-                                <img src="project/Hy_saytoche_1.png" alt="Say Touche Main 1"
+                            <div class="photo-slider" style="--slider-aspect: 1276 / 2481;">
+                                <img src="project/Hy_saytoche_1.png?v=2" alt="Say Touche Main 1"
                                     class="slider-image active">
-                                <img src="project/Hy_saytoche_10.png" alt="Say Touche Main 2" class="slider-image">
+                                <img src="project/Hy_saytoche_10.png?v=2" alt="Say Touche Main 2" class="slider-image">
                             </div>
                             <div class="slider-controls"></div>
                         </div>
@@ -2394,7 +2419,7 @@
                     </div>
 
                     <div class="project-section" style="margin-top: 0; position: relative;">
-                        <img src="project/Hy_saytoche_2.webp" alt="Say Touche catalog cover" class="scroll-anim"
+                        <img src="project/Hy_saytoche_2.png?v=2" alt="Say Touche catalog cover" class="scroll-anim"
                             style="width: 100%; height: auto; margin-top: 0 !important; display: block;">
                         <div class="card-border-overlay scroll-anim"
                             style="position: absolute; top: 0; right: 0; width: 50%; height: 100%; border: 1px solid rgba(255, 255, 255, 0.15); pointer-events: none; box-sizing: border-box;">
@@ -2405,19 +2430,19 @@
                         <div class="photo-slider-container scroll-anim" data-autoplay-interval="2500"
                             style="margin-top: 0;">
                             <div class="photo-slider" style="width: 100%; height: auto; aspect-ratio: 2552 / 2481;">
-                                <img src="project/Hy_saytoche_3.webp" alt="Say Touche catalog detail 1"
+                                <img src="project/Hy_saytoche_3.png?v=2" alt="Say Touche catalog detail 1"
                                     class="slider-image active">
-                                <img src="project/Hy_saytoche_4.webp" alt="Say Touche catalog detail 2"
+                                <img src="project/Hy_saytoche_4.png?v=2" alt="Say Touche catalog detail 2"
                                     class="slider-image">
-                                <img src="project/Hy_saytoche_5.webp" alt="Say Touche catalog detail 3"
+                                <img src="project/Hy_saytoche_5.png?v=2" alt="Say Touche catalog detail 3"
                                     class="slider-image">
-                                <img src="project/Hy_saytoche_6.webp" alt="Say Touche catalog detail 4"
+                                <img src="project/Hy_saytoche_6.png?v=2" alt="Say Touche catalog detail 4"
                                     class="slider-image">
-                                <img src="project/Hy_saytoche_7.webp" alt="Say Touche catalog detail 5"
+                                <img src="project/Hy_saytoche_7.png?v=2" alt="Say Touche catalog detail 5"
                                     class="slider-image">
-                                <img src="project/Hy_saytoche_8.webp" alt="Say Touche catalog detail 6"
+                                <img src="project/Hy_saytoche_8.png?v=2" alt="Say Touche catalog detail 6"
                                     class="slider-image">
-                                <img src="project/Hy_saytoche_9.webp" alt="Say Touche catalog detail 7"
+                                <img src="project/Hy_saytoche_9.png?v=2" alt="Say Touche catalog detail 7"
                                     class="slider-image">
                             </div>
                         </div>
@@ -2490,7 +2515,7 @@
                             <div class="metal-insta-right">
                                 <div class="detail-column scroll-anim" data-hold-top-ms="1000" data-down-ms="4500"
                                     data-hold-bottom-ms="1800" data-up-ms="3000">
-                                    <img src="project/Metal_Earth_instagram_2.png?v=2" alt="Metal Earth Instagram Feed">
+                                    <img src="project/Metal_Earth_instagram_2.png?v=3" alt="Metal Earth Instagram Feed">
                                 </div>
                             </div>
                         </div>
@@ -2778,7 +2803,7 @@
 
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <script src="script.js?v=20261103-2"></script>
+    <script src="script.js?v=20261104-1"></script>
 </body>
 
 </html>

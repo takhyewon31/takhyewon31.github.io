@@ -199,6 +199,26 @@
             }
         }
 
+        /* Image protection: prevent drag, selection, and callout */
+        img {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            -webkit-touch-callout: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        @media print {
+            body {
+                display: none !important;
+            }
+        }
+
         /* 1. 마우스 커서 옆에 따라다니는 미리보기 박스 */
         #hover-preview {
             position: fixed;
@@ -509,7 +529,7 @@
         </div>
     </div>
 
-    <script src="script.js?v=20260811-7"></script>
+    <script src="script.js?v=20261104-1"></script>
 </body>
 
 </html>

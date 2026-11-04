@@ -628,3 +628,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// 10. 보안 및 이미지 보호 기능 (우클릭 방지, 이미지 드래그/저장 방지, 인쇄 방지)
+(function initContentProtection() {
+    // 마우스 우클릭 (컨텍스트 메뉴) 방지
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+        return false;
+    }, { capture: true });
+
+    // 이미지 드래그 방지
+    document.addEventListener('dragstart', function (e) {
+        if (e.target && e.target.nodeName === 'IMG') {
+            e.preventDefault();
+            return false;
+        }
+    }, { capture: true });
+
+    // 주요 단축키 차단 (저장: Cmd/Ctrl+S, 인쇄: Cmd/Ctrl+P, 소스보기: Cmd/Ctrl+U, 개발자도구: F12, Cmd+Option+I 등)
+    document.addEventListener('keydown', function (e) {
+        const key = (e.key || '').toLowerCase();
+        if (
+            (e.key === 'F12') ||
+            ((e.ctrlKey || e.metaKey) && ['s', 'p', 'u'].includes(key)) ||
+            ((e.ctrlKey || e.metaKey) && e.shiftKey && ['i', 'c', 'j'].includes(key)) ||
+            ((e.metaKey && e.altKey) && ['i', 'j', 'c', 'u'].includes(key))
+        ) {
+            e.preventDefault();
+            return false;
+        }
+    }, { capture: true });
+})();
+
+
